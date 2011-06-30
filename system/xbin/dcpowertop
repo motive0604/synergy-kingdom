@@ -1,0 +1,6 @@
+#!/system/bin/sh
+#PowerTop for DamageControl
+#
+export TERMINFO=/etc/terminfo 
+export TERM=linux
+powertop -d

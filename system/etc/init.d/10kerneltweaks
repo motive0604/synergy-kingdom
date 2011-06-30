@@ -1,0 +1,112 @@
+#!/system/bin/sh
+#######################
+#Tuning System Variables
+#######################
+export LOG_FILE=/cache/dcboot.log;
+export dirty_expire_centisecs=`getprop dc.adv.dirtyexpire`;
+export dirty_writeback_centisecs=`getprop dc.adv.dirtywriteback`;
+export dirty_background_ratio=`getprop dc.adv.dirtybg`;
+export dirty_ratio=`getprop dc.adv.dirtyratio`;
+export sampling_rate=`getprop dc.adv.samplerate`;
+export up_threshold=`getprop dc.adv.upthreshold`;
+export laptop_mode=`getprop dc.adv.laptopmode`;
+export cache_pressure=`getprop dc.adv.cachepressure`;
+export oom_kill=`getprop dc.adv.oomkill`;
+export page_cluster=3;
+export intswapping=true;
+export dalvikheap=`getprop dc.dalvik.heapsize`;
+
+export READ_AHEAD_KB=`getprop dc.adv.read_ahead_kb`;
+if [ $dalvikheap = "16m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 16mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 16m;
+fi;
+if [ $dalvikheap = "24m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 24mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 24m;
+fi;
+if [ $dalvikheap = "32m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 32mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 32m;
+fi;
+if [ $dalvikheap = "48m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 48mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 48m;
+fi;
+
+echo "[!] Setting Advanced System Variables." | tee -a $LOG_FILE;
+if [ -n ${page_cluster} ];
+	then echo ${page_cluster} > /proc/sys/vm/page-cluster;
+fi;
+
+if [ -n ${dirty_expire_centisecs} ];
+	then echo ${dirty_expire_centisecs} > /proc/sys/vm/dirty_expire_centisecs;
+fi; 
+
+if [ -n ${dirty_writeback_centisecs} ];
+	then echo ${dirty_writeback_centisecs} > /proc/sys/vm/dirty_writeback_centisecs;
+fi;
+
+if [ -n ${dirty_background_ratio} ];
+	then echo ${dirty_background_ratio} > /proc/sys/vm/dirty_background_ratio; 
+fi;
+
+if [ -n ${dirty_ratio} ];
+	then echo ${dirty_ratio} > /proc/sys/vm/dirty_ratio;
+fi;
+
+if [ -n ${up_threshold} ];
+	then echo ${up_threshold} > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold;
+fi;
+
+if [ -n ${sampling_rate} ];
+	then echo ${sampling_rate} > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
+fi;
+
+if [ -n ${cache_pressure} ];
+	then echo ${cache_pressure} > /proc/sys/vm/vfs_cache_pressure;
+fi;
+
+if [ -n $laptop_mode ] &&  [ $laptop_mode = "true" ]; 
+then
+	echo 5 > /proc/sys/vm/laptop_mode;
+else
+	echo 0 > /proc/sys/vm/laptop_mode;
+fi;
+
+if [ -n $oom_kill ] && [ $oom_kill = "true" ]; 
+then
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task;
+else
+	echo 0 > /proc/sys/vm/oom_kill_allocating_task;
+fi;
+
+
+if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]; then
+    echo ${READ_AHEAD_KB} > /sys/devices/virtual/bdi/179:0/read_ahead_kb
+    echo "SD card read ahead kb SET to $READ_AHEAD_KB"
+fi
+
+
+#powersave bias-is this in dconfig yet?
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;
+
+#Demon Voices Audio fix. Make this a dconfig option
+#setprop media.stagefright.enable-player false;
+
+echo "[ ] Here are values we are using" | tee -a $LOG_FILE;
+cat /proc/sys/vm/page-cluster | tee -a $LOG_FILE;
+cat /proc/sys/vm/laptop_mode | tee -a $LOG_FILE;
+cat /proc/sys/vm/dirty_expire_centisecs | tee -a $LOG_FILE;
+cat /proc/sys/vm/dirty_writeback_centisecs | tee -a $LOG_FILE;
+cat /proc/sys/vm/dirty_background_ratio | tee -a $LOG_FILE;
+cat /proc/sys/vm/dirty_ratio | tee -a $LOG_FILE;
+cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold | tee -a $LOG_FILE;
+cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate | tee -a $LOG_FILE;
+cat /proc/sys/vm/laptop_mode | tee -a $LOG_FILE;
+cat /proc/sys/vm/oom_kill_allocating_task  | tee -a $LOG_FILE;
+cat /proc/sys/vm/vfs_cache_pressure | tee -a $LOG_FILE;
