@@ -1,0 +1,23 @@
+#!/system/bin/sh
+###############################
+#Starting FirstBoot Script
+###############################
+export LOG_FILE=/cache/dcboot.log;
+export firstboot=`getprop dc.firstboot.active`;
+if [ -n $firstboot ] && [ $firstboot = "true" ]; 
+then
+	echo "[ ] Searching for FirstBoot script..." | tee -a $LOG_FILE;
+		if [ -e /data/firstboot.sh ]
+		then
+			echo "[!] FirstBoot script found...executing." | tee -a $LOG_FILE;
+			/system/bin/sh /data/firstboot.sh;
+			echo "[!] Removing FirstBoot Script." | tee -a $LOG_FILE;
+			busybox rm -r /data/firstboot.sh;
+		fi;
+	if [ -e /data/firstboot1.sh ]
+	then
+		busybox mv /data/firstboot1.sh /data/firstboot.sh;
+	fi;
+else
+		echo "[X] Firstboot Script Disabled by dc.conf" | tee -a $LOG_FILE;
+fi

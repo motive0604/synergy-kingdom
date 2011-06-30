@@ -1,0 +1,23 @@
+#!/system/bin/sh
+if [ "$1" == "create" ]
+ then
+  if [ -f /data/swapfile ]
+ then
+swapoff /data/swapfile 
+    rm /data/swapfile
+  fi
+  echo "creating swap, please wait...."
+  busybox dd if=/dev/zero of=/data/swapfile bs=1k count=200000 > /dev/null
+chmod 777 /data/swapfile
+  mkswap /data/swapfile > /dev/null
+elif [ "$1" == "remove" ]
+ then
+  echo "removing swap, please wait...."
+  swapoff /data/swapfile
+  rm /data/swapfile
+else
+  echo "Usage: swap create|remove"
+  exit
+fi
+echo
+echo "all done! Reboot for it to take effect."
