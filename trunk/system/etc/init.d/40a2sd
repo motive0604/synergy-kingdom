@@ -1,0 +1,236 @@
+#!/system/bin/sh
+#
+# Apps2SD using symlinks and bind mounts
+# shade@chemlab.org (cyanogen)
+# modded by treve
+export LOG_FILE=/cache/dcboot.log;
+export atosdactive=`getprop dc.a2sd.active`;
+export movedata=`getprop dc.a2sd.data.active`;
+export moveapps=`getprop dc.a2sd.apps.active`;
+export movedalviksd=`getprop dc.a2sd.dalvikcachesd.active`;
+export movedalvikcache=`getprop dc.a2sd.dalvikcachepart.active`;
+export swapping=`getprop dc.swap.active`;
+
+# execute any postinstall script then kill it
+echo "[ ] Checking for ext partition" | tee -a $LOG_FILE;
+if [ -e /dev/block/mmcblk0p2 ];
+then
+
+	# mount and set perms
+	echo "[!] Ext partition found."  | tee -a $LOG_FILE;
+	echo "[ ] Checking Ext partition for errors, count echoed below is returned from e2fsck" | tee -a $LOG_FILE;
+	/system/bin/e2fsck -fy /dev/block/mmcblk0p2;
+	setprop dc.e2fsck.errors $?;
+	getprop dc.e2fsck.errors | tee -a $LOG_FILE;
+	busybox mount -o noatime,nodiratime -t auto /dev/block/mmcblk0p2 /system/sd;
+	if [ $? != 0 ];
+	then
+		echo "[X] EXT Exists but mounting failed. Can't continue script...aborting.";
+		echo "[ ] Setting File System Ready property to 1.";
+		setprop dc.filesystem.ready 1;
+		echo "[ ] Remounting /system to read-only.";
+		busybox mount -o remount,ro /system;
+		
+		setprop dc.a2sd.active false;
+		setprop dc.a2sd.apps.active false;
+		setprop dc.a2sd.dalvikcachesd.active false;
+		setprop dc.a2sd.dalvikcachepart.active false;
+		setprop dc.a2sd.data.active false;
+
+		export atosdactive=`getprop dc.a2sd.active`;
+		export movedata=`getprop dc.a2sd.data.active`;
+		export moveapps=`getprop dc.a2sd.apps.active`;
+		export movedalviksd=`getprop dc.a2sd.dalvikcachesd.active`;
+		export movedalvikcache=`getprop dc.a2sd.dalvikcachepart.active`;
+	fi;
+	
+    busybox chown 1000:1000 /system/sd;
+    toolbox chmod 771 /system/sd;
+
+	# clean up any old symlinks, create data directories
+    for i in dalvik-cache data;
+	do
+		if [ -h /data/$i ];
+		then
+        echo "[!] Deleting old symlinks." | tee -a $LOG_FILE;
+			busybox rm /data/$i; 
+		fi;
+		if [ ! -d /data/$i ];
+		then
+			echo "[!] Creating /data/$i directory" | tee -a $LOG_FILE;
+			busybox mkdir /data/$i;
+			busybox chown 1000:1000 /data/$i;
+			toolbox chmod 777 /data/$i;
+		fi;
+	done;
+
+    # don't allow /data/data on sd because of upgrade issues - move it if possible
+    if [ -d /system/sd/data ];
+    then
+        busybox cp -a /system/sd/data/* /data/data/;
+        busybox rm -rf /system/sd/data;
+    fi;
+
+
+	
+    # move apps from internal memory to sdcard
+	
+	if [ -n $moveapps ] && [ $moveapps = "true"	]; 
+	then
+		echo "[ ] Begin move of app & app-private to sd" | tee -a $LOG_FILE;
+		for i in app app-private;
+		do
+			if [ ! -d /system/sd/$i ];
+			then
+				echo "[!] /system/sd/$i directory not found, creating..." | tee -a $LOG_FILE;
+				busybox mkdir /system/sd/$i;
+			fi;
+
+			echo "[ ] Changing ownership of /system/sd/$i" | tee -a $LOG_FILE;
+			busybox chown 1000:1000 /system/sd/$i;
+			busybox chown root.root /system/sd/$i/*;
+			echo "[ ] Changing permissions of /system/sd/$i" | tee -a $LOG_FILE;
+			toolbox chmod 777 /system/sd/$i;
+			toolbox chmod 777 /system/sd/$i/*;
+    
+			if [ -d /data/$i ] && [ ! -h /data/$i ];
+			then
+				echo "[!] Moving files from /data/$i to /system/sd/$i" | tee -a $LOG_FILE;
+				busybox cp -f -a /data/$i/* /system/sd/$i;
+				echo "[!] Deleting /data/$i" | tee -a $LOG_FILE;
+				busybox rm -rf /data/$i/;
+				echo "[!] Creating Symbolic Link of /system/sd/$i as /data/$i" | tee -a $LOG_FILE;
+				busybox ln -s /system/sd/$i /data/$i;
+			fi;
+		done;
+	else 
+		echo "[!] Moving of App&App-Private to SD disallowed by DC.conf." | tee -a $LOG_FILE;
+		for i in app app-private;
+		do 
+		    if [ -h /data/$i -o ! -d /data/$i ];
+			then
+				echo "[ ] Either /data/$i isnt a directory or is a symlink.  Fixing so we can boot" | tee -a $LOG_FILE; 
+				busybox rm /data/$i;
+				echo "[ ] Creating /data/$i" | tee -a $LOG_FILE;
+				busybox mkdir /data/$i;
+				echo "[!] Changing ownership of /data/$i" | tee -a $LOG_FILE;
+				busybox chown 1000:1000 /data/$i;
+				echo "[!] Changing permissions of /data/$i" | tee -a $LOG_FILE;
+				toolbox chmod 777 /data/$i;
+			fi;
+			
+			if [ -d /system/sd/$i ] && [ ! -h /system/sd/$i ];
+			then
+				echo "[!] Moving files from /system/sd/$i to /data/$i" | tee -a $LOG_FILE;
+				busybox cp -a /system/sd/$i/*  /data/$i;
+				echo "[!] Deleting /system/sd/$i" | tee -a $LOG_FILE;
+				busybox rm -r /system/sd/$i/;
+			fi;
+		done;	
+	fi;
+
+	if [ $movedalviksd = "true" -o $movedalvikcache = "true" ]; 
+	then
+		if [ $movedalviksd = "true" ];
+		then
+			echo "[ ] Begin move dalvik-cache to sd" | tee -a $LOG_FILE;
+			if [ ! -d /system/sd/dalvik-cache ];
+			then
+				echo "[!] dalvik-cache directory not found, creating..." | tee -a $LOG_FILE;
+				busybox mkdir /system/sd/dalvik-cache;
+			fi;
+			echo "[!] Changing ownership of /system/sd/dalvik-cache" | tee -a $LOG_FILE;
+			busybox chown 1000:1000 /system/sd/dalvik-cache;
+			echo "[!] Changing permissions of /system/sd/dalvik-cache" | tee -a $LOG_FILE;
+			toolbox chmod 771 /system/sd/dalvik-cache;
+			if [ -d /data/dalvik-cache ] && [ ! -h /data/dalvik-cache ];
+			then
+				echo "[!] Moving files from /data/dalvik-cache to /system/sd/dalvik-cache" | tee -a $LOG_FILE;
+				busybox cp -a -f /data/dalvik-cache/* /system/sd/dalvik-cache;
+				echo "[!] Deleting /data/dalvik-cache" | tee -a $LOG_FILE;
+				busybox rm -r /data/dalvik-cache;
+				echo "[!] Creating Symbolic Link of /system/sd/dalvik-cache as /data/dalvik-cache" | tee -a $LOG_FILE;
+				busybox ln -s /system/sd/dalvik-cache /data/dalvik-cache;
+			fi;
+	fi;
+	if [ $movedalvikcache = "true" ];
+	then
+		if [ ! -d /cache/dalvik-cache ];
+		then
+			busybox rm -rf /cache/dalvik-cache /data/dalvik-cache
+			mkdir /cache/dalvik-cache /data/dalvik-cache
+		fi;
+		
+		busybox chown 1000:1000 /cache/dalvik-cache
+		toolbox chmod 0771 /cache/dalvik-cache
+
+		# bind mount dalvik-cache so we can still boot without the cache
+		busybox mount -o bind /cache/dalvik-cache /data/dalvik-cache
+		busybox chown 1000:1000 /data/dalvik-cache
+		toolbox chmod 0771 /data/dalvik-cache
+	fi;
+	else 
+		echo "[!] Moving of Dalvik-Cache to SD disallowed by DC.conf" | tee -a $LOG_FILE;
+		if [ -h /data/dalvik-cache ];
+		then
+			echo "[ ] Removing the symbolic link /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox rm /data/dalvik-cache;
+			echo "[ ] Creating /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox mkdir /data/dalvik-cache;
+			echo "[!] Changing ownership of /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox chown 1000:1000 /data/dalvik-cache;
+			echo "[!] Changing permissions of /data/dalvik-cache" | tee -a $LOG_FILE;
+			toolbox chmod 771 /data/dalvik-cache;
+			echo "[!] Moving files from /system/sd/dalvik-cache to /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox cp -a -f /system/sd/dalvik-cache/*  /data/dalvik-cache;
+			echo "[!] Deleting /system/sd/dalvik-cache" | tee -a $LOG_FILE;
+			busybox rm -r /system/sd/dalvik-cache;
+		fi;
+		if [ -e /system/sd/dalvik-cache ];
+		then
+			echo "[ ] Creating /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox mkdir /data/dalvik-cache;
+			echo "[!] Changing ownership of /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox chown 1000:1000 /data/dalvik-cache;
+			echo "[!] Changing permissions of /data/dalvik-cache" | tee -a $LOG_FILE;
+			toolbox chmod 771 /data/dalvik-cache
+			echo "[!] Moving files from /system/sd/dalvik-cache to /data/dalvik-cache" | tee -a $LOG_FILE;
+			busybox cp -a -f /system/sd/dalvik-cache/*  /data/dalvik-cache;
+			echo "[!] Deleting /system/sd/dalvik-cache" | tee -a $LOG_FILE;
+			busybox rm -r /system/sd/dalvik-cache;
+		fi;
+	fi;
+	
+	
+    # clean up old whiteouts
+	echo "[!] Cleaning old whiteouts" | tee -a $LOG_FILE;
+    for i in local misc property system tombstones;
+    do
+        if [ -h /system/sd/$i ]; then busybox rm -f /system/sd/$i; fi
+    done;
+		
+		
+    echo "[ ] Removing ODEX files from /system/sd/app" | tee -a $LOG_FILE;
+    busybox rm -r /system/sd/app/*.odex
+    echo "[ ] Removing ODEX fles from /system/sd/app-private" | tee -a $LOG_FILE;
+    busybox rm -r /system/sd/app-private/*.odex
+    setprop cm.a2sd.active 1;
+    echo "[*] A2SD active." | tee -a $LOG_FILE;
+
+else
+    # replace symlinks with directories so we can boot without sd
+    echo "[X] No ext partition available.  A2SD not active. Checking on App/App-Private to make sure we can still boot" | tee -a $LOG_FILE;
+    for i in app app-private dalvik-cache;
+    do
+       if [ -h /data/$i -o ! -e /data/$i ];
+       then
+	       echo "[!] Fixing up /data/ directories" | tee -a $LOG_FILE;
+            busybox rm -r /data/$i;
+            busybox mkdir /data/$i;
+            busybox chown 1000:1000 /data/$i;
+            toolbox chmod 777 /data/$i;
+        fi;
+    done;
+    setprop cm.a2sd.active 0;
+fi;
+sync;

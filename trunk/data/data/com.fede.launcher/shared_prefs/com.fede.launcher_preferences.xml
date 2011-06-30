@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+<map>
+<string name="key_drawer_columns_landscape">6</string>
+<string name="key_screen_number">3</string>
+<string name="key_home_key_action">1</string>
+<int name="key_drawer_opening_speed" value="10" />
+<string name="key_twitter_update_interval">15</string>
+<int name="key_previews_opening_speed" value="10" />
+<boolean name="key_prevent_fcs" value="true" />
+<string name="key_scrolling_cache_type">normal</string>
+<string name="key_facebook_update_interval">15</string>
+<string name="key_default_screen">2</string>
+<boolean name="key_dock_looping" value="true" />
+<string name="key_highlight_style">2</string>
+<string name="key_screen_transition">0</string>
+<boolean name="key_show_screen_indicator" value="false" />
+<boolean name="key_auto_orientation" value="true" />
+<boolean name="key_show_home_button" value="true" />
+<string name="key_drawer_columns_portrait">4</string>
+<string name="key_dock_background">froyo_wide</string>
+<string name="key_dock_number">3</string>
+<boolean name="key_cache_as_needed" value="true" />
+<boolean name="key_enable_scrolling_cache" value="true" />
+<string name="key_highlight_color_focused">241CFF</string>
+<string name="key_bookmark_sort">0</string>
+<boolean name="key_elastic_scrolling" value="true" />
+<string name="key_highlight_color_pressed">0318FF</string>
+<string name="key_friends_update_interval">15</string>
+</map>

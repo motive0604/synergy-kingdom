@@ -1,0 +1,79 @@
+#!/system/bin/sh
+export LOG_FILE=/cache/dcboot.log
+echo "[ ] Setting default variables (to make sure everythign exists)" | tee -a $LOG_FILE;
+#cheaters way of making sure variables defined
+setprop dc.devicetype generic;
+setprop dc.a2sd.active true;
+setprop dc.a2sd.apps.active false;
+setprop dc.a2sd.dalvikcachesd.active false;
+setprop dc.a2sd.dalvikcachepart.active false;
+setprop dc.a2sd.data.active false;
+
+#Basic system parms
+setprop dc.swap.active false;
+setprop dc.swap.swpto swppart;
+setprop dc.swap.swappiness 30;
+setprop dc.wirelessn.active false;
+setprop dc.bannedapp.active true;
+setprop dc.firstboot.active true;
+setprop dc.zipalign.active true;
+
+#Advanced system parms
+setprop dc.jit.active false;
+setprop dc.adv.upthreshold 95;
+setprop dc.adv.samplerate 200000;
+setprop dc.adv.dirtybg 5;
+setprop dc.adv.dirtyratio 15;
+setprop dc.adv.dirtyexpire 600;
+setprop dc.adv.dirtywriteback 1500;
+setprop dc.adv.read_ahead_kb 512;
+
+#Advanced system parms2
+setprop dc.adv.laptopmode false;
+setprop dc.adv.cachepressure 100;
+setprop dc.adv.oomkill false;
+setprop dc.dalvik.heapsize 32m;
+
+
+############################
+# Loading variables if saved
+############################
+
+echo "[ ] Setting real variables from dc.conf" | tee -a $LOG_FILE;
+if [ -e /data/data/com.damaged.DConfig/dc.conf ];
+then
+	echo "setting variables using values stored from DConfig tool" | tee -a $LOG_FILE;
+	/system/bin/sh /data/data/com.damaged.DConfig/dc.conf;
+else
+	echo "setting variables from default dc.conf in /system/etc/" | tee -a $LOG_FILE;
+	/system/bin/sh /system/etc/dc.conf;
+fi;
+
+#now really set variables 
+export atosdactive=`getprop dc.a2sd.active`;
+export dalvikheap=`getprop dc.dalvik.heapsize`;
+export movedata=`getprop dc.a2sd.data.active`;
+export moveapps=`getprop dc.a2sd.apps.active`;
+export movedalviksd=`getprop dc.a2sd.dalvikcachesd.active`;
+export movedalvikcache=`getprop dc.a2sd.dalvikcachepart.active`;
+export swapping=`getprop dc.swap.active`;
+export firstboot=`getprop dc.firstboot.active`;
+export jit=`getprop dc.jit.active`;
+export swapto=`getprop dc.swap.swpto`;
+export wirelessn=`getprop dc.wirelessn.active`;
+export bannedapps=`getprop dc.bannedapp.active`;
+export zipalign=`getprop dc.zipalign.active`;
+export dirty_expire_centisecs=`getprop dc.adv.dirtyexpire`;
+export dirty_writeback_centisecs=`getprop dc.adv.dirtywriteback`;
+export dirty_background_ratio=`getprop dc.adv.dirtybg`;
+export dirty_ratio=`getprop dc.adv.dirtyratio`;
+export sampling_rate=`getprop dc.adv.samplerate`;
+export up_threshold=`getprop dc.adv.upthreshold`;
+export laptop_mode=`getprop dc.adv.laptopmode`;
+export cache_pressure=`getprop dc.adv.cachepressure`;
+export oom_kill=`getprop dc.adv.oomkill`;
+export READ_AHEAD_KB=`getprop dc.adv.read_ahead_kb`;
+	
+#These arent in dc.conf yet.  For another version
+export page_cluster=3;
+export intswapping=true;
