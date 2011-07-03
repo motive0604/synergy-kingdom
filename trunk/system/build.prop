@@ -90,6 +90,7 @@ persist.service.adb.enable = 1
 rild.libpath=/system/lib/libhtc_ril.so
 ro.ril.def.preferred.network = 4
 ro.telephony.default_network = 4
+net.tcp.buffersize.wimax = 4096,221184,524288,4096,16384,110208
 wifi.interface = eth0
 wifi.supplicant_scan_interval=90
 
@@ -123,6 +124,8 @@ settings.display.autobacklight=1
 # default value of brightness
 settings.display.brightness=143
 
+# For emmc phone storage
+ro.phone_storage = 1
 
 # This is a high density device with more memory, so larger vm heaps for it.
 # Change to 32m, due to 2.3.3 GB already change to 32m
@@ -194,6 +197,11 @@ ro.com.google.clientidbase.gmm = android-sprint-us
 #Modify MTU from 1500 to 1472 on 3G network
 ro.ril.set.mtu1472 = 1
 
+# Make cdma voicemail the default voicemail number.
+ro.cdma.voicemail.number = mine
+
+mobiledata.interfaces=rmnet0,gprs,wimax0
+
 # For FOTA setting (leave empty value to use default)
 ro.htc.checkin.url = http://andchin.htc.com/android/checkin
 ro.htc.checkin.crashurl = http://andchin.htc.com/android/crash
@@ -239,6 +247,7 @@ ro.config.msg_notification=Polaris.ogg
 ro.setupwizard.mode=DISABLED
 ro.com.google.gmsversion=2.3_r3
 media.a1026.nsForVoiceRec=0
+media.a1026.enableA1026=1
 htc.audio.alt.enable=1
 htc.audio.hac.enable=1
 ro.media.enc.hprof.file.format=mp4
@@ -289,4 +298,6 @@ ro.media.enc.jpeg.quality=95,85,70
 ro.setupwizard.enterprise_mode=1
 ro.media.codec_priority_for_thumb=so
 net.bt.name=Android
+dalvik.vm.dexopt-flags=m=y
+dalvik.vm.lockprof.threshold=500
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
