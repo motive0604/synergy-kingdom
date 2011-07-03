@@ -203,6 +203,7 @@ symlink("/system/xbin/busybox", "/system/bin/rm");
 symlink("/system/xbin/busybox", "/system/bin/top");
 show_progress(0.200000, 10);
 mount("MTD", "sdcard", "/sdcard");
+delete_recursive("/sdcard/synergy");
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
