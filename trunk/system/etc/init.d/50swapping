@@ -1,0 +1,36 @@
+#!/system/bin/sh
+#
+###############################
+#Starting Swap Checks
+###############################
+if [ $swapping = "true" ]; 
+then
+	if [ $swapto = "swppart" ];
+	then
+		echo "[ ] Searching for Swap Partition" | tee -a $LOG_FILE;
+		if [ -e /dev/block/mmcblk0p3 ] 
+		then
+		    swappy=`getprop dc.swap.swappiness`;
+			echo "[!] Swap Partition Found...Turning on swap." | tee -a $LOG_FILE;
+			swapon /dev/block/mmcblk0p3;
+			sysctl -w vm.swappiness=$swappy;
+		else
+			echo "[X] SD Swap Partition not found" | tee -a $LOG_FILE;
+		fi;
+	fi;
+	if [ $swapto = "swpfile" ]; 
+	then
+		busybox rm /data/swap.swp;
+		echo "[ ] Creating internal swap partition" | tee -a $LOG_FILE;
+		dd if=/dev/zero of=/data/swap.swp bs=1024 count=32000;
+		echo "[ ] Prepping block devices as swap partition" | tee -a $LOG_FILE;
+		busybox mkswap /data/swap.swp;
+		echo "[ ] Swapping on new /data/swap.swp" | tee -a $LOG_FILE;
+		swapon /data/swap.swp;
+		echo "[ ] Setting Swappiness" | tee -a $LOG_FILE;
+		swappy=`getprop dc.swap.swappiness`;
+		sysctl -w vm.swappiness=$swappy;
+	fi;
+else
+		echo "[X] Swapping Disabled by dc.conf" | tee -a $LOG_FILE;
+fi;
