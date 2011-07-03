@@ -10,7 +10,7 @@ then
 		if [ -e /data/firstboot.sh ]
 		then
 			echo "[!] FirstBoot script found...executing." | tee -a $LOG_FILE;
-			/system/bin/sh /data/firstboot.sh;
+			logwrapper /system/bin/sh /data/firstboot.sh;
 			echo "[!] Removing FirstBoot Script." | tee -a $LOG_FILE;
 			busybox rm -r /data/firstboot.sh;
 		fi;

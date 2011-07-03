@@ -90,6 +90,7 @@ delete_recursive("/data/data/com.android.htccontacts/cache");
 delete_recursive("/data/data/com.android.htccontacts/databases/webviewCache.db");
 delete_recursive("/data/data/com.android.mms/cache");
 delete_recursive("/data/data/com.android.mms/bufferFileForMms");
+delete_recursive("/data/data/com.android.vending/cache");
 delete_recursive("/data/data/com.androidapps.spare_parts/cache");
 delete_recursive("/data/data/com.androidapps.spare_parts/databases/webviewCache.db");
 delete_recursive("/data/data/com.ebay.mobile/cache");

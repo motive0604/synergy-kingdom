@@ -1,7 +1,7 @@
 #!/system/bin/sh
-#Edited By: TrevE @ xda for damagedrom
-
+#
 ############################
+#Edited By: TrevE @ xda for damagedrom
 #Create Log File
 ############################
 export LOG_FILE=/cache/dcboot.log
