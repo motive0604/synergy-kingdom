@@ -1,7 +1,7 @@
 #!/system/bin/bash
 BUSYBOX="/system/xbin/busybox"
 cd /data/app_s
-filelist=`$BUSYBOX find . -type f`
+filelist=`$BUSYBOX find * -maxdepth 1 -type f`
 for i in $filelist
 do
 	if [ ! -e /system/app/$i ]; 
