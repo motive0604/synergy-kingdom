@@ -15,8 +15,8 @@ export oom_kill=`getprop dc.adv.oomkill`;
 export page_cluster=3;
 export intswapping=true;
 export dalvikheap=`getprop dc.dalvik.heapsize`;
-
 export READ_AHEAD_KB=`getprop dc.adv.read_ahead_kb`;
+
 if [ $dalvikheap = "16m" ]; 
 then
 	echo "[!] Setting Dalvik VM Heapsize to 16mb." | tee -a $LOG_FILE;
