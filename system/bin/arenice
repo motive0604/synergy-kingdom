@@ -9,15 +9,26 @@ ARENICE=`getprop persist.service.auto.renice`
 
 while [ $ARENICE ]
 do
-		renice -17 `pidof com.android.mms`
-		renice 5 `pidof com.google.process.gapps`
-		renice 5 `pidof com.google.android.apps.uploader`
-		renice -18 `pidof com.android.phone`
-		renice -17 `pidof android.process.media`
-		renice -16 `pidof mediaserver`
-		renice -15 `pidof com.android.launcher`
-		renice -15 `pidof com.android.launcher2`
-		renice -15 `pidof com.htc.launcher`
-		renice -14 `pidof com.android.music`
+		busybox renice -15 `pidof com.android.mms`;
+		busybox renice -15 `busybox pidof com.android.contacts`;
+		
+		busybox renice -15 `pidof com.android.launcher`;
+		busybox renice -15 `pidof com.android.launcher2`;
+		busybox renice -15 `pidof com.htc.launcher`;
+		
+		busybox renice -18 `pidof com.android.phone`;
+		
+		busybox renice -16 `pidof android.process.media`;
+		busybox renice -16 `pidof mediaserver`;
+		
+		busybox renice -10 `busybox pidof com.android.browser`;
+		busybox renice -12 `busybox pidof com.android.settings`;
+		
+		#busybox renice -10 `pidof com.htc.music`;
+		#busybox renice -10 `pidof com.android.music`;
+		
+		busybox renice 5 `pidof com.google.process.gapps`;
+		busybox renice 5 `pidof com.google.android.apps.uploader`;
+		
 		sleep 500
-done
+done;

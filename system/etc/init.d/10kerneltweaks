@@ -91,6 +91,8 @@ if [ -e /sys/devices/virtual/bdi/179:0/read_ahead_kb ]; then
     echo "SD card read ahead kb SET to $READ_AHEAD_KB"
 fi
 
+# Change SDCard I/O elevator to deadline 
+echo "deadline" > /sys/block/mmcblk0/queue/scheduler
 
 #powersave bias-is this in dconfig yet?
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;

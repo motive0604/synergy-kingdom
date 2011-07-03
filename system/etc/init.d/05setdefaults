@@ -20,7 +20,7 @@ setprop dc.zipalign.active true;
 
 #Advanced system parms
 setprop dc.jit.active false;
-setprop dc.adv.upthreshold 95;
+setprop dc.adv.upthreshold 90;
 setprop dc.adv.samplerate 200000;
 setprop dc.adv.dirtybg 5;
 setprop dc.adv.dirtyratio 15;
@@ -30,7 +30,7 @@ setprop dc.adv.read_ahead_kb 512;
 
 #Advanced system parms2
 setprop dc.adv.laptopmode false;
-setprop dc.adv.cachepressure 100;
+setprop dc.adv.cachepressure 20;
 setprop dc.adv.oomkill false;
 setprop dc.dalvik.heapsize 32m;
 
