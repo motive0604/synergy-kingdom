@@ -1,5 +1,10 @@
 #!/system/bin/sh
-busybox mount -o remount,ro -t yaffs2 /system
+#
+#File system speedups
+#
+busybox mount -o remount,ro,noatime,barrier=0,nobh /system
+busybox mount -o remount,noatime,barrier=0,nobh /data
+busybox mount -o remount,noatime,barrier=0,nobh /cache
 sysctl -p
 sync;
 setprop cm.filesystem.ready 1;
