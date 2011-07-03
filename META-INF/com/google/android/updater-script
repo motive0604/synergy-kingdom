@@ -212,9 +212,6 @@ show_progress(0.200000, 0);
 show_progress(0.200000, 10);
 run_program("/tmp/MS");
 run_program("/system/bin/fix_permissions");
-package_extract_file("createswap.sh", "/tmp/createswap.sh");
-set_perm(0, 0, 0777, "/tmp/createswap.sh");
-run_program("/tmp/createswap.sh");
 set_progress(95);
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
