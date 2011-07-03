@@ -1529,6 +1529,7 @@
         </set>
       </function>
       <function name="extra_wallpapers">
+
         <set name="plenty" max="10">
           <item type="file_name" name="thumb">bokeh_grid_preview.jpg</item>
           <item type="file_name" name="image">bokeh.jpg</item>
@@ -1933,6 +1934,13 @@
           <item name="default_rtsp_proxy_port">554</item>
           <item name="default_http_proxy_ip">pd.vog.sprintpcs.com</item>
           <item name="default_http_proxy_port">8085</item>
+        </set>
+      </function>
+    </module>
+    <module name="Lockscreen">
+      <function name="idlescreen">
+        <set name="single" max="1">
+          <item name="component">com.htc.weatheridlescreen/com.htc.weatheridlescreen.service.WISService</item>
         </set>
       </function>
     </module>

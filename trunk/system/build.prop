@@ -69,7 +69,7 @@ ro.board.platform=qsd8k
 # ro.build.product is obsolete; use ro.product.device
 ro.build.product=supersonic
 # Do not try to parse ro.build.description or .fingerprint
-ro.build.description=VirusROM Kindom B1.4
+ro.build.description=Synergy Kingdom (NIGHTLY)
 ro.build.changelist=61076
 ro.product.ua=
 ro.build.fingerprint=sprint/htc_supersonic/supersonic:2.3.3/GRI40/61076:user/release-keys
@@ -231,11 +231,11 @@ ro.url.legal=http://www.google.com/intl/%s/mobile/android/basic/phone-legal.html
 ro.url.legal.android_privacy=http://www.google.com/intl/%s/mobile/android/basic/privacy.html
 ro.com.google.networklocation=1
 ro.setupwizard.mode=DISABLED
-ro.config.ringtone=QuietlyBrilliant.mp3
-ro.config.notification_sound=Zeta.mp3
-ro.config.alarm_alert=NewDay.mp3
-ro.config.cal_notification=Epsilon.mp3
-ro.config.msg_notification=Gamma.mp3
+ro.config.ringtone=VR2.mp3
+ro.config.notification_sound=Procyon.ogg
+ro.config.alarm_alert=Good_Morning.ogg
+ro.config.cal_notification=Electra.ogg
+ro.config.msg_notification=Polaris.ogg
 ro.setupwizard.mode=DISABLED
 ro.com.google.gmsversion=2.3_r3
 media.a1026.nsForVoiceRec=0
