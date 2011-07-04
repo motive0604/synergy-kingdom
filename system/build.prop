@@ -301,3 +301,9 @@ net.bt.name=Android
 dalvik.vm.dexopt-flags=m=y
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+ring.delay=0
+ro.telephony.call_ring.delay=0
+windowsmgr.max_events_per_sec=100
+windowsmgr.support_rotation_270=true
+ro.HOME_APP_ADJ=1
+ro.HOME_APP_MEM=2048

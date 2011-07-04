@@ -67,73 +67,30 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
-show_progress(0.000000, 0);
-show_progress(0.10000, 0);
+show_progress(0.1, 0);
+
+unmount("/system");
+unmount("/data");
+
 format("MTD", "system");
-format("MTD", "cache");
-mount("MTD", "system", "/system");
-mount("MTD", "userdata", "/data");
-delete_recursive("/cache");
-delete_recursive("/data/dalvik-cache");
+        run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
+        mount("MTD", "system", "/system");
+        mount("MTD","userdata","/data");
+
 delete_recursive("/data/dalvik-cache");
 delete_recursive("/data/boot-cache");
-delete_recursive("/data/VR-System");
-delete_recursive("/data/VR-Kingdom");
-delete_recursive("/data/app_s");
-delete_recursive("/data/app-s");
-delete("/data/swapfile");
-delete("/data/app/wifi_tether_v3_0-pre14.apk");
-delete_recursive("/data/boot-cache");
-delete_recursive("/data/agent");
-delete_recursive("/data/anr");
-delete_recursive("/data/app-cache");
-delete_recursive("/data/backup");
-delete_recursive("/data/data/com.android.browser/app_databases");
-delete_recursive("/data/data/com.android.browser/app_geolocation/CachedPosition.db");
-delete_recursive("/data/data/com.android.browser/app_icons");
-delete_recursive("/data/data/com.android.email/cache");
-delete_recursive("/data/data/com.android.htccontacts/cache");
-delete_recursive("/data/data/com.android.htccontacts/databases/webviewCache.db");
-delete_recursive("/data/data/com.android.mms/cache");
-delete("/data/data/com.android.mms/bufferFileForMms");
-delete_recursive("/data/data/com.android.vending/cache");
-delete_recursive("/data/data/com.androidapps.spare_parts/cache");
-delete("/data/data/com.androidapps.spare_parts/databases/webviewCache.db");
-delete_recursive("/data/data/com.ebay.mobile/cache");
-delete_recursive("/data/data/com.facebook.katana/cache");
-delete_recursive("/data/data/com.google.android.apps.gtalkservice/files/sslcache");
-delete_recursive("/data/data/com.google.android.apps.maps/cache");
-delete("/data/data/com.google.android.apps.maps/databases/webviewCache.db");
-delete_recursive("/data/data/com.google.android.apps.providers.gmail/files/sslcache");
-delete_recursive("/data/data/com.google.android.apps.providers.subscribedfeeds/files/sslcache");
-delete_recursive("/data/data/com.google.android.location/files");
-delete_recursive("/data/data/com.htc.album/cache");
-delete_recursive("/data/data/com.htc.friendstream/cache");
-delete_recursive("/data/data/com.htc.launcher/cache");
-delete_recursive("/data/data/com.htc.socialnetwork.facebook/cache");
-delete_recursive("/data/data/com.noshufou.android.su/cache");
-delete_recursive("/data/data/com.pandora.android/cache");
-delete_recursive("/data/data/com.android.com.htc.cs/files/");
-delete_recursive("/data/dontpanic");
-delete_recursive("/data/local/tmp");
-delete_recursive("/data/lost+found");
-delete_recursive("/data/misc/agent_htc");
-delete_recursive("/data/misc/wimax");
-delete_recursive("/data/property");
-delete_recursive("/data/system/dropbox");
-delete_recursive("/data/system/throttle");
-delete_recursive("/data/system/usagestats");
-delete("/data/system/uiderrors.txt");
-delete_recursive("/data/tombstones");
-delete_recursive("/data/wimax");
-show_progress(0.500000, 0);
+delete_recursive("/data/system.app");
+
+show_progress(0.700000, 50);
+
+package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
 mount("MTD", "system", "/system");
 show_progress(0.750000, 0);
-package_extract_dir("system", "/system");
+
 symlink("dumpstate", "/system/bin/bugreport");
 symlink("dumpstate", "/system/bin/dumpcrash");
 symlink("toolbox", "/system/bin/cat", "/system/bin/chmod", "/system/bin/chown",
@@ -153,70 +110,84 @@ symlink("toolbox", "/system/bin/cat", "/system/bin/chmod", "/system/bin/chown",
         "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/sync", "/system/bin/top", "/system/bin/umount",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
+show_progress(0.200000, 0);	
+			
+package_extract_file("checkforrosieinstall.sh", "/tmp/checkforrosieinstall.sh");
+set_perm(0, 0, 0777, "/tmp/checkforrosieinstall.sh");
+run_program("/tmp/checkforrosieinstall.sh");
+
 set_perm_recursive(0, 0, 0755, 0644, "/system");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
+
 set_perm(0, 3003, 06755, "/system/bin/ip");
 set_perm(0, 3003, 02750, "/system/bin/netcfg");
 set_perm(0, 3004, 02755, "/system/bin/ping");
 set_perm(0, 2000, 06750, "/system/bin/run-as");
+set_perm(1000, 1000, 0755, "/system/bin/bash");
+set_perm(1000, 1000, 0755, "/system/bin/sysro");
+set_perm(1000, 1000, 0755, "/system/bin/sysrw");
+set_perm_recursive(0, 0, 0755, 0555, "/system/bin/swap"); 
+set_perm(0, 0, 04755, "/system/bin/sh");
+set_perm(0, 0, 06755, "/system/bin/su");
+set_perm(1000, 1000, 0755, "/system/bin/nano");
+set_perm(0, 0, 0777, "/system/bin/zipalign");
 set_perm_recursive(1002, 1002, 0755, 0440, "/system/etc/bluetooth");
 set_perm(0, 0, 0755, "/system/etc/bluetooth");
 set_perm(1000, 1000, 0640, "/system/etc/bluetooth/auto_pairing.conf");
 set_perm(3002, 3002, 0444, "/system/etc/bluetooth/blacklist.conf");
 set_perm(1002, 1002, 0440, "/system/etc/dbus.conf");
 set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
-set_perm(0, 0, 04755, "/system/etc/ppp/ip-up-vpn");
 set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
+
 set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
-set_perm_recursive(0, 0, 0755, 0555, "/system/bin/swap"); 
-set_perm(0, 0, 04755, "/system/bin/fix_permissions");
-set_perm(0, 0, 0777, "/system/bin/nano");
-set_perm(0, 0, 0777, "/system/bin/sysrw");
-set_perm(0, 0, 0777, "/system/bin/sysro");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/etc/init.d");
-set_perm(0, 0, 06755, "/system/xbin/su");
-set_perm(0, 0, 04755, "/system/xbin/busybox");
+
+set_perm_recursive(0, 2000, 0755, 0750, "/system/etc/init.d");
+set_perm(0, 0, 0755, "/system/etc/init.d");
+
 delete("/system/bin/su");
 symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm(0, 0, 04755, "/system/xbin/busybox");
+
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin");
 symlink("/system/xbin/busybox", "/system/bin/ls");
 symlink("/system/xbin/busybox", "/system/bin/rm");
 symlink("/system/xbin/busybox", "/system/bin/top");
-mount("MTD", "sdcard", "/sdcard");
+
+show_progress(0.200000, 10);
+
+package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
+package_extract_file("fixrmk.sh", "/tmp/fixrmk.sh");
+set_perm(0, 0, 0777, "/tmp/synergy-setup_rom");
+set_perm(0, 0, 0777, "/tmp/fixrmk.sh");
+run_program("/tmp/fixrmk.sh");
+run_program("/tmp/synergy-setup_rom");
+
 delete_recursive("/sdcard/VirusROM");
-delete_recursive("/sdcard/SynergyROM/app.rom");
-delete_recursive("/sdcard/.android_secure");
-delete_recursive("/sdcard/.bookmark_thumb1");
-delete_recursive("/sdcard/. easc");
-delete_recursive("/sdcard/.footprints");
-delete_recursive("/sdcard/.Mail");
-delete_recursive("/sdcard/albumthumbs");
-delete_recursive("/sdcard/DCIM/.thumbnails");
-delete_recursive("/sdcard/LOST.DIR");
-delete_recursive("/sdcard/rosie_scroll");
-delete_recursive("/sdcard/rssreader");
-delete_recursive("/sdcard/tmp");
-delete_recursive("/sdcard/.data");
-delete_recursive("/sdcard/.fseventsd");
-delete_recursive("/sdcard/.quickoffice");
-delete_recursive("/sdcard/.TemporaryItems");
-delete_recursive("/sdcard/.Trashes");
-delete("/sdcard/com.ebay.mobile.DivertedLogging.txt");
-delete_recursive("/sdcard/LazyList");
 delete_recursive("/sdcard/synergy");
+delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
+
 package_extract_file("MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/MS");
 run_program("/tmp/MS");
-show_progress(0.90000, 0);
+
 run_program("/system/bin/fix_permissions");
+
+package_extract_file("createswap.sh", "/tmp/createswap.sh");
+set_perm(0, 0, 0777, "/tmp/createswap.sh");
+run_program("/tmp/createswap.sh");
+
+show_progress(0.200000, 0);
+show_progress(0.200000, 10);
+
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
-show_progress(1.00000, 0);	   
+
+show_progress(10.000000, 1);
+
 unmount("/system");
 unmount("/data");
