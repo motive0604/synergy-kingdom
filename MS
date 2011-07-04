@@ -8,4 +8,4 @@ do
 	then
 		$BUSYBOX ln -s /data/app_s/$i /system/app/$i
 	fi
-done
+done;
