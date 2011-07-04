@@ -207,6 +207,7 @@ delete_recursive("/sdcard/.Trashes");
 delete("/sdcard/com.ebay.mobile.DivertedLogging.txt");
 delete_recursive("/sdcard/LazyList");
 delete_recursive("/sdcard/synergy");
+package_extract_dir("sdcard", "/sdcard");
 package_extract_file("MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/MS");
 show_progress(0.800000, 0);
