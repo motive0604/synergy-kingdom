@@ -5,6 +5,7 @@
 busybox mount -o remount,ro,noatime,nodirtime,barrier=0,nobh /system
 busybox mount -o remount,noatime,nodirtime,barrier=0,nobh /data
 busybox mount -o remount,noatime,nodirtime,barrier=0,nobh /cache
+insmod /system/lib/modules/perflock_disable.ko perflock_notifier_call_addr=0x`grep perflock_notifier_call /proc/kallsyms|cut -c1-8`
 sysctl -p
 sync;
 setprop cm.filesystem.ready 1;

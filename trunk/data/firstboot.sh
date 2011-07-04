@@ -28,3 +28,13 @@ if [ -e /data/app/com.keramidas.TitaniumBackup-2.apk ]; then rm /data/app/com.ke
 if [ -e /data/app/com.keramidas.TitaniumBackup-3.apk ]; then rm /data/app/com.keramidas.TitaniumBackup-3.apk; fi;
 if [ -e /data/app/com.netflix.mediaclient-2.apk ]; then rm /data/app/com.netflix.mediaclient-2.apk; fi;
 if [ -e /data/app/com.netflix.mediaclient-3.apk ]; then rm /data/app/com.netflix.mediaclient-3.apk; fi;
+
+echo optimizing sqlite;
+#!/system/bin/sh
+#
+# Optimize SQlite
+for i in \
+`find /data -iname "*.db"`; 
+do \
+	sqlite3 $i 'VACUUM;'; 
+done;
