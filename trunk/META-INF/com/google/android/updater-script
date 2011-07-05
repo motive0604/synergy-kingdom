@@ -73,9 +73,9 @@ unmount("/system");
 unmount("/data");
 
 format("MTD", "system");
-        run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
-        mount("MTD", "system", "/system");
-        mount("MTD","userdata","/data");
+run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
+mount("MTD", "system", "/system");
+mount("MTD","userdata","/data");
 
 delete_recursive("/data/dalvik-cache");
 delete_recursive("/data/boot-cache");
@@ -126,7 +126,7 @@ set_perm(0, 2000, 06750, "/system/bin/run-as");
 set_perm(1000, 1000, 0755, "/system/bin/bash");
 set_perm(1000, 1000, 0755, "/system/bin/sysro");
 set_perm(1000, 1000, 0755, "/system/bin/sysrw");
-set_perm_recursive(0, 0, 0755, 0555, "/system/bin/swap"); 
+set_perm(0, 0, 0755, 0555, "/system/bin/swap"); 
 set_perm(0, 0, 04755, "/system/bin/sh");
 set_perm(0, 0, 06755, "/system/bin/su");
 set_perm(1000, 1000, 0755, "/system/bin/nano");
@@ -176,9 +176,6 @@ run_program("/tmp/MS");
 
 run_program("/system/bin/fix_permissions");
 
-package_extract_file("createswap.sh", "/tmp/createswap.sh");
-set_perm(0, 0, 0777, "/tmp/createswap.sh");
-run_program("/tmp/createswap.sh");
 
 show_progress(0.200000, 0);
 show_progress(0.200000, 10);
