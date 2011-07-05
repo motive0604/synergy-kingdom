@@ -5,3 +5,4 @@ if [ -e /sdcard/SynergyROM/rosie ]; then
 else
 	rm /cache/rosie.zip;
 fi;
+
