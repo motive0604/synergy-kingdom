@@ -1,0 +1,87 @@
+#!/system/xbin/bash
+
+# ===========================================================================
+#  Virtuous ROM Tools (rmk)
+#
+#  Fri Sep 10 20:53:30 PDT 2010
+# ===========================================================================
+
+. /system/synergy/scripts/synergy-functions.sh
+
+if $TEST $( $GREP -c " /data " "/proc/mounts" ) -eq 0; then
+  $MOUNT /data
+fi
+
+# ===========================================================================
+#  Run this section on every boot.
+# ===========================================================================
+
+create_state_dirs
+
+$CHOWN 1000.1000 $PACKAGESXML
+$CHMOD 664 $PACKAGESXML
+
+# Reduce the number of app installation failures
+$PM setInstallLocation 1
+
+$PM list packages -f | $CUT -f2 -d: > $PACKAGELIST
+
+# Wait for the necessary partitions to mount.
+while $BUSYBOX true ; do
+    if $TEST -e $SYNERGY_USERAPP_DIR1 ; then
+        break
+    else
+        sleep 1
+    fi
+done
+
+# Avoid re-installing apps which we have already installed in case
+# they have been removed by the user.
+
+for APP in $SYNERGY_USERAPP_DIR1/*.apk $SYNERGY_USERAPP_DIR2/*.apk; do
+  APPNAME=$($BASENAME $APP)
+  PACKAGENAME=$($ECHO $APPNAME | $SED s/\.apk$//g)
+
+  # App is still reported as being installed, leave it alone.
+  if $GREP -qi $PACKAGENAME $PACKAGELIST ; then
+
+    # The only way this app goes away is if the user removes it
+    # so we don't want to try to install it anymore.
+    $TOUCH $SYNERGY_STATE_DIR/userapp/$APPNAME
+    continue
+  fi
+
+  if $TEST -f $SYNERGY_STATE_DIR/userapp/$APPNAME ; then
+    continue
+  fi
+
+  # We have never tried to install this app and the user does not
+  # have it, so we'll give it a shot.
+
+  PM_RESULT=`$PM install -r $APP 2>&1`
+
+  if $ECHO $PM_RESULT | $GREP -qiv "Failure "; then
+
+    # No failures, write the state file.
+    $TOUCH $SYNERGY_STATE_DIR/userapp/$APPNAME
+  fi
+done
+
+# Attempt to pin home app to memory.
+
+$ECHO 'ro.HOME_APP_ADJ=1' > /data/local.prop
+
+
+if $TEST -f $INSTALLED ; then
+  exit 0
+fi
+
+# ===========================================================================
+#  Run once, only after a fresh install.
+# ===========================================================================
+
+# Empty for now.
+
+# ===========================================================================
+
+$TOUCH $INSTALLED
