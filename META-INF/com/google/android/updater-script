@@ -67,6 +67,7 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
+show_progress(0, 0);
 show_progress(0.1, 0);
 
 unmount("/system");
@@ -81,7 +82,7 @@ delete_recursive("/data/dalvik-cache");
 delete_recursive("/data/boot-cache");
 delete_recursive("/data/system.app");
 
-show_progress(0.700000, 50);
+show_progress(0.2, 0);
 
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
@@ -89,7 +90,7 @@ set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
 mount("MTD", "system", "/system");
-show_progress(0.750000, 0);
+show_progress(0.6, 0);
 
 symlink("dumpstate", "/system/bin/bugreport");
 symlink("dumpstate", "/system/bin/dumpcrash");
@@ -110,7 +111,7 @@ symlink("toolbox", "/system/bin/cat", "/system/bin/chmod", "/system/bin/chown",
         "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/sync", "/system/bin/top", "/system/bin/umount",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
-show_progress(0.200000, 0);	
+show_progress(0.7, 0);	
 			
 package_extract_file("checkforrosieinstall.sh", "/tmp/checkforrosieinstall.sh");
 set_perm(0, 0, 0777, "/tmp/checkforrosieinstall.sh");
@@ -156,7 +157,7 @@ symlink("/system/xbin/busybox", "/system/bin/ls");
 symlink("/system/xbin/busybox", "/system/bin/rm");
 symlink("/system/xbin/busybox", "/system/bin/top");
 
-show_progress(0.200000, 10);
+show_progress(0.75, 10);
 
 package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
 package_extract_file("fixrmk.sh", "/tmp/fixrmk.sh");
@@ -165,6 +166,7 @@ set_perm(0, 0, 0777, "/tmp/fixrmk.sh");
 run_program("/tmp/fixrmk.sh");
 run_program("/tmp/synergy-setup_rom");
 
+show_progress(0.9, 10);
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
 delete_recursive("/sdcard/SynergyROM/app.rom");
@@ -177,14 +179,11 @@ run_program("/tmp/MS");
 run_program("/system/bin/fix_permissions");
 
 
-show_progress(0.200000, 0);
-show_progress(0.200000, 10);
-
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
 
-show_progress(10.000000, 1);
+show_progress(1.000000, 0);
 
 unmount("/system");
 unmount("/data");

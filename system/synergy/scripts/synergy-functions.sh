@@ -89,9 +89,9 @@ create_state_dirs () {
     $MKDIR -p $USERSYS_DIR
 
     $CHOWN 1000.1000 /data
-    $CHMOD 771 /data
+    $CHMOD 777 /data
     $CHOWN 1000.1000 $USERAPP_DIR
-    $CHMOD 711 $USERAPP_DIR
+    $CHMOD 777 $USERAPP_DIR
 
     $MKDIR -p $SYNERGY_STATE_DIR
     $MKDIR -p $SYNERGY_STATE_DIR/enabled
