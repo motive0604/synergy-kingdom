@@ -1,5 +1,10 @@
 #!/system/bin/sh
 #
+export LOG_FILE=/cache/dcboot.log;
+export swapping=`getprop dc.swap.active`;
+export swapto=`getprop dc.swap.swpto`;
+export swappy=`getprop dc.swap.swappiness`;
+
 ###############################
 #Starting Swap Checks
 ###############################
