@@ -16,6 +16,7 @@ do
 		busybox renice -16 `pidof com.android.launcher`;
 		busybox renice -16 `pidof com.android.launcher2`;
 		busybox renice -16 `pidof com.htc.launcher`;
+		busybox renice -16 `pidof com.htc.RosieUtility`;
 		busybox renice -5 `busybox pidof com.android.browser`;
 		#busybox renice -10 `pidof com.htc.music`;
 		#busybox renice -10 `pidof com.android.music`;
