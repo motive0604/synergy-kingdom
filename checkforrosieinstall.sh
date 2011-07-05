@@ -1,5 +1,5 @@
-#!/sbin/sh
+#!/system/bin/sh
 
 if [ -e /sdcard/SynergyROM/rosie ]; then
-	/sbin/unzip /sdcard/SynergyROM/rosie.zip -d /
+	busybox unzip /sdcard/SynergyROM/rosie.zip -d /
 fi
