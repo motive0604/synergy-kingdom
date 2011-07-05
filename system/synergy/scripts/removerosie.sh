@@ -2,7 +2,7 @@
 
 /system/xbin/busybox mount -orw,remount /system
 
-`cat /sdcard/SynergyROM/rosiefiles` | xargs rm
+`cat /data/rosiefiles` | xargs rm
 	
 /system/xbin/busybox mount -oro,remount /system
 

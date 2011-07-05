@@ -3,7 +3,7 @@
 /system/xbin/busybox mount -orw,remount /system
 
 cd /
-busybox unzip /sdcard/SynergyROM/rosie.zip -d /
+unzip /data/rosie.zip
 
 /system/xbin/busybox mount -oro,remount /system
 
