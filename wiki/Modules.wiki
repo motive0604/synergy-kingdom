@@ -1,0 +1,22 @@
+= Modules =
+Details on how to use custom modules
+
+
+= CIFS =
+This module lets you access windows networking shares on your phone.  To use, 
+
+{{{
+busybox mount -t cifs -o user=usernamehere,password=passwordhere,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs //192.168.1.0/sharename /sdcard/smb/
+}}}
+
+replace usernamehere, passwordhere, with SMB username/pass
+      192.168.1.0 with your server IP address
+      /sdcard/smb/ with the directory to symlink to
+
+now you can use a filebrowser and navigate to /sdcard/smb and you will see your windows network files. 
+
+Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and all worked fairly well :)
+
+= openvpn =
+
+soon
