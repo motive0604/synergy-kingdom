@@ -187,7 +187,6 @@ run_program("/tmp/synergy-setup_rom");
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
 delete_recursive("/sdcard/SynergyROM/app.rom");
-delete_recursive("/sdcard/SynergyROM/app.user");
 package_extract_dir("sdcard", "/sdcard");
 
 package_extract_file("cleanup", "/tmp/cleanup");
