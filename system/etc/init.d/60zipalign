@@ -4,6 +4,7 @@ export zipalign=`getprop dc.zipalign.active`;
 if [ -n $zipalign ] && [ $zipalign = "true" ]; 
 then
 busybox mount -o remount,rw -t yaffs2 /system
+busybox mount -o remount,rw -t yaffs2 /data
 echo "Starting VirusROM Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
 
     for apk in /data/app/*.apk ; do

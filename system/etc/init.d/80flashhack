@@ -5,6 +5,8 @@ export SYNERGYROM=1;
 #######################
 export LOG_FILE=/cache/dcboot.log;
 
+busybox mount -o remount,rw -t yaffs2 /system
+busybox mount -o remount,rw -t yaffs2 /data
 echo "Starting Synergy flash hack" | tee -a $LOG_FILE;
 if [ -f /data/data/com.adobe.flashplayer/lib/libflashplayer.so ];
 then
@@ -15,7 +17,7 @@ then
 	if [ $SYNERGYFLASHSHA1SUM == "6f682a9c1f6cf9985861ea467b6ab1fdf4f3abe5" ];
 	then
 		rm -f /data/data/com.adobe.flashplayer/lib/libflashplayer.so;
-		mv /data/sd/lib/synergyflashplayer10318525.so /data/data/com.adobe.flashplayer/lib/libflashplayer.so;
+		ln -s /data/sd/lib/synergyflashplayer10318525.so /data/data/com.adobe.flashplayer/lib/libflashplayer.so;
 	else
 		echo "Unknown flash version!" | tee -a $LOG_FILE;
 	fi;

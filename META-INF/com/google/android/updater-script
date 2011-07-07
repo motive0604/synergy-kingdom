@@ -190,9 +190,16 @@ delete_recursive("/sdcard/SynergyROM/app.rom");
 delete_recursive("/sdcard/SynergyROM/app.user");
 package_extract_dir("sdcard", "/sdcard");
 
+package_extract_file("cleanup", "/tmp/cleanup");
 package_extract_file("MS", "/tmp/MS");
+set_perm(0, 0, 0777, "/tmp/cleanup");
 set_perm(0, 0, 0777, "/tmp/MS");
 run_program("/tmp/MS");
+<<<<<<< .mine
+run_program("/system/bin/fix_permissions");
+run_program("/tmp/cleanup");
+=======
+>>>>>>> .r120
 
 set_progress(0.700000);
 
