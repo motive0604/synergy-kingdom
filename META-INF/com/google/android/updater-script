@@ -75,7 +75,7 @@ unmount("/data");
 format("MTD", "system");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
 
-run_program("/sbin/mkdir", "/sd-ext");
+run_program("/sbin/busybox", "/mkdir", "/sd-ext");
 mount("MTD", "sdext", "/sd-ext");
 mount("MTD", "system", "/system");
 mount("MTD", "userdata", "/data");
@@ -169,7 +169,6 @@ set_perm(0, 0, 04755, "/system/xbin/busybox");
 
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
-run_program("/system/xbin/busybox","--install","-s","/system/xbin");
 symlink("/system/xbin/busybox", "/system/bin/ls");
 symlink("/system/xbin/busybox", "/system/bin/rm");
 symlink("/system/xbin/busybox", "/system/bin/top");
