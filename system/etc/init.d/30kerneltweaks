@@ -115,19 +115,19 @@ setprop ro.ril.hsxpa 1;
 setprop ro.ril.gprsclass 10;
 
 echo "[ ] Here are values we are using" | tee -a $LOG_FILE;
-ActivePageCluster="$(cat /proc/sys/vm/page-cluster)"; 
-ActiveLaptopMode="$(cat /proc/sys/vm/laptop_mode)"; 
-ActiveDirtyExpire="$(cat /proc/sys/vm/dirty_expire_centisecs)"; 
-ActiveDirtyWriteback="$(cat /proc/sys/vm/dirty_writeback_centisecs)"; 
-ActiveDirtyBackground="$(cat /proc/sys/vm/dirty_background_ratio)"; 
-ActiveDirtyRatio="$(cat /proc/sys/vm/dirty_ratio)"; 
-ActiveUpThreshold="$(cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold)"; 
-ActiveSamplingRate="$(cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate)"; 
-ActiveOOMKill="$(cat /proc/sys/vm/oom_kill_allocating_task)"; 
-ActiveVFSCache="$(cat /proc/sys/vm/vfs_cache_pressure)";
+ActivePageCluster=`cat /proc/sys/vm/page-cluster`; 
+ActiveLaptopMode=`cat /proc/sys/vm/laptop_mode`; 
+ActiveDirtyExpire=`cat /proc/sys/vm/dirty_expire_centisecs`; 
+ActiveDirtyWriteback=`cat /proc/sys/vm/dirty_writeback_centisecs`; 
+ActiveDirtyBackground=`cat /proc/sys/vm/dirty_background_ratio`; 
+ActiveDirtyRatio=`cat /proc/sys/vm/dirty_ratio`; 
+ActiveUpThreshold=`cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold`; 
+ActiveSamplingRate=`cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate`; 
+ActiveOOMKill="$(cat /proc/sys/vm/oom_kill_allocating_task`; 
+ActiveVFSCache="$(cat /proc/sys/vm/vfs_cache_pressure`;
 busybox echo -e "SynergyKingdom Kernel Settings -\n PageCluster: $ActivePageCluster \nLaptopMode: $ActiveLaptopMode \nDirtyExpire: $ActiveDirtyExpire \nDirtyWriteback: $ActiveDirtyWriteback \nDirtyBackground: $ActiveDirtyBackground \nDirtyRatio: $ActiveDirtyRatio \nUpThreshold: $ActiveUpThreshold \nSamplingRate: $ActiveSamplingRate \nOOMKill: $ActiveOOMKill \nVFSCache: $ActiveVFSCache \n" | tee -a $LOG_FILE;
 
-SystemAvailable="$(busybox df -h | grep mtdblock4 | awk '{print $4}')"
-DataAvailable="$(busybox df -h | grep mtdblock6 | awk '{print $4}')" 
-CacheAvailable="$(busybox df -h | grep mtdblock5 | awk '{print $4}')" 
+SystemAvailable=`busybox df -h | grep mtdblock4 | awk '{print $4}'`;
+DataAvailable=`busybox df -h | grep mtdblock6 | awk '{print $4}'`;
+CacheAvailable=`busybox df -h | grep mtdblock5 | awk '{print $4}'`; 
 busybox echo -e "SynergyKingdom FreeSpace -\n System: $SystemAvailable \nData:   $DataAvailable \nCache:  $CacheAvailable" | tee -a $LOG_FILE;

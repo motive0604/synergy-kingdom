@@ -1,3 +1,3 @@
 /data/swapfile	none	swap	sw	0	0
-#edit the following line if you want to enable CIFS. change ipaddress and sharename ex:  //192.168.5.25/data/ and  mountpoint (must exist) ex: /sdcard/smb
-#//ipaddress/sharname	/sdcard/smb	cifs	user=username,password=whatver,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs	0	0
+#edit the following line if you want to enable CIFS. change ipaddress and sharename ex:  //192.168.5.25/data and  mountpoint (must exist) ex: /sdcard/smb
+//192.168.5.25/data	/sdcard/smb	cifs	user=username,password=whatver,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs	0	0

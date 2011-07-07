@@ -9,4 +9,4 @@ if [ -e $LOG_FILE ]; then
   	rm $LOG_FILE;
 fi;
 
-echo "Starting DamageControl BootScript at $( date +"%m-%d-%Y %H:%M:%S" )" | tee -a $LOG_FILE;
+echo "Starting DamageControl BootScript at:"  `date`  | tee -a $LOG_FILE;
