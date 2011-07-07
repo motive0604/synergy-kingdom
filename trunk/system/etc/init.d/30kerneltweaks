@@ -98,8 +98,8 @@ echo "deadline" > /sys/block/mmcblk0/queue/scheduler
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;
 
 # TWEAKS: for TCP read/write
-/system/xbin/echo "4096 16384 404480" > /proc/sys/net/ipv4/tcp_wmem;
-/system/xbin/echo "4096 87380 404480" > /proc/sys/net/ipv4/tcp_rmem;
+echo "4096 16384 404480" > /proc/sys/net/ipv4/tcp_wmem;
+echo "4096 87380 404480" > /proc/sys/net/ipv4/tcp_rmem;
 
 #Demon Voices Audio fix. Make this a dconfig option
 #setprop media.stagefright.enable-player false;
