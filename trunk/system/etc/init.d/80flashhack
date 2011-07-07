@@ -12,7 +12,7 @@ then
 	echo "Flash so has SHA1 of:"  $SYNERGYFLASHSHA1SUM | tee -a $LOG_FILE;
 	
 	#10.3.185.25
-	if [ SYNERGYFLASHSHA1SUM == "6f682a9c1f6cf9985861ea467b6ab1fdf4f3abe5" ];
+	if [ $SYNERGYFLASHSHA1SUM == "6f682a9c1f6cf9985861ea467b6ab1fdf4f3abe5" ];
 	then
 		rm -f /data/data/com.adobe.flashplayer/lib/libflashplayer.so;
 		mv /data/sd/lib/synergyflashplayer10318525.so /data/data/com.adobe.flashplayer/lib/libflashplayer.so;
