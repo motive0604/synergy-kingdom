@@ -10,16 +10,16 @@ echo "Starting VirusROM Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
-                echo ZipAligning $basename $apk  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /cache/$basename $apk;
-                        if [ -e /cache/$basename $apk ]; then
-                                cp -f -p /cache/$basename $apk $apk  | tee -a $LOG_FILE;
-                                rm /cache/$basename $apk;
+                echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
+                zipalign -f 4 "$apk" /cache/"$basename $apk";
+                        if [ -e /cache/"$basename $apk" ]; then
+                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                                rm /cache/"$basename $apk";
                         else
-                                echo ZipAligning $basename $apk Failed DC | tee -a $LOG_FILE;
+                                echo ZipAligning "$basename $apk" Failed DC | tee -a $LOG_FILE;
                         fi;
         else
-                echo VirusROM ZipAlign already completed on $apk  | tee -a $LOG_FILE;
+                echo VirusROM ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
         fi;
        done;
 	   
@@ -28,16 +28,16 @@ echo "Starting VirusROM Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
-                echo ZipAligning $basename $apk  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /cache/$basename $apk;
-                        if [ -e /cache/$basename $apk ]; then
-                                cp -f -p /cache/$basename $apk $apk  | tee -a $LOG_FILE;
+                echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
+                zipalign -f 4 $apk /cache/"$basename $apk";
+                        if [ -e /cache/"$basename $apk" ]; then
+                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
                                 rm /cache/$basename $apk;
                         else
-                                echo ZipAligning $basename $apk Failed DC | tee -a $LOG_FILE;
+                                echo ZipAligning "$basename $apk" Failed DC | tee -a $LOG_FILE;
                         fi;
         else
-                echo VirusROM ZipAlign already completed on $apk  | tee -a $LOG_FILE;
+                echo VirusROM ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
         fi;
     done;
 
@@ -46,15 +46,15 @@ echo "Starting VirusROM Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
                 echo ZipAligning $basename $apk  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /cache/$basename $apk;
-                        if [ -e /cache/$basename $apk ]; then
-                                cp -f -p /cache/$basename $apk $apk  | tee -a $LOG_FILE;
-                                rm /cache/$basename $apk;
+                zipalign -f 4 $apk /cache/"$basename $apk";
+                        if [ -e /cache/"$basename $apk" ]; then
+                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                                rm /cache/"$basename $apk";
                         else
-                                echo ZipAligning $basename $apk Failed DC | tee -a $LOG_FILE;
+                                echo ZipAligning "$basename $apk" Failed DC | tee -a $LOG_FILE;
                         fi;
         else
-                echo VirusROM ZipAlign already completed on $apk  | tee -a $LOG_FILE;
+                echo VirusROM ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
         fi;
        done;   
 echo "Automatic ZipAlign finished at:" `date` | tee -a $LOG_FILE;
