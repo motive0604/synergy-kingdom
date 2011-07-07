@@ -67,7 +67,7 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
-show_progress(0.1, 120);
+show_progress(1.000000, 0);
 
 unmount("/system");
 unmount("/data");
@@ -75,6 +75,8 @@ unmount("/data");
 format("MTD", "system");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
 
+
+set_progress(0.100000);
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
 mount("MTD", "sdext", "/sd-ext");
 mount("MTD", "system", "/system");
@@ -98,16 +100,13 @@ delete_recursive("/data/data/com.google.android.gm/cache");
 delete_recursive("/data/data/com.google.android.voicesearch/cache");
 
 
-set_progress(25);
-show_progress(0.1, 240);
+set_progress(0.250000);
 
 package_extract_dir("system", "/system");
-set_progress(40);
-show_progress(0.1, 240);
+set_progress(0.400000);
 
 package_extract_dir("data", "/data");
-set_progress(60);
-show_progress(0.1, 240);
+set_progress(0.600000);
 
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
@@ -175,9 +174,8 @@ set_perm(0, 0, 04755, "/system/xbin/busybox");
 
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
-symlink("/system/xbin/busybox", "/system/bin/ls");
-symlink("/system/xbin/busybox", "/system/bin/rm");
-symlink("/system/xbin/busybox", "/system/bin/top");
+run_program("/system/xbin/busybox","--install","-s","/system/bin");
+symlink("/system/bin/bash", "/system/bin/sh");
 
 package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
 package_extract_file("fixrmk.sh", "/tmp/fixrmk.sh");
@@ -196,18 +194,17 @@ package_extract_file("MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/MS");
 run_program("/tmp/MS");
 
-set_progress(70);
-show_progress(0.1, 240);
+set_progress(0.700000);
 
 run_program("/system/bin/fix_permissions");
 
-set_progress(90);
-show_progress(0.5, 10);
+set_progress(0.900000);
 
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
-
-set_progress(100);	   
+	   
+set_progress(1.000000);
+show_progress(1.000000, 0);   
 unmount("/system");
 unmount("/data");
