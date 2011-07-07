@@ -2,6 +2,10 @@
 #
 #File system speedups
 #
+rm -f /cache/*.apk
+rm -f /cache/*.tmp
+rm -f /data/dalvik-cache/*.apk
+rm -f /data/dalvik-cache/*.tmp
 busybox mount -o remount,ro,noatime,nodirtime,barrier=0,nobh /system
 busybox mount -o remount,noatime,nodirtime,barrier=0,nobh /data
 busybox mount -o remount,noatime,nodirtime,barrier=0,nobh /cache

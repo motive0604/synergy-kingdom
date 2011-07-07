@@ -27,10 +27,10 @@ then
 	then
 		busybox rm /data/swap.swp;
 		echo "[ ] Creating internal swap partition" | tee -a $LOG_FILE;
-		dd if=/dev/zero of=/data/swap.swp bs=1024 count=32000;
+		dd if=/dev/zero of=/data/swapfile bs=1024 count=32000;
 		echo "[ ] Prepping block devices as swap partition" | tee -a $LOG_FILE;
 		busybox mkswap /data/swap.swp;
-		echo "[ ] Swapping on new /data/swap.swp" | tee -a $LOG_FILE;
+		echo "[ ] Swapping on new /data/swapfile" | tee -a $LOG_FILE;
 		swapon /data/swap.swp;
 		echo "[ ] Setting Swappiness" | tee -a $LOG_FILE;
 		swappy=`getprop dc.swap.swappiness`;
