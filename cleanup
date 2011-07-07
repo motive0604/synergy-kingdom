@@ -3,17 +3,22 @@ SYNERGYROM=1
 #######################
 #Upgrade fixes written by trev
 #######################
-
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.google.android.apps.maps\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"android.uid.system\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.rosie.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.music.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.mail.uid\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.google.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.bg.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.android.htcime.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-cat /data/system/packages.xml | sed '/<shared-user\ name=\"android.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
-rm -f /data/system/packages.xml.old
-mv /data/system/packages.xml /data/system/packages.xml.old;
-rm -f /data/system/packages.xml
-mv /data/system/packages.new /data/system/packages.xml;
+if [ -f /data/system/packages.xml ];
+then
+	rm -f  /data/system/packages.new
+	cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.google.android.apps.maps\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' | 
+	sed '/<shared-user\ name=\"android.uid.system\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' | 
+	sed '/<shared-user\ name=\"com.htc.rosie.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' |  
+	sed '/<shared-user\ name=\"com.htc.music.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' | 
+	sed '/<shared-user\ name=\"com.htc.mail.uid\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' |
+	sed '/<shared-user\ name=\"com.google.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' |
+	sed '/<shared-user\ name=\"com.htc.bg.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' |
+	sed '/<shared-user\ name=\"com.htc.android.htcime.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' |
+	sed '/<shared-user\ name=\"android.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
+	mv /data/system/packages.xml /data/system/packages.xml.old;
+	rm -f /data/system/packages.xml;
+	mv /data/system/packages.new /data/system/packages.xml;
+else
+	echo "Firstboot?";
+fi;
+	
