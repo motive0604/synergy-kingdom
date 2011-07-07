@@ -67,25 +67,42 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
-show_progress(0.1, 10);
+show_progress(0.100000, 0);
 
 unmount("/system");
 unmount("/data");
 
 format("MTD", "system");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
+
+run_program("/sbin/mkdir", "/sd-ext");
+mount("MTD", "sdext", "/sd-ext");
 mount("MTD", "system", "/system");
-mount("MTD","userdata","/data");
+mount("MTD", "userdata", "/data");
+run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mmcblk0p2", "/sd-ext");
 
 delete_recursive("/cache");
 delete_recursive("/data/dalvik-cache");
+delete_recursive("/sd-ext/dalvik-cache");
 delete_recursive("/data/boot-cache");
+delete_recursive("/data/app-s");
+delete_recursive("/data/app_s");
 delete_recursive("/data/system.app");
+delete_recursive("/data/system.app");
+delete_recursive("/data/synergy");
+delete_recursive("/data/data/com.android.browser/cache");
+delete_recursive("/data/data/com.google.android.street/cache");
+delete_recursive("/data/data/com.android.vending/cache");
+delete_recursive("/data/data/com.google.android.apps.maps/cache");
+delete_recursive("/data/data/com.google.android.gm/cache");
+delete_recursive("/data/data/com.google.android.voicesearch/cache");
 
-show_progress(0.500000, 60);
 
+set_progress(20);
 package_extract_dir("system", "/system");
+set_progress(40);
 package_extract_dir("data", "/data");
+set_progress(60);
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
@@ -151,6 +168,7 @@ set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm(0, 0, 04755, "/system/xbin/busybox");
 
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
+run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin");
 symlink("/system/xbin/busybox", "/system/bin/ls");
 symlink("/system/xbin/busybox", "/system/bin/rm");
@@ -166,20 +184,21 @@ run_program("/tmp/synergy-setup_rom");
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
 delete_recursive("/sdcard/SynergyROM/app.rom");
+delete_recursive("/sdcard/SynergyROM/app.user");
 package_extract_dir("sdcard", "/sdcard");
 
 package_extract_file("MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/MS");
 run_program("/tmp/MS");
 
+set_progress(70);
 run_program("/system/bin/fix_permissions");
 
-
+set_progress(90);
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
 
-show_progress(1.000000, 0);
-
+set_progress(100);	   
 unmount("/system");
 unmount("/data");

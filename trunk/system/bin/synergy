@@ -67,9 +67,8 @@ for APP in $SYNERGY_USERAPP_DIR1/*.apk $SYNERGY_USERAPP_DIR2/*.apk; do
 done
 
 # Attempt to pin home app to memory.
-
 $ECHO 'ro.HOME_APP_ADJ=1' > /data/local.prop
-
+setprop ro.HOME_APP_ADJ 1
 
 if $TEST -f $INSTALLED ; then
   exit 0

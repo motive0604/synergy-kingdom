@@ -98,40 +98,36 @@ echo "deadline" > /sys/block/mmcblk0/queue/scheduler
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;
 
 # TWEAKS: for TCP read/write
-/system/xbin/echo "0" > /proc/sys/net/ipv4/tcp_timestamps;
-/system/xbin/echo "1" > /proc/sys/net/ipv4/tcp_tw_reuse;
-/system/xbin/echo "1" > /proc/sys/net/ipv4/tcp_sack;
-/system/xbin/echo "1" > /proc/sys/net/ipv4/tcp_tw_recycle;
-/system/xbin/echo "1" > /proc/sys/net/ipv4/tcp_window_scaling;
-/system/xbin/echo "5" > /proc/sys/net/ipv4/tcp_keepalive_probes;
-/system/xbin/echo "30" > /proc/sys/net/ipv4/tcp_keepalive_intvl;
-/system/xbin/echo "30" > /proc/sys/net/ipv4/tcp_fin_timeout;
-/system/xbin/echo "404480" > /proc/sys/net/core/wmem_max;
-/system/xbin/echo "404480" > /proc/sys/net/core/rmem_max;
-/system/xbin/echo "256960" > /proc/sys/net/core/rmem_default;
-/system/xbin/echo "256960" > /proc/sys/net/core/wmem_default;
 /system/xbin/echo "4096 16384 404480" > /proc/sys/net/ipv4/tcp_wmem;
 /system/xbin/echo "4096 87380 404480" > /proc/sys/net/ipv4/tcp_rmem;
-setprop net.tcp.buffersize.default 4096,87380,404480,4096,16384,404480;
-setprop net.tcp.buffersize.wifi 4096,87380,404480,4096,16384,404480;
-setprop net.tcp.buffersize.umts 4096,87380,404480,4096,16384,404480;
 
 #Demon Voices Audio fix. Make this a dconfig option
 #setprop media.stagefright.enable-player false;
-setprop ro.telephony.call_ring.delay 100;
-setprop wifi.supplicant_scan_interval 180;
-setprop windowsmgr.max_events_per_sec 60;
 
+setprop ro.telephony.call_ring.delay 0;
+setprop ring.delay 0;
+setprop wifi.supplicant_scan_interval 180;
+setprop windowsmgr.max_events_per_sec 100;
+setprop windowsmgr.support_rotation_270 true;
+setprop ro.HOME_APP_ADJ 1;
+setprop ro.HOME_APP_MEM 2048;
+setprop ro.ril.hsxpa 1;
+setprop ro.ril.gprsclass 10;
 
 echo "[ ] Here are values we are using" | tee -a $LOG_FILE;
-cat /proc/sys/vm/page-cluster | tee -a $LOG_FILE;
-cat /proc/sys/vm/laptop_mode | tee -a $LOG_FILE;
-cat /proc/sys/vm/dirty_expire_centisecs | tee -a $LOG_FILE;
-cat /proc/sys/vm/dirty_writeback_centisecs | tee -a $LOG_FILE;
-cat /proc/sys/vm/dirty_background_ratio | tee -a $LOG_FILE;
-cat /proc/sys/vm/dirty_ratio | tee -a $LOG_FILE;
-cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold | tee -a $LOG_FILE;
-cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate | tee -a $LOG_FILE;
-cat /proc/sys/vm/laptop_mode | tee -a $LOG_FILE;
-cat /proc/sys/vm/oom_kill_allocating_task  | tee -a $LOG_FILE;
-cat /proc/sys/vm/vfs_cache_pressure | tee -a $LOG_FILE;
+ActivePageCluster="$(cat /proc/sys/vm/page-cluster)"; 
+ActiveLaptopMode="$(cat /proc/sys/vm/laptop_mode)"; 
+ActiveDirtyExpire="$(cat /proc/sys/vm/dirty_expire_centisecs)"; 
+ActiveDirtyWriteback="$(cat /proc/sys/vm/dirty_writeback_centisecs)"; 
+ActiveDirtyBackground="$(cat /proc/sys/vm/dirty_background_ratio)"; 
+ActiveDirtyRatio="$(cat /proc/sys/vm/dirty_ratio)"; 
+ActiveUpThreshold="$(cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold)"; 
+ActiveSamplingRate="$(cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate)"; 
+ActiveOOMKill="$(cat /proc/sys/vm/oom_kill_allocating_task)"; 
+ActiveVFSCache="$(cat /proc/sys/vm/vfs_cache_pressure)";
+busybox echo -e "SynergyKingdom Kernel Settings - PageCluster: $ActivePageCluster \nLaptopMode: $ActiveLaptopMode \nDirtyExpire: $ActiveDirtyExpire \nDirtyWriteback: $ActiveDirtyWriteback \nDirtyBackground: $ActiveDirtyBackground \nDirtyRatio: $ActiveDirtyRatio \nUpThreshold: $ActiveUpThreshold \nSamplingRate: $ActiveSamplingRate \nOOMKill: $ActiveOOMKill \nVFSCache: $ActiveVFSCache \n" | tee -a $LOG_FILE;
+
+SystemAvailable="$(busybox df -h | grep mtdblock4 | awk '{print $4}')"
+DataAvailable="$(busybox df -h | grep mtdblock6 | awk '{print $4}')" 
+CacheAvailable="$(busybox df -h | grep mtdblock5 | awk '{print $4}')" 
+busybox echo -e "SynergyKingdom FreeSpace - System: $SystemAvailable \nData:   $DataAvailable \nCache:  $CacheAvailable" | tee -a $LOG_FILE;
