@@ -13,6 +13,7 @@ cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.google.uid.shared
 cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.bg.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
 cat /data/system/packages.xml | sed '/<shared-user\ name=\"com.htc.android.htcime.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
 cat /data/system/packages.xml | sed '/<shared-user\ name=\"android.uid.shared\" userId=\"[0-9]*\">/,/<\/shared-user>/s/.*//' > /data/system/packages.new;
+rm -f /data/system/packages.xml.old
 mv /data/system/packages.xml /data/system/packages.xml.old;
-rm -f packages.xml
+rm -f /data/system/packages.xml
 mv /data/system/packages.new /data/system/packages.xml;
