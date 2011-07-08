@@ -1,6 +1,8 @@
 # Enable color
 CLICOLOR=0
 SYNERGYROM=1
+TZ=PST8PDT
+export TZ
 
 # Enable history
 HISTFILE="/system/etc/bash/bash_history"
@@ -44,6 +46,7 @@ txtrst='\e[0m'    # Text Reset
 
 # Set up a ton of aliases to cover toolbox with the nice busybox
 # synergy equivalents of its commands
+SYNERGYROM=1
 alias cat='busybox cat'
 alias ln='busybox ln'
 alias ls='busybox ls --color=nocolor'
