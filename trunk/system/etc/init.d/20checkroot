@@ -1,12 +1,13 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #######################
 #Setting up File System
 #######################
 export androidversion=`getprop ro.build.version.release`;
 export rosecure=`getprop ro.secure`;
+SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log;
 echo "[ ] Mounting system.  Check number 1 your properly rooted..." | tee -a $LOG_FILE;
-busybox mount -o remount,rw -t yaffs2 /system
+busybox mount -o remount,rw -t yaffs2 /system;
 if [ $? != 0 ];
 	then
 		echo "[!!] Check your NAND Unlocked.  Cannot mount system as RW!!!!!!!! Disabling Most features...." | tee -a $LOG_FILE;
