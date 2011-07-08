@@ -1,10 +1,10 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #
 export LOG_FILE=/cache/dcboot.log;
 export swapping=`getprop dc.swap.active`;
 export swapto=`getprop dc.swap.swpto`;
 export swappy=`getprop dc.swap.swappiness`;
-
+SYNERGYROM=1;
 ###############################
 #Starting Swap Checks
 ###############################

@@ -1,10 +1,11 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
+SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log;
 export zipalign=`getprop dc.zipalign.active`;
 if [ -n $zipalign ] && [ $zipalign = "true" ]; 
 then
-busybox mount -o remount,rw -t yaffs2 /system
-busybox mount -o remount,rw -t yaffs2 /data
+busybox mount -o remount,rw -t yaffs2 /system;
+busybox mount -o remount,rw -t yaffs2 /data;
 echo "Starting Synergy Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
 
     for apk in /data/app/*.apk ; do

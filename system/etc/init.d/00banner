@@ -1,9 +1,10 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #
 ############################
 #Edited By: TrevE @ xda for damagedrom
 #Create Log File
 ############################
+SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log
 if [ -e $LOG_FILE ]; then
   	rm $LOG_FILE;

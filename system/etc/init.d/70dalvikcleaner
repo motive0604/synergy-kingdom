@@ -1,26 +1,27 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #
 #Clean outdated dalvik cache entries 
 #modded by trev for synergykingdom
+SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log;
-export DALVIK=dalvikforsynergynotfound
-busybox mount -o remount,rw -t yaffs2 /system
-busybox mount -o remount,rw -t yaffs2 /data
+export DALVIK=dalvikforsynergynotfound;
+busybox mount -o remount,rw -t yaffs2 /system;
+busybox mount -o remount,rw -t yaffs2 /data;
 echo "Starting Synergy dalvik data cleanup" | tee -a $LOG_FILE;
 echo "Checking where dalvik exists" | tee -a $LOG_FILE;
-if [ -e "/data/dalvik-cache/system@framework@services.jar@classes.dex" ]
+if [ -e "/data/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
  export DALVIK=/data/dalvik-cache
  echo "Dalvik found on Data" | tee -a $LOG_FILE;
 fi;
 
-if [ -e "/cache/dalvik-cache/system@framework@services.jar@classes.dex" ]
+if [ -e "/cache/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
  export DALVIK=/cache/dalvik-cache
  echo "Dalvik found on Cache" | tee -a $LOG_FILE;
 fi;
 
-if [ -e "/system/sd/dalvik-cache/system@framework@services.jar@classes.dex" ]
+if [ -e "/system/sd/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
  export DALVIK=/system/sd/dalvik-cache
  echo "Dalvik found on SD" | tee -a $LOG_FILE;
@@ -36,7 +37,7 @@ then
 	 if [ ! -e "/data/app/$apk" ];
 	  then
 	  echo "Outdated dex found for $dex removing..." | tee -a $LOG_FILE;
-	  rm $dex
+	  rm $dex;
 	 fi;
 	done;
 
@@ -47,7 +48,7 @@ then
 	 if [ ! -e "/system/app/$apk" ];
 	  then
 	  echo "Outdated dex found for $dex removing..." | tee -a $LOG_FILE;
-	  rm $dex
+	  rm $dex;
 	 fi;
 	done;
 

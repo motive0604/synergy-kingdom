@@ -1,11 +1,11 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 ###############################
 #Starting FirstBoot Script
 ###############################
 export LOG_FILE=/cache/dcboot.log;
 export firstboot=`getprop dc.firstboot.active`;
-busybox mount -o remount,rw -t yaffs2 /system
-busybox mount -o remount,rw -t yaffs2 /data
+busybox mount -o remount,rw -t yaffs2 /system;
+busybox mount -o remount,rw -t yaffs2 /data;
 
 if [ -n $firstboot ] && [ $firstboot = "true" ]; 
 then

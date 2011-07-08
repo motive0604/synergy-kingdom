@@ -98,7 +98,8 @@ delete_recursive("/data/data/com.android.vending/cache");
 delete_recursive("/data/data/com.google.android.apps.maps/cache");
 delete_recursive("/data/data/com.google.android.gm/cache");
 delete_recursive("/data/data/com.google.android.voicesearch/cache");
-
+delete_recursive("/data/data/com.google.android.apps.maps/cache");
+delete("/data/data/com.google.android.apps.maps/databases/webviewCache.db");
 
 set_progress(0.250000);
 
@@ -115,22 +116,11 @@ mount("MTD", "system", "/system");
 
 symlink("dumpstate", "/system/bin/bugreport");
 symlink("dumpstate", "/system/bin/dumpcrash");
-symlink("toolbox", "/system/bin/cat", "/system/bin/chmod", "/system/bin/chown",
-        "/system/bin/chownto", "/system/bin/ionice", "/system/bin/nandread",
-        "/system/bin/cmp", "/system/bin/date", "/system/bin/dd",
-        "/system/bin/df", "/system/bin/dmesg", "/system/bin/getevent",
-        "/system/bin/getprop", "/system/bin/hd", "/system/bin/id",
-        "/system/bin/ifconfig", "/system/bin/iftop", "/system/bin/insmod",
-        "/system/bin/ioctl", "/system/bin/kill", "/system/bin/ln",
-        "/system/bin/log", "/system/bin/ls", "/system/bin/lsmod",
-        "/system/bin/mkdir", "/system/bin/mount", "/system/bin/mv",
-        "/system/bin/netstat", "/system/bin/newfs_msdos", "/system/bin/notify",
-        "/system/bin/printenv", "/system/bin/ps", "/system/bin/renice",
-        "/system/bin/rm", "/system/bin/rmdir", "/system/bin/rmmod",
+symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/getevent",
+        "/system/bin/getprop", "/system/bin/iftop", "/system/bin/ioctl",
+        "/system/bin/log", "/system/bin/newfs_msdos", "/system/bin/notify",
         "/system/bin/route", "/system/bin/schedtop", "/system/bin/sendevent",
-        "/system/bin/setconsole", "/system/bin/setprop", "/system/bin/sleep",
-        "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
-        "/system/bin/sync", "/system/bin/top", "/system/bin/umount",
+        "/system/bin/setprop", "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
 
 package_extract_dir("cache", "/cache");			
@@ -149,6 +139,7 @@ set_perm(1000, 1000, 0755, "/system/bin/bash");
 set_perm(1000, 1000, 0755, "/system/bin/sysro");
 set_perm(1000, 1000, 0755, "/system/bin/sysrw");
 set_perm(0, 0, 0755, 0555, "/system/bin/swap"); 
+set_perm(0, 0, 04755, "/system/bin/sh.old");
 set_perm(0, 0, 04755, "/system/bin/sh");
 set_perm(0, 0, 06755, "/system/bin/su");
 set_perm(1000, 1000, 0755, "/system/bin/nano");
@@ -186,6 +177,10 @@ run_program("/tmp/synergy-setup_rom");
 
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
+delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
+delete_recursive("/sdcard/Android/data/com.google.earth");
+delete_recursive("/sdcard/Android/data/com.weather.Weather");
+delete_recursive("/sdcard/Android/data/com.cooliris.media");
 delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
 

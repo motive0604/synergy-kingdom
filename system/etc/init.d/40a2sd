@@ -1,8 +1,9 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #
 # Apps2SD using symlinks and bind mounts
 # shade@chemlab.org (cyanogen)
 # modded by treve
+SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log;
 export atosdactive=`getprop dc.a2sd.active`;
 export movedata=`getprop dc.a2sd.data.active`;
@@ -157,18 +158,17 @@ then
 	then
 		if [ ! -d /cache/dalvik-cache ];
 		then
-			busybox rm -rf /cache/dalvik-cache /data/dalvik-cache
-			mkdir /cache/dalvik-cache /data/dalvik-cache
+			busybox rm -rf /cache/dalvik-cache /data/dalvik-cache;
+			mkdir /cache/dalvik-cache /data/dalvik-cache;
 		fi;
 		
-		busybox chown 1000:1000 /cache/dalvik-cache
-		toolbox chmod 0771 /cache/dalvik-cache
+		busybox chown 1000:1000 /cache/dalvik-cache;
+		toolbox chmod 0771 /cache/dalvik-cache;
 
 		# bind mount dalvik-cache so we can still boot without the cache
-		busybox mount -o bind /cache/dalvik-cache /data/dalvik-cache
-		busybox chown 1000:1000 /data/dalvik-cache
-		toolbox chmod 0771 /data/dalvik-cache
-	fi;
+		busybox mount -o bind /cache/dalvik-cache /data/dalvik-cache;
+		busybox chown 1000:1000 /data/dalvik-cache;
+		toolbox chmod 0771 /data/dalvik-cache;
 	else 
 		echo "[!] Moving of Dalvik-Cache to SD disallowed by DC.conf" | tee -a $LOG_FILE;
 		if [ -h /data/dalvik-cache ];
@@ -211,9 +211,9 @@ then
 		
 		
     echo "[ ] Removing ODEX files from /system/sd/app" | tee -a $LOG_FILE;
-    busybox rm -r /system/sd/app/*.odex
+    busybox rm -r /system/sd/app/*.odex;
     echo "[ ] Removing ODEX fles from /system/sd/app-private" | tee -a $LOG_FILE;
-    busybox rm -r /system/sd/app-private/*.odex
+    busybox rm -r /system/sd/app-private/*.odex;
     setprop cm.a2sd.active 1;
     echo "[*] A2SD active." | tee -a $LOG_FILE;
 
