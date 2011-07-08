@@ -882,26 +882,11 @@
           <item name="url">http://www.rssweather.com/rss.php?config=&amp;amp;forecast=zandh&amp;amp;icao=RJTT&amp;amp;alt=rss20a</item>
         </set>
       </function>
-      <function name="settings">
-        <set name="single">
-          <item name="interval">-1</item>
-        </set>
-      </function>
     </module>
     <module name="Launcher">
-      <function name="1_app_widgets">
+      <function name="2_app_widgets">
         <set name="plenty" max="19">
-          <!--03e6fd76-2100-47b9-9ae4-393b62e4fea9-->
-          <item name="package_name">com.coremobility.app.vnotes</item>
-          <item name="app_widget_provider">com.coremobility.app.vnotes.CM_VnoteHomeScreenWidget</item>
-          <item name="screen">3</item>
-          <item name="cell_x">3</item>
-          <item name="cell_y">2</item>
-          <item name="span_x">1</item>
-          <item name="span_y">1</item>
-        </set>
-        <set name="plenty" max="19">
-          <!--c8556601-01bc-4068-b58b-4b1481134ac5-->
+          <!--c33eed08-05a7-48a4-8dbe-6ed3b24d0b08-->
           <item name="package_name">com.google.android.googlequicksearchbox</item>
           <item name="app_widget_provider">com.google.android.googlequicksearchbox.SearchWidgetProvider</item>
           <item name="screen">4</item>
@@ -911,9 +896,9 @@
           <item name="span_y">1</item>
         </set>
       </function>
-      <function name="2_app_widgets">
+      <function name="1_app_widgets">
         <set name="plenty" max="19">
-          <!--9ee5c59a-9741-4e9c-927e-e5df8045ec99-->
+          <!--98dc29df-3128-4159-bb5d-85d7b02b442d-->
           <item name="package_name">com.google.android.googlequicksearchbox</item>
           <item name="app_widget_provider">com.google.android.googlequicksearchbox.SearchWidgetProvider</item>
           <item name="screen">4</item>
@@ -935,7 +920,7 @@
       </function>
       <function name="3_fx_widgets">
         <set name="plenty">
-          <!--799adb50-6b9b-42cf-8604-c989bda38b18-->
+          <!--eea62022-8b3d-4f3a-8c24-23ad783a7dcc-->
           <item name="package_name">com.htc.FriendStream3DWidget</item>
           <item name="widget_name">com.htc.FriendStream3DWidget.FriendChannel4x2Widget</item>
           <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
@@ -946,7 +931,7 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--457815e2-e4f7-475f-98a2-b2bbde058a24-->
+          <!--7612e652-5722-45ee-9d4a-1eeb19a3feab-->
           <item name="package_name">com.htc.FriendStream3DWidget</item>
           <item name="widget_name">com.htc.FriendStream3DWidget.FriendStream4x4Widget</item>
           <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
@@ -957,7 +942,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--c45fc085-100a-4dc4-a571-d65839fccfa2-->
+          <!--2131b079-5a9d-4770-8044-69ce14e828a3-->
           <item name="package_name">com.htc.htcmailwidgets</item>
           <item name="widget_name">com.htc.htcmailwidgets.MailPaperWidget</item>
           <item name="provider_name">com.htc.htcmailwidgets.WidgetReceiver</item>
@@ -968,7 +953,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--5aacf8df-0062-4391-a97e-792188a5de0e-->
+          <!--3995a146-b195-46df-8da6-f117ec4b611a-->
           <item name="package_name">com.htc.clock3dwidget</item>
           <item name="widget_name">com.htc.clock3dwidget.socialclock.SocialClockWidgetView</item>
           <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
@@ -979,7 +964,7 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--b5dcf493-9a36-4d81-b84d-f13f31dd8b76-->
+          <!--f65a42ea-e99e-4a20-bd3f-04b5b59e703d-->
           <item name="package_name">com.htc.htccalendarwidgets</item>
           <item name="widget_name">com.htc.htccalendarwidgets.AgendaListWidget</item>
           <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
@@ -990,7 +975,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--424788e8-7018-4cc8-b9c7-b7128494e5f9-->
+          <!--d1d31efb-0783-4970-af4e-92cff4d3f38c-->
           <item name="package_name">com.htc.htccontactwidgets_3d_fusion</item>
           <item name="widget_name">com.htc.htccontactwidgets_3d_fusion.ContactWidgetMatrix</item>
           <item name="provider_name">com.htc.android.rosie.widget.provider</item>
@@ -1004,7 +989,7 @@
           <item name="property.item_path">scenes/People_Big_4x4_ListItem.m10</item>
         </set>
         <set name="plenty">
-          <!--ff5f7071-95f9-4ab9-a0bf-4d4336244030-->
+          <!--d1979892-8183-4ca0-aad9-da2d30292909-->
           <item name="package_name">com.htc.htcmsgwidgets3d</item>
           <item name="widget_name">com.htc.htcmsgwidgets3d.Messages_card_4x4</item>
           <item name="provider_name">com.htc.htcmsgwidgets.MsgWidgetProvider</item>
@@ -1015,9 +1000,79 @@
           <item name="span_y">4</item>
         </set>
       </function>
-      <function name="5_fx_widgets">
+      <function name="6_fx_widgets">
         <set name="plenty">
-          <!--3805fbc3-0451-4e0c-9d51-923faccd8c60-->
+          <!--3496ef87-96e1-417d-ba58-56f517568ff5-->
+          <item name="package_name">com.htc.FriendStream3DWidget</item>
+          <item name="widget_name">com.htc.FriendStream3DWidget.FriendChannel4x2Widget</item>
+          <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
+          <item name="screen">4</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">2</item>
+          <item name="span_x">4</item>
+          <item name="span_y">2</item>
+        </set>
+        <set name="plenty">
+          <!--0634020e-c7c2-4132-9ab9-905929df3d27-->
+          <item name="package_name">com.htc.htcmailwidgets</item>
+          <item name="widget_name">com.htc.htcmailwidgets.MailPaperWidget</item>
+          <item name="provider_name">com.htc.htcmailwidgets.WidgetReceiver</item>
+          <item name="screen">1</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+        <set name="plenty">
+          <!--e33821e7-0857-4326-b1e5-68f6252091b0-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">3</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">1</item>
+          <item name="span_y">1</item>
+          <item name="property.code_">EUR|UK|UK124|LONDON</item>
+        </set>
+        <set name="plenty">
+          <!--b5142425-c7cb-44c7-aea6-e7cffe3f82fd-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">2</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">1</item>
+          <item name="span_y">1</item>
+          <item name="property.code_">EUR|ES|SP008|BARCELONA</item>
+        </set>
+        <set name="plenty">
+          <!--69a629bc-4553-4038-bc4d-f31a567cb0fa-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">1</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">1</item>
+          <item name="span_y">1</item>
+          <item name="property.code_">ASI|TW|TW018|TAIPEI</item>
+        </set>
+        <set name="plenty">
+          <!--236db474-90a0-4b5b-99da-61a0ce88f4a2-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">1</item>
+          <item name="span_y">1</item>
+          <item name="property.code_">ASI|JP|JA041|TOKYO</item>
+        </set>
+        <set name="plenty">
+          <!--026f7742-f525-4abd-b813-40ba90c827b8-->
           <item name="package_name">com.htc.MusicWidget3D</item>
           <item name="widget_name">com.htc.MusicWidget3D.MusicWidget3D_4x2</item>
           <item name="provider_name">com.htc.MusicWidget3D.MusicWidget3DProvider</item>
@@ -1028,10 +1083,10 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--a7fd0dc4-5cf6-49a0-a0e0-f9b5341731fb-->
-          <item name="package_name">com.htc.fusion.htcbookmarkwidget</item>
-          <item name="widget_name">com.htc.fusion.htcbookmarkwidget.GridWidgetView</item>
-          <item name="provider_name">com.htc.fusion.htcbookmarkwidget.WidgetReceiver</item>
+          <!--772115c4-b37c-4e48-88eb-c55a60f96c72-->
+          <item name="package_name">com.htc.htccalendarwidgets</item>
+          <item name="widget_name">com.htc.htccalendarwidgets.MonthViewWidget</item>
+          <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
           <item name="screen">5</item>
           <item name="cell_x">0</item>
           <item name="cell_y">0</item>
@@ -1039,29 +1094,31 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--2add644d-c524-4118-b361-1481f5e86d50-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.ClockRing</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">3</item>
-        </set>
-        <set name="plenty">
-          <!--e5325007-30c2-4034-bcb4-edc484d58c71-->
-          <item name="package_name">com.htc.photowidget3d</item>
-          <item name="widget_name">com.htc.photowidget3d.album.PhotoAlbumWidget3D</item>
-          <item name="provider_name">com.htc.photowidget3d.album.PhotoAlbumWidgetPorvider</item>
-          <item name="screen">2</item>
+          <!--56628076-d0ae-4479-be79-1727dbd4bb59-->
+          <item name="package_name">com.htc.widget3d.weather</item>
+          <item name="widget_name">com.htc.widget3d.weather.Weather4x4Widget</item>
+          <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
+          <item name="screen">0</item>
           <item name="cell_x">0</item>
           <item name="cell_y">0</item>
           <item name="span_x">4</item>
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--75b5acfe-29eb-4204-ae18-a11181ad2ce2-->
+          <!--b5f17fab-8e86-42d7-b1c5-7726d8ef5d51-->
+          <item name="package_name">com.htc.laputa.widget3d.locations</item>
+          <item name="widget_name">com.htc.laputa.widget3d.locations.Locations4x4Widget</item>
+          <item name="provider_name">com.htc.laputa.widget3d.locations.LocationsWidgetProvider</item>
+          <item name="screen">2</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+      </function>
+      <function name="5_fx_widgets">
+        <set name="plenty">
+          <!--c64c329a-162b-4b89-aaf7-ac7fc6634420-->
           <item name="package_name">com.htc.FriendStream3DWidget</item>
           <item name="widget_name">com.htc.FriendStream3DWidget.FriendStream4x4Widget</item>
           <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
@@ -1072,7 +1129,29 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--a9930795-deff-47ab-8fd2-1d225fa3a55e-->
+          <!--33f98489-2be3-4d4c-b509-874a6c2f9c12-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.ClockRing</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">3</item>
+        </set>
+        <set name="plenty">
+          <!--eaabba1c-9e94-4b5f-829e-9d25de1dfdf7-->
+          <item name="package_name">com.htc.photowidget3d</item>
+          <item name="widget_name">com.htc.photowidget3d.album.PhotoAlbumWidget3D</item>
+          <item name="provider_name">com.htc.photowidget3d.album.PhotoAlbumWidgetPorvider</item>
+          <item name="screen">2</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+        <set name="plenty">
+          <!--45ee43e5-6f08-4365-b614-307c6aada09f-->
           <item name="package_name">com.htc.widget3d.weather</item>
           <item name="widget_name">com.htc.widget3d.weather.Weather4x4Widget</item>
           <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
@@ -1082,13 +1161,81 @@
           <item name="span_x">4</item>
           <item name="span_y">4</item>
         </set>
+        <set name="plenty">
+          <!--10bfc6f1-3891-46ef-9bd0-47ba5c22f663-->
+          <item name="package_name">com.htc.MusicWidget3D</item>
+          <item name="widget_name">com.htc.MusicWidget3D.MusicWidget3D_4x4</item>
+          <item name="provider_name">com.htc.MusicWidget3D.MusicWidget3DProvider</item>
+          <item name="screen">4</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+        <set name="plenty">
+          <!--d56bb2b5-f3c2-45ee-b522-66c638f64761-->
+          <item name="package_name">com.htc.fusion.htcbookmarkwidget</item>
+          <item name="widget_name">com.htc.fusion.htcbookmarkwidget.GridWidgetView</item>
+          <item name="provider_name">com.htc.fusion.htcbookmarkwidget.WidgetReceiver</item>
+          <item name="screen">5</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
       </function>
       <function name="2_fx_widgets">
         <set name="plenty">
-          <!--65f82486-fd81-49dc-bbd6-7e07fdca3ffd-->
-          <item name="package_name">com.htc.footprints.widget3d</item>
-          <item name="widget_name">com.htc.footprints.widget3d.Footprints4x4Widget</item>
-          <item name="provider_name">com.htc.footprints.widget3d.FootprintsWidgetProvider</item>
+          <!--8eebda19-ff37-476d-91c1-90057d56acc1-->
+          <item name="package_name">com.htc.FriendStream3DWidget</item>
+          <item name="widget_name">com.htc.FriendStream3DWidget.FriendStream4x4Widget</item>
+          <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
+          <item name="screen">2</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+        <set name="plenty">
+          <!--0a735dfe-7dea-481c-941c-4e071490b63d-->
+          <item name="package_name">com.htc.htcmsgwidgets3d</item>
+          <item name="widget_name">com.htc.htcmsgwidgets3d.Messages_card_4x4</item>
+          <item name="provider_name">com.htc.htcmsgwidgets.MsgWidgetProvider</item>
+          <item name="screen">1</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+          <item name="hide">mail</item>
+        </set>
+        <set name="plenty">
+          <!--ff6fe89e-f39b-4395-8dc2-24d8f67ffba9-->
+          <item name="package_name">com.htc.htcmailwidgets</item>
+          <item name="widget_name">com.htc.htcmailwidgets.MailSummaryWidget</item>
+          <item name="provider_name">com.htc.htcmailwidgets.WidgetReceiver</item>
+          <item name="screen">1</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+          <item name="show">mail</item>
+        </set>
+        <set name="plenty">
+          <!--ea200e11-3b45-49bf-97d3-556411a84973-->
+          <item name="package_name">com.htc.clock3dwidget</item>
+          <item name="widget_name">com.htc.clock3dwidget.weatherclock.WeatherClockWidgetView</item>
+          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
+          <item name="screen">3</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">2</item>
+        </set>
+        <set name="plenty">
+          <!--af0ffec4-7eaf-4801-9693-6dad4e386280-->
+          <item name="package_name">com.htc.laputa.widget3d.locations</item>
+          <item name="widget_name">com.htc.laputa.widget3d.locations.Locations4x4Widget</item>
+          <item name="provider_name">com.htc.laputa.widget3d.locations.LocationsWidgetProvider</item>
           <item name="screen">5</item>
           <item name="cell_x">0</item>
           <item name="cell_y">0</item>
@@ -1096,7 +1243,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--1b203a63-6946-4f17-b454-cf3d495aeb2a-->
+          <!--9f6c76fb-dbc8-401d-acb0-85bf5e2d918e-->
           <item name="package_name">com.htc.htccontactwidgets_3d_fusion</item>
           <item name="widget_name">com.htc.htccontactwidgets_3d_fusion.ContactWidgetMatrix</item>
           <item name="provider_name">com.htc.android.rosie.widget.provider</item>
@@ -1110,152 +1257,7 @@
           <item name="property.item_path">scenes/People_4x4_ListItem.m10</item>
         </set>
         <set name="plenty">
-          <!--5d954cc0-dd58-4f4f-87ea-dba6bd99fb54-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.weatherclock.WeatherClockWidgetView</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">2</item>
-        </set>
-        <set name="plenty">
-          <!--9a63944b-345d-41d1-ad19-7b53852df4b4-->
-          <item name="package_name">com.htc.FriendStream3DWidget</item>
-          <item name="widget_name">com.htc.FriendStream3DWidget.FriendStream4x4Widget</item>
-          <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
-          <item name="screen">2</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--154ae863-ca6e-4737-a7c1-4165b5c5b0d1-->
-          <item name="package_name">com.htc.htcmsgwidgets3d</item>
-          <item name="widget_name">com.htc.htcmsgwidgets3d.Messages_card_4x4</item>
-          <item name="provider_name">com.htc.htcmsgwidgets.MsgWidgetProvider</item>
-          <item name="screen">1</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--ccb4b1fb-b999-482b-a732-c221940742dd-->
-          <item name="package_name">com.htc.widget3d.weather</item>
-          <item name="widget_name">com.htc.widget3d.weather.Weather4x4Widget</item>
-          <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
-          <item name="screen">0</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-      </function>
-      <function name="6_fx_widgets">
-        <set name="plenty">
-          <!--5e48526d-e7b1-4294-8319-564c3369640e-->
-          <item name="package_name">com.htc.htccalendarwidgets</item>
-          <item name="widget_name">com.htc.htccalendarwidgets.MonthViewWidget</item>
-          <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
-          <item name="screen">5</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--3f3a985b-6d63-4d1f-a9f2-7207f5af4d05-->
-          <item name="package_name">com.htc.FriendStream3DWidget</item>
-          <item name="widget_name">com.htc.FriendStream3DWidget.FriendChannel4x2Widget</item>
-          <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
-          <item name="screen">4</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">2</item>
-          <item name="span_x">4</item>
-          <item name="span_y">2</item>
-        </set>
-        <set name="plenty">
-          <!--ca63eea1-978a-4042-90da-ab2ec44cdc65-->
-          <item name="package_name">com.htc.MusicWidget3D</item>
-          <item name="widget_name">com.htc.MusicWidget3D.MusicWidget3D_4x2</item>
-          <item name="provider_name">com.htc.MusicWidget3D.MusicWidget3DProvider</item>
-          <item name="screen">4</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">2</item>
-        </set>
-        <set name="plenty">
-          <!--b63a9d2e-1857-443a-bd45-da14bd7dac01-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">3</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">1</item>
-          <item name="span_y">1</item>
-        </set>
-        <set name="plenty">
-          <!--efa6c2c7-a6fe-4d97-9355-6b362783c113-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">2</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">1</item>
-          <item name="span_y">1</item>
-        </set>
-        <set name="plenty">
-          <!--39c288ce-c2e3-4366-b7a0-8f0ffb6a2959-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">1</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">1</item>
-          <item name="span_y">1</item>
-        </set>
-        <set name="plenty">
-          <!--63cda665-235e-4a11-bd99-ef498856bd20-->
-          <item name="package_name">com.htc.clock3dwidget</item>
-          <item name="widget_name">com.htc.clock3dwidget.Clock1x1</item>
-          <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
-          <item name="screen">3</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">1</item>
-          <item name="span_y">1</item>
-        </set>
-        <set name="plenty">
-          <!--5d089baf-a33a-4132-bbaa-052b0d9a6069-->
-          <item name="package_name">com.htc.footprints.widget3d</item>
-          <item name="widget_name">com.htc.footprints.widget3d.Footprints4x4Widget</item>
-          <item name="provider_name">com.htc.footprints.widget3d.FootprintsWidgetProvider</item>
-          <item name="screen">2</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--ed29b4c6-74ce-4507-9024-539965c4143d-->
-          <item name="package_name">com.htc.htcmailwidgets</item>
-          <item name="widget_name">com.htc.htcmailwidgets.MailPaperWidget</item>
-          <item name="provider_name">com.htc.htcmailwidgets.WidgetReceiver</item>
-          <item name="screen">1</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--0910444c-489d-4ddb-aaaa-b9c57cb92da3-->
+          <!--8e5fd96e-2ef2-45bd-8436-8e9f859b46d6-->
           <item name="package_name">com.htc.widget3d.weather</item>
           <item name="widget_name">com.htc.widget3d.weather.Weather4x4Widget</item>
           <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
@@ -1268,43 +1270,7 @@
       </function>
       <function name="4_fx_widgets">
         <set name="plenty">
-          <!--c45c37fe-dd91-4d9a-af43-6ad04c6a931d-->
-          <item name="package_name">com.htc.googlereaderwidget</item>
-          <item name="widget_name">com.htc.googlereaderwidget.GReaderBigWidget</item>
-          <item name="provider_name">com.htc.googlereaderwidget.RosieWidgetReceiver</item>
-          <item name="screen">5</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">4</item>
-          <item name="span_y">4</item>
-        </set>
-        <set name="plenty">
-          <!--823efb20-d823-47ef-a93f-f656aa68df41-->
-          <item name="package_name">com.htc.htccontactwidgets_3d_fusion</item>
-          <item name="widget_name">com.htc.htccontactwidgets_3d_fusion.ContactWidgetMatrix</item>
-          <item name="provider_name">com.htc.android.rosie.widget.provider</item>
-          <item name="screen">4</item>
-          <item name="cell_x">2</item>
-          <item name="cell_y">0</item>
-          <item name="span_x">2</item>
-          <item name="span_y">4</item>
-          <item name="property.group_name">Favorite_8656150684447252476_6727701920173350445</item>
-          <item name="property.sence_path">scenes/People_4x2_ListView.m10</item>
-          <item name="property.item_path">scenes/People_4x2_ListItem.m10</item>
-        </set>
-        <set name="plenty">
-          <!--be7c1a5a-fb2d-4542-85db-d099020b1549-->
-          <item name="package_name">com.htc.widget3d.weather</item>
-          <item name="widget_name">com.htc.widget3d.weather.Weather2x2Widget</item>
-          <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
-          <item name="screen">4</item>
-          <item name="cell_x">0</item>
-          <item name="cell_y">2</item>
-          <item name="span_x">2</item>
-          <item name="span_y">2</item>
-        </set>
-        <set name="plenty">
-          <!--5f0c60a0-9dab-4194-9105-16154043302b-->
+          <!--fdb09cc3-daee-4969-8a6a-1eb4e82e729d-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.WiFiWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets. WiFiWidget</item>
@@ -1315,7 +1281,7 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--1fe90af7-76ed-4fda-aa51-bf5c2b2320b1-->
+          <!--1db8dd27-8d5d-47e6-96b2-169b1c547a8f-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.BTWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets.BTWidget</item>
@@ -1326,7 +1292,18 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--085ec1a4-95b8-4a34-9441-88e474e48c87-->
+          <!--c9f3d849-e363-4da2-910e-0cde7b7a81f4-->
+          <item name="package_name">com.htc.widget3d.weather</item>
+          <item name="widget_name">com.htc.widget3d.weather.Weather2x2Widget</item>
+          <item name="provider_name">com.htc.widget3d.weather.WeatherWidgetProvider</item>
+          <item name="screen">4</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">2</item>
+          <item name="span_x">2</item>
+          <item name="span_y">2</item>
+        </set>
+        <set name="plenty">
+          <!--c6d2f364-cd21-43ce-95ca-5839e6f92da6-->
           <item name="package_name">com.htc.htccalendarwidgets</item>
           <item name="widget_name">com.htc.htccalendarwidgets.AgendaWidget</item>
           <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
@@ -1337,7 +1314,32 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--4aee704c-5400-4183-b361-ff547b4c40da-->
+          <!--7afe273d-7f4f-4ba7-b837-f52ee8890774-->
+          <item name="package_name">com.htc.htccontactwidgets_3d_fusion</item>
+          <item name="widget_name">com.htc.htccontactwidgets_3d_fusion.ContactWidgetMatrix</item>
+          <item name="provider_name">com.htc.android.rosie.widget.provider</item>
+          <item name="screen">4</item>
+          <item name="cell_x">2</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">2</item>
+          <item name="span_y">4</item>
+          <item name="property.group_name">Favorite_8656150684447252476_6727701920173350445</item>
+          <item name="property.sence_path">scenes/People_4x2_ListView.m10</item>
+          <item name="property.item_path">scenes/People_4x4_ListItem.m10</item>
+        </set>
+        <set name="plenty">
+          <!--482c34b5-b6c3-428d-ada0-2c2076861ba0-->
+          <item name="package_name">com.htc.googlereaderwidget</item>
+          <item name="widget_name">com.htc.googlereaderwidget.GReaderBigWidget</item>
+          <item name="provider_name">com.htc.googlereaderwidget.RosieWidgetReceiver</item>
+          <item name="screen">5</item>
+          <item name="cell_x">0</item>
+          <item name="cell_y">0</item>
+          <item name="span_x">4</item>
+          <item name="span_y">4</item>
+        </set>
+        <set name="plenty">
+          <!--2517efbc-a97b-4b97-a107-9db2f28499e4-->
           <item name="package_name">com.htc.clock3dwidget</item>
           <item name="widget_name">com.htc.clock3dwidget.ClockDual</item>
           <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
@@ -1348,7 +1350,7 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--9a45b4a1-bc7b-4c73-b15a-3cfd90da9983-->
+          <!--6f311747-3a3c-4ffa-a9f3-8139436981bf-->
           <item name="package_name">com.htc.htcmailwidgets</item>
           <item name="widget_name">com.htc.htcmailwidgets.MailSummaryWidget</item>
           <item name="provider_name">com.htc.htcmailwidgets.WidgetReceiver</item>
@@ -1359,7 +1361,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--84d31150-200c-4d2a-bee4-637bc3f27775-->
+          <!--2c109b73-ce1e-4d63-bcba-7e5329dbce07-->
           <item name="package_name">com.htc.android.fusion.StockWidget</item>
           <item name="widget_name">com.htc.android.fusion.StockWidget.Stock4x4PWidget</item>
           <item name="provider_name">com.htc.android.fusion.StockWidget.RosieWidgetReceiver</item>
@@ -1370,7 +1372,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--c49209cf-bdc7-4cb6-9363-ee43acc4862a-->
+          <!--99150cc4-e710-4efc-ba43-2cbc0c6d8c0b-->
           <item name="package_name">com.htc.htccalendarwidgets</item>
           <item name="widget_name">com.htc.htccalendarwidgets.MonthViewWidget</item>
           <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
@@ -1383,7 +1385,7 @@
       </function>
       <function name="1_fx_widgets">
         <set name="plenty">
-          <!--e24cc3be-b950-4f03-a9cd-d6afdce523d8-->
+          <!--966eb285-435f-4eb5-a291-9917491313e2-->
           <item name="package_name">com.htc.htccalendarwidgets</item>
           <item name="widget_name">com.htc.htccalendarwidgets.AgendaListWidget</item>
           <item name="provider_name">com.htc.htccalendarwidgets.WidgetReceiver</item>
@@ -1394,7 +1396,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--5ee24eee-aed7-43cb-a2c6-d1bbe4f3db7a-->
+          <!--7369d406-2105-426f-a960-87e577242523-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.WimaxWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets.WimaxWidget</item>
@@ -1405,7 +1407,7 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--78a201e6-c764-49ce-a483-245c7c9f2d65-->
+          <!--fb6a7871-5ffc-4072-81f9-ae78c5c8ac75-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.GPSWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets.GPSWidgetcom</item>
@@ -1416,7 +1418,7 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--dff8c232-ec3b-4afa-a366-a3a91ca4f998-->
+          <!--592c29bb-8342-4c7e-983a-8020ee908db7-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.BTWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets.BTWidget</item>
@@ -1427,7 +1429,7 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--f65ac3d9-4aa8-41e2-ba18-38933858c740-->
+          <!--427d5c66-2eb5-4ab5-8830-238f69178d07-->
           <item name="package_name">com.htc.htcsettingwidgets</item>
           <item name="widget_name">com.htc.htcsettingwidgets.WiFiWidget</item>
           <item name="provider_name">com.htc.htcsettingwidgets. WiFiWidget</item>
@@ -1438,7 +1440,7 @@
           <item name="span_y">1</item>
         </set>
         <set name="plenty">
-          <!--3adfddb3-e6f5-4725-9c76-b957621856a7-->
+          <!--d27ec7e0-69ee-4940-863e-1c8a73df2508-->
           <item name="package_name">com.htc.MusicWidget3D</item>
           <item name="widget_name">com.htc.MusicWidget3D.MusicWidget3D_4x2</item>
           <item name="provider_name">com.htc.MusicWidget3D.MusicWidget3DProvider</item>
@@ -1449,7 +1451,7 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--be8e9479-b7b9-48c4-b30d-9d675437e94b-->
+          <!--de4f6745-47b6-430c-af2d-331adda96246-->
           <item name="package_name">com.htc.htccontactwidgets_3d_fusion</item>
           <item name="widget_name">com.htc.htccontactwidgets_3d_fusion.ContactWidgetMatrix</item>
           <item name="provider_name">com.htc.android.rosie.widget.provider</item>
@@ -1463,7 +1465,7 @@
           <item name="property.item_path">scenes/People_4x4_ListItem.m10</item>
         </set>
         <set name="plenty">
-          <!--a0350e97-e03e-4dcb-ac92-5bf1d0e79ae8-->
+          <!--9fc2310c-a831-4df7-93c2-9d52178e00bc-->
           <item name="package_name">com.htc.clock3dwidget</item>
           <item name="widget_name">com.htc.clock3dwidget.weatherclock.WeatherClockWidgetView</item>
           <item name="provider_name">com.htc.clock3dwidget.ClockWidgetProvider</item>
@@ -1474,7 +1476,7 @@
           <item name="span_y">2</item>
         </set>
         <set name="plenty">
-          <!--f4739db0-a344-4cac-8606-aca9ccb5677d-->
+          <!--c294cdfe-7336-4534-b69a-f8ccbf4e5568-->
           <item name="package_name">com.htc.FriendStream3DWidget</item>
           <item name="widget_name">com.htc.FriendStream3DWidget.FriendStream4x4Widget</item>
           <item name="provider_name">com.htc.FriendStream3DWidget.FriendStreamWidgetProvider</item>
@@ -1485,7 +1487,7 @@
           <item name="span_y">4</item>
         </set>
         <set name="plenty">
-          <!--00e4c8bd-8e73-4c0d-9387-354076067e73-->
+          <!--e1d40b8d-0031-4c36-9ec8-520292ac1990-->
           <item name="package_name">com.htc.fusion.htcbookmarkwidget</item>
           <item name="widget_name">com.htc.fusion.htcbookmarkwidget.GridWidgetView</item>
           <item name="provider_name">com.htc.fusion.htcbookmarkwidget.WidgetReceiver</item>
@@ -1494,11 +1496,6 @@
           <item name="cell_y">0</item>
           <item name="span_x">4</item>
           <item name="span_y">4</item>
-        </set>
-      </function>
-      <function name="3_wallpaper">
-        <set name="single" max="1">
-          <item type="file_name" name="image">cellular.jpg</item>
         </set>
       </function>
       <function name="6_wallpaper">
@@ -1516,9 +1513,14 @@
           <item type="file_name" name="image">foliage.jpg</item>
         </set>
       </function>
+      <function name="3_wallpaper">
+        <set name="single" max="1">
+          <item type="file_name" name="image">cellular.jpg</item>
+        </set>
+      </function>
       <function name="2_wallpaper">
         <set name="single" max="1">
-          <item type="file_name" name="image">bokeh.jpg</item>
+          <item type="file_name" name="image">color.jpg</item>
         </set>
       </function>
       <function name="1_wallpaper">
@@ -1603,18 +1605,27 @@
           <item type="file_name" name="preview">waveforms_preview.jpg</item>
         </set>
       </function>
-      <function name="3_shortcuts">
+      <function name="2_shortcuts">
         <set name="plenty">
-          <!--60d85758-2316-4af0-8b97-11676d9ddf6b-->
-          <item name="package">com.android.mms</item>
-          <item name="class">com.android.mms.ui.ConversationList</item>
+          <!--ae997cb2-f168-4e5e-9497-40b1dcd85d87-->
+          <item name="package">com.android.vending</item>
+          <item name="class">com.android.vending.AssetBrowserActivity</item>
           <item name="screen">3</item>
-          <item name="x">0</item>
+          <item name="x">3</item>
+          <item name="y">2</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--1d9cf3d9-1c0f-4c4d-a98e-f650ea313e0c-->
+          <item name="package">com.android.browser</item>
+          <item name="class">com.android.browser.BrowserActivity</item>
+          <item name="screen">3</item>
+          <item name="x">2</item>
           <item name="y">3</item>
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--8bdd1b2e-f28c-4d74-88c5-908d9b066e76-->
+          <!--f2d893a2-fa4f-4b90-9fcd-88014d300d64-->
           <item name="package">com.android.camera</item>
           <item name="class">com.android.camera.CameraEntry</item>
           <item name="screen">3</item>
@@ -1623,7 +1634,7 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--86ce0af8-0f34-4945-a5fe-a2c8f0dedfce-->
+          <!--df24ba64-b068-4d4a-a561-a3f5af125707-->
           <item name="package">com.htc.android.mail</item>
           <item name="class">com.htc.android.mail.MailListTab</item>
           <item name="screen">3</item>
@@ -1632,7 +1643,159 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--bcd574f2-db1c-426d-a4dd-14ab8bfc194b-->
+          <!--acae3b51-5159-469d-ad35-c43047c039e4-->
+          <item name="package">com.android.mms</item>
+          <item name="class">com.android.mms.ui.ConversationList</item>
+          <item name="screen">3</item>
+          <item name="x">0</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+      </function>
+      <function name="5_shortcuts">
+        <set name="plenty">
+          <!--f8fc775b-7c79-4489-859f-fae1f6f83b6d-->
+          <item name="package">com.android.htccontacts</item>
+          <item name="class">com.android.htccontacts.BrowseLayerCarouselActivity</item>
+          <item name="screen">3</item>
+          <item name="x">0</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--c07c0c0e-a544-4506-a07e-621e04b7044f-->
+          <item name="package">com.htc.laputa.HtcLaputaInstaller</item>
+          <item name="class">com.htc.laputa.HtcLaputaInstaller.HtcLaputaInstaller</item>
+          <item name="screen">3</item>
+          <item name="x">1</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--14912598-aa47-4489-8b8f-8348bd3c8b60-->
+          <item name="package">com.android.browser</item>
+          <item name="class">com.android.browser.BrowserActivity</item>
+          <item name="screen">3</item>
+          <item name="x">2</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--000728f2-8c46-4bb3-9627-bd1dd826aee3-->
+          <item name="package">com.android.camera</item>
+          <item name="class">com.android.camera.CameraEntry</item>
+          <item name="screen">3</item>
+          <item name="x">3</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+      </function>
+      <function name="6_shortcuts">
+        <set name="plenty">
+          <!--ad050837-652d-45af-bf79-5a509c4b34ae-->
+          <item name="package">com.android.htccontacts</item>
+          <item name="class">com.android.htccontacts.BrowseLayerCarouselActivity</item>
+          <item name="screen">3</item>
+          <item name="x">0</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--0d886c67-71b2-4eff-b62b-864c1a9ba607-->
+          <item name="package">com.htc.laputa.HtcLaputaInstaller</item>
+          <item name="class">com.htc.laputa.HtcLaputaInstaller.HtcLaputaInstaller</item>
+          <item name="screen">3</item>
+          <item name="x">1</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--c35f7143-944f-4c16-807e-4e6952b442db-->
+          <item name="package">com.android.browser</item>
+          <item name="class">com.android.browser.BrowserActivity</item>
+          <item name="screen">3</item>
+          <item name="x">2</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--f7556371-8209-44a4-895b-0357ee121ebf-->
+          <item name="package">com.android.camera</item>
+          <item name="class">com.android.camera.CameraEntry</item>
+          <item name="screen">3</item>
+          <item name="x">3</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+      </function>
+      <function name="4_shortcuts">
+        <set name="plenty">
+          <!--63d8f0e2-63c2-494c-8ae9-cdd9aa62c933-->
+          <item name="package">com.htc.laputa.HtcLaputaInstaller</item>
+          <item name="class">com.htc.laputa.HtcLaputaInstaller.HtcLaputaInstaller</item>
+          <item name="screen">3</item>
+          <item name="x">3</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--1a8e5d45-b4df-4232-97aa-772ee9476ed8-->
+          <item name="package">com.android.mms</item>
+          <item name="class">com.android.mms.ui.ConversationList</item>
+          <item name="screen">3</item>
+          <item name="x">0</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--c57ab038-0d04-4373-83b1-1497b8771c7e-->
+          <item name="package">com.android.browser</item>
+          <item name="class">com.android.browser.BrowserActivity</item>
+          <item name="screen">3</item>
+          <item name="x">2</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--0a1cd8f0-8abc-4ef9-a81f-4b1cd79166d5-->
+          <item name="package">com.htc.android.mail</item>
+          <item name="class">com.htc.android.mail.MailListTab</item>
+          <item name="screen">3</item>
+          <item name="x">1</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+      </function>
+      <function name="3_shortcuts">
+        <set name="plenty">
+          <!--daf88ba6-acff-4f64-875f-59aff811278e-->
+          <item name="package">com.android.mms</item>
+          <item name="class">com.android.mms.ui.ConversationList</item>
+          <item name="screen">3</item>
+          <item name="x">0</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--ce3ef7ee-1603-4d5f-b8fd-eada637f221a-->
+          <item name="package">com.android.camera</item>
+          <item name="class">com.android.camera.CameraEntry</item>
+          <item name="screen">3</item>
+          <item name="x">3</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--519740fb-3f4a-417c-a509-77d802ef4568-->
+          <item name="package">com.htc.android.mail</item>
+          <item name="class">com.htc.android.mail.MailListTab</item>
+          <item name="screen">3</item>
+          <item name="x">1</item>
+          <item name="y">3</item>
+          <item name="itemtype">0</item>
+        </set>
+        <set name="plenty">
+          <!--5bb9d8e9-f061-42d9-acba-4798028f8318-->
           <item name="package">com.android.browser</item>
           <item name="class">com.android.browser.BrowserActivity</item>
           <item name="screen">3</item>
@@ -1643,43 +1806,7 @@
       </function>
       <function name="1_shortcuts">
         <set name="plenty">
-          <!--8c3ac2d6-0c8e-4656-878f-a30f7655cc39-->
-          <item name="package">com.gameloft.microwidget</item>
-          <item name="class">com.gameloft.microwidget.Widget</item>
-          <item name="screen">4</item>
-          <item name="x">2</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--d0f187d8-bf4d-42d1-bee1-d1cdf60b73af-->
-          <item name="package">com.telenav.app.android.sprint</item>
-          <item name="class">com.telenav.app.android.sprint.TeleNav</item>
-          <item name="screen">4</item>
-          <item name="x">1</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--f5148630-c3f9-418f-bb16-220a8ed107bf-->
-          <item name="package">com.handson.h2o.nascar09</item>
-          <item name="class">com.handson.h2o.H2O</item>
-          <item name="screen">4</item>
-          <item name="x">3</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--57f2cc25-7946-4ea4-80aa-904b9e2d2892-->
-          <item name="package">com.sprint.dsa</item>
-          <item name="class">com.sprint.dsa.PageMain</item>
-          <item name="screen">4</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--a43cf1fb-e72b-49c2-bcb1-b9572f000638-->
+          <!--170cbfaa-e0df-4d00-a97e-b087fbea2eb3-->
           <item name="package">com.android.mms</item>
           <item name="class">com.android.mms.ui.ConversationList</item>
           <item name="screen">3</item>
@@ -1688,7 +1815,7 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--3de3e500-1dea-460d-891e-4d82872ddbcd-->
+          <!--ed27e176-51cb-4be4-8a9d-f4deb36edf1c-->
           <item name="package">com.android.vending</item>
           <item name="class">com.android.vending.AssetBrowserActivity</item>
           <item name="screen">3</item>
@@ -1697,7 +1824,7 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--161e3dad-418d-42ab-9bba-f6e02bb1245c-->
+          <!--3f8c237b-d0a4-4d8c-990b-038758721cf6-->
           <item name="package">com.android.htccontacts</item>
           <item name="class">com.android.htccontacts.BrowseLayerCarouselActivity</item>
           <item name="screen">3</item>
@@ -1706,7 +1833,7 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--171d3221-c224-437a-9677-c0e72b880bbc-->
+          <!--ce80ee03-211b-438c-8f55-a5c46d00e10f-->
           <item name="package">com.htc.android.mail</item>
           <item name="class">com.htc.android.mail.MailListTab</item>
           <item name="screen">3</item>
@@ -1715,188 +1842,18 @@
           <item name="itemtype">0</item>
         </set>
         <set name="plenty">
-          <!--f8a3bda8-b821-4224-8483-afeb4f60d9ba-->
+          <!--67e8ab56-2777-4dc0-96cc-6d84df3e95ed-->
           <item name="package">com.android.camera</item>
           <item name="class">com.android.camera.CameraEntry</item>
           <item name="screen">3</item>
           <item name="x">3</item>
           <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-      </function>
-      <function name="5_shortcuts">
-        <set name="plenty">
-          <!--8666708d-912b-4e95-a2f1-3c35602da38d-->
-          <item name="package">com.sdgtl.watch.shooter</item>
-          <item name="class">com.sdgtl.watch.Main</item>
-          <item name="screen">3</item>
-          <item name="x">1</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--fece45e8-5a69-4265-8d02-3113e198dd86-->
-          <item name="package">com.htc.android.footprints</item>
-          <item name="class">com.htc.laputa.lb.browser.view.BrowserMultipleMainActivity</item>
-          <item name="screen">4</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--157d7e68-e751-4721-8bad-ff2bf7446ded-->
-          <item name="package">com.android.camera</item>
-          <item name="class">com.android.camera.CameraEntry</item>
-          <item name="screen">3</item>
-          <item name="x">3</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--ce92c7a4-f1fa-44eb-8545-79ca700cc5b0-->
-          <item name="package">com.android.browser</item>
-          <item name="class">com.android.browser.BrowserActivity</item>
-          <item name="screen">3</item>
-          <item name="x">2</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--e83caf34-5c65-4909-817b-22d10670510f-->
-          <item name="package">com.android.htccontacts</item>
-          <item name="class">com.android.htccontacts.BrowseLayerCarouselActivity</item>
-          <item name="screen">3</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-      </function>
-      <function name="6_shortcuts">
-        <set name="plenty">
-          <!--6b7d1557-da33-49d1-a847-34289e6ba1b8-->
-          <item name="package">com.android.camera</item>
-          <item name="class">com.android.camera.CameraEntry</item>
-          <item name="screen">3</item>
-          <item name="x">3</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--2f00cf5a-f5be-4797-ba1c-8d4b853a5dc3-->
-          <item name="package">com.android.browser</item>
-          <item name="class">com.android.browser.BrowserActivity</item>
-          <item name="screen">3</item>
-          <item name="x">2</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--d5a2ddbc-9694-4097-b35f-cef55742da71-->
-          <item name="package">com.htc.android.footprints</item>
-          <item name="class">com.htc.laputa.lb.browser.view.BrowserMultipleMainActivity</item>
-          <item name="screen">3</item>
-          <item name="x">1</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--811f3efd-e1c2-41ad-95ae-d558259b1c52-->
-          <item name="package">com.android.htccontacts</item>
-          <item name="class">com.android.htccontacts.BrowseLayerCarouselActivity</item>
-          <item name="screen">3</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-      </function>
-      <function name="4_shortcuts">
-        <set name="plenty">
-          <!--06cc1b0f-9c73-421a-a9ad-9a8586b23593-->
-          <item name="package">com.htc.android.footprints</item>
-          <item name="class">com.htc.laputa.lb.browser.view.BrowserMultipleMainActivity</item>
-          <item name="screen">3</item>
-          <item name="x">3</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--1520e8ed-dc95-4835-8a6b-6d07b1576d13-->
-          <item name="package">com.android.browser</item>
-          <item name="class">com.android.browser.BrowserActivity</item>
-          <item name="screen">3</item>
-          <item name="x">2</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--72f3532f-5de6-439f-90b6-7e1b392c8f5a-->
-          <item name="package">com.htc.android.mail</item>
-          <item name="class">com.htc.android.mail.MailListTab</item>
-          <item name="screen">3</item>
-          <item name="x">1</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--b872521c-28d9-4602-90c6-a865cbfd1706-->
-          <item name="package">com.android.mms</item>
-          <item name="class">com.android.mms.ui.ConversationList</item>
-          <item name="screen">3</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-      </function>
-      <function name="2_shortcuts">
-        <set name="plenty">
-          <!--6a8bf9d7-3082-473d-b07c-41bfd567e8e8-->
-          <item name="package">com.android.mms</item>
-          <item name="class">com.android.mms.ui.ConversationList</item>
-          <item name="screen">3</item>
-          <item name="x">0</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--01604010-f152-4f45-b193-8ec93a8c9e47-->
-          <item name="package">com.htc.android.mail</item>
-          <item name="class">com.htc.android.mail.MailListTab</item>
-          <item name="screen">3</item>
-          <item name="x">1</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--47a09d23-b66e-458f-af34-780592d13fdf-->
-          <item name="package">com.android.browser</item>
-          <item name="class">com.android.browser.BrowserActivity</item>
-          <item name="screen">3</item>
-          <item name="x">2</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--ca4d5912-1211-4ed1-834f-02d69222bf49-->
-          <item name="package">com.android.camera</item>
-          <item name="class">com.android.camera.CameraEntry</item>
-          <item name="screen">3</item>
-          <item name="x">3</item>
-          <item name="y">3</item>
-          <item name="itemtype">0</item>
-        </set>
-        <set name="plenty">
-          <!--b39ce089-ea93-4324-a0c0-dc062dc9321d-->
-          <item name="package">com.android.vending</item>
-          <item name="class">com.android.vending.AssetBrowserActivity</item>
-          <item name="screen">3</item>
-          <item name="x">3</item>
-          <item name="y">2</item>
           <item name="itemtype">0</item>
         </set>
       </function>
       <function name="2_widgets">
         <set name="plenty">
-          <!--8aec9718-9e44-4554-9d57-2b45f60f8870-->
+          <!--41f3dcfe-3bcf-405a-893a-e0bfe02f0c99-->
           <item name="package_name">com.htc.rosiewidgets.tip</item>
           <item name="widget_name">TipWidget</item>
           <item name="screen">3</item>
@@ -1904,13 +1861,25 @@
           <item name="cell_y">2</item>
         </set>
       </function>
+      <function name="1_widgets">
+        <set name="plenty">
+          <!--717dea6d-db7a-4b30-9428-43faeeadf90c-->
+          <item name="package_name">com.htc.rosiewidgets.tip</item>
+          <item name="widget_name">TipWidget</item>
+          <item name="screen">3</item>
+          <item name="cell_x">3</item>
+          <item name="cell_y">2</item>
+        </set>
+      </function>
       <function name="scene_list">
         <set name="plenty" max="1">
           <item name="scenename">Sprint Scene</item>
+          <item name="scene_preview_large">SPC_scenes_picker.png</item>
         </set>
         <set name="plenty" max="1">
           <item name="scenename">HTC</item>
-          <item name="scene_preview_large">scenes_picker_1.png</item>
+          <item name="scene_preview_large">scenes_picker_01.png</item>
+          <item name="scene_preview_small">scenes_picker_list_01.png</item>
         </set>
         <set name="plenty" max="1">
           <item name="scenename">Social</item>
@@ -1919,15 +1888,18 @@
         </set>
         <set name="plenty" max="1">
           <item name="scenename">Work</item>
-          <item name="scene_preview_large">scenes_picker_3.png</item>
+          <item name="scene_preview_large">scenes_picker_03.png</item>
+          <item name="scene_preview_small">scenes_picker_list_03.png</item>
         </set>
         <set name="plenty" max="1">
           <item name="scenename">Play</item>
-          <item name="scene_preview_large">scenes_picker_4.png</item>
+          <item name="scene_preview_large">scenes_picker_04.png</item>
+          <item name="scene_preview_small">scenes_picker_list_04.png</item>
         </set>
         <set name="plenty" max="1">
           <item name="scenename">Travel</item>
-          <item name="scene_preview_large">scenes_picker_5.png</item>
+          <item name="scene_preview_large">scenes_picker_05.png</item>
+          <item name="scene_preview_small">scenes_picker_list_05.png</item>
         </set>
       </function>
     </module>
@@ -1962,7 +1934,6 @@
           <item name="STORAGE_Del_Old_Msg">false</item>
           <item name="STORAGE_Text_Msg_Limit">200</item>
           <item name="STORAGE_MMS_Msg_Limit">10</item>
-          <item name="MSG_new_msg_notify_rule_key">false</item>
         </set>
       </function>
     </module>
