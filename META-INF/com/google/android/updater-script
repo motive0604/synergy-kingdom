@@ -99,7 +99,7 @@ delete_recursive("/data/data/com.google.android.voicesearch/cache");
 delete_recursive("/data/data/com.google.android.apps.maps/cache");
 delete("/data/data/com.google.android.apps.maps/databases/webviewCache.db");
 
-set_progress(0.250000);
+set_progress(0.200000);
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 set_progress(0.600000);
@@ -197,4 +197,3 @@ assert(package_extract_file("boot.img", "/tmp/boot.img"),
 set_progress(1.000000);
 unmount("/system");
 unmount("/data");
-show_progress(1.000000, 0);
