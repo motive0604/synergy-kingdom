@@ -123,9 +123,6 @@ settings.display.autobacklight=1
 # default value of brightness
 settings.display.brightness=143
 
-# For emmc phone storage
-ro.phone_storage = 1
-
 # This is a high density device with more memory, so larger vm heaps for it.
 # Change to 32m, due to 2.3.3 GB already change to 32m
 dalvik.vm.heapsize=48m

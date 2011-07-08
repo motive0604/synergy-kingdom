@@ -1,4 +1,4 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 #
 # Automatic Renice Phone
 # by Wes Garner <wesgarner@gmail.com>
@@ -24,6 +24,7 @@ do
 		#busybox renice -10 `pidof com.android.music`;
 		busybox renice 5 `pidof com.google.process.gapps`;
 		busybox renice 5 `pidof com.google.android.apps.uploader`;
+		SYNERGYDNSCHANGE=$((`getprop net.dnschange` + 1));
 		setprop net.ppp0.dns1 8.8.8.8;
 		setprop net.ppp0.dns2 8.8.4.4;
 		setprop net.dns1 8.8.8.8;
@@ -31,5 +32,6 @@ do
 		setprop net.dns3 4.2.2.2;
 		setprop net.rmnet0.dns1 8.8.8.8;
 		setprop net.rmnet0.dns2 8.8.4.4;
+		setprop net.dnschange `echo $SYNERGYDNSCHANGE`;
 		sleep 500;
 done;
