@@ -26,7 +26,7 @@ echo "Starting Synergy Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
        done;
 	   
 	   
-	for apk in /data/app-s/*.apk ; do
+	for apk in /data/app_s/*.apk ; do
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
