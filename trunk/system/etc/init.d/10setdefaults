@@ -1,4 +1,4 @@
-#!/system/bin/sh
+#!/system/bin/sh.old
 export LOG_FILE=/cache/dcboot.log
 echo "[ ] Setting default variables (to make sure everythign exists)" | tee -a $LOG_FILE;
 #cheaters way of making sure variables defined

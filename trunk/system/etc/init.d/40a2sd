@@ -4,6 +4,8 @@
 # shade@chemlab.org (cyanogen)
 # modded by treve
 SYNERGYROM=1;
+busybox mount -o remount,rw -t yaffs2 /system;
+busybox mount -o remount,rw -t yaffs2 /data;
 export LOG_FILE=/cache/dcboot.log;
 export atosdactive=`getprop dc.a2sd.active`;
 export movedata=`getprop dc.a2sd.data.active`;
@@ -27,8 +29,6 @@ then
 	if [ $? != 0 ];
 	then
 		echo "[X] EXT Exists but mounting failed. Can't continue script...aborting.";
-		echo "[ ] Setting File System Ready property to 1.";
-		setprop dc.filesystem.ready 1;
 		echo "[ ] Remounting /system to read-only.";
 		busybox mount -o remount,ro /system;
 		
@@ -169,6 +169,7 @@ then
 		busybox mount -o bind /cache/dalvik-cache /data/dalvik-cache;
 		busybox chown 1000:1000 /data/dalvik-cache;
 		toolbox chmod 0771 /data/dalvik-cache;
+	fi;
 	else 
 		echo "[!] Moving of Dalvik-Cache to SD disallowed by DC.conf" | tee -a $LOG_FILE;
 		if [ -h /data/dalvik-cache ];
@@ -193,7 +194,7 @@ then
 			echo "[!] Changing ownership of /data/dalvik-cache" | tee -a $LOG_FILE;
 			busybox chown 1000:1000 /data/dalvik-cache;
 			echo "[!] Changing permissions of /data/dalvik-cache" | tee -a $LOG_FILE;
-			toolbox chmod 771 /data/dalvik-cache
+			toolbox chmod 771 /data/dalvik-cache;
 			echo "[!] Moving files from /system/sd/dalvik-cache to /data/dalvik-cache" | tee -a $LOG_FILE;
 			busybox cp -a -f /system/sd/dalvik-cache/*  /data/dalvik-cache;
 			echo "[!] Deleting /system/sd/dalvik-cache" | tee -a $LOG_FILE;

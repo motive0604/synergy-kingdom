@@ -1,4 +1,4 @@
-PATH="/sbin:/system/sbin:/system/bin:/system/xbin"
+PATH="/sbin:/system/sbin:/system/bin:/system/xbin:/system/xbin/bb"
 # Enable color
 CLICOLOR=1
 
