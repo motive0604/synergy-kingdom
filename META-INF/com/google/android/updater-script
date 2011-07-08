@@ -71,10 +71,8 @@ show_progress(1.000000, 0);
 
 unmount("/system");
 unmount("/data");
-
 format("MTD", "system");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
-
 
 set_progress(0.100000);
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
@@ -102,10 +100,7 @@ delete_recursive("/data/data/com.google.android.apps.maps/cache");
 delete("/data/data/com.google.android.apps.maps/databases/webviewCache.db");
 
 set_progress(0.250000);
-
 package_extract_dir("system", "/system");
-set_progress(0.400000);
-
 package_extract_dir("data", "/data");
 set_progress(0.600000);
 
@@ -123,7 +118,7 @@ symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/g
         "/system/bin/setprop", "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
 
-package_extract_dir("cache", "/cache");			
+package_extract_dir("cache", "/cache");
 package_extract_file("checkforrosieinstall.sh", "/cache/checkforrosieinstall.sh");
 set_perm(0, 0, 0777, "/cache/checkforrosieinstall.sh");
 run_program("/cache/checkforrosieinstall.sh");
@@ -138,7 +133,7 @@ set_perm(0, 2000, 06750, "/system/bin/run-as");
 set_perm(1000, 1000, 0755, "/system/bin/bash");
 set_perm(1000, 1000, 0755, "/system/bin/sysro");
 set_perm(1000, 1000, 0755, "/system/bin/sysrw");
-set_perm(0, 0, 0755, 0555, "/system/bin/swap"); 
+set_perm(0, 0, 0755, 0555, "/system/bin/swap");
 set_perm(0, 0, 04755, "/system/bin/sh.old");
 set_perm(0, 0, 04755, "/system/bin/sh");
 set_perm(0, 0, 06755, "/system/bin/su");
@@ -188,23 +183,18 @@ package_extract_file("cleanup", "/tmp/cleanup");
 package_extract_file("MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/cleanup");
 set_perm(0, 0, 0777, "/tmp/MS");
-run_program("/tmp/MS");
-
-run_program("/system/bin/fix_permissions");
-run_program("/tmp/cleanup");
-
 
 set_progress(0.700000);
-
+run_program("/tmp/MS");
+run_program("/tmp/cleanup");
 run_program("/system/bin/fix_permissions");
 
 set_progress(0.900000);
-
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
-	   
+
 set_progress(1.000000);
-show_progress(1.000000, 0);   
 unmount("/system");
 unmount("/data");
+show_progress(1.000000, 0);

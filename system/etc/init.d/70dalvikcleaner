@@ -11,19 +11,19 @@ echo "Starting Synergy dalvik data cleanup" | tee -a $LOG_FILE;
 echo "Checking where dalvik exists" | tee -a $LOG_FILE;
 if [ -e "/data/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
- export DALVIK=/data/dalvik-cache
+ export DALVIK=/data/dalvik-cache;
  echo "Dalvik found on Data" | tee -a $LOG_FILE;
 fi;
 
 if [ -e "/cache/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
- export DALVIK=/cache/dalvik-cache
+ export DALVIK=/cache/dalvik-cache;
  echo "Dalvik found on Cache" | tee -a $LOG_FILE;
 fi;
 
 if [ -e "/system/sd/dalvik-cache/system@framework@services.jar@classes.dex" ];
 then
- export DALVIK=/system/sd/dalvik-cache
+ export DALVIK=/system/sd/dalvik-cache;
  echo "Dalvik found on SD" | tee -a $LOG_FILE;
 fi;
 
