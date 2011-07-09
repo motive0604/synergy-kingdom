@@ -150,6 +150,7 @@ set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
 symlink("dropbear","/system/xbin/dropbearkey");
 symlink("dropbear","/system/xbin/dbclient");
 symlink("dropbear","/system/xbin/ssh");
+symlink("dropbear","/system/xbin/scp");
 
 set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
