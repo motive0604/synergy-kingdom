@@ -22,3 +22,22 @@ Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and
 After you have openvpn setup (i tested with pfsense + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
 
 start openvpn settings, select your ovpn file and connect.  
+
+= dropbear =
+
+not a module but whatever.  to use-
+
+in dc.conf make sure the following is set to 1:
+setprop dc.service.dropbear.enabled 1;
+
+adb shell into your phone and set a STRONG root password
+{{
+passwd
+}}
+
+reboot your phone.  Now open up a SSH client such as putty.  connect to your phones ip address which can be obtained by running 
+{{
+ifconfig
+}}
+
+login as root with the password you just set.  enjoy full bash with autocomplete, nano, vim, etc :)
