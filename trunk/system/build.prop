@@ -204,7 +204,7 @@ ro.htc.checkin.crashurl = http://andchin.htc.com/android/crash
 
 # Properties of Scalado Denoise param.
 postprocess.iso_midband = 400
-postprocess.denoise_level = 5
+postprocess.denoise_level = 6
 
 # Following property will be reference by Settings.
 ro.product.processor = 1GHz
@@ -298,3 +298,8 @@ net.bt.name=Android
 dalvik.vm.dexopt-flags=m=y
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+ro.kernel.android.checkjni=0
+dalvik.vm.checkjni=0
+dalvik.vm.checkjni=false
+dalvik.vm.verify-bytecode=false
+dalvik.vm.jniopts=warnonly
