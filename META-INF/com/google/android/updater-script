@@ -107,8 +107,8 @@ set_progress(0.600000);
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
-mount("MTD", "system", "/system");
 
+symlink("/proc/calibration","/system/etc/calibration");
 symlink("dumpstate", "/system/bin/bugreport");
 symlink("dumpstate", "/system/bin/dumpcrash");
 symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/getevent",
@@ -134,6 +134,7 @@ set_perm(1000, 1000, 0755, "/system/bin/bash");
 set_perm(1000, 1000, 0755, "/system/bin/sysro");
 set_perm(1000, 1000, 0755, "/system/bin/sysrw");
 set_perm(0, 0, 0755, 0555, "/system/bin/swap");
+set_perm(0, 0, 04755, "/system/xbin/dropbear");
 set_perm(0, 0, 04755, "/system/bin/sh.old");
 set_perm(0, 0, 04755, "/system/bin/sh");
 set_perm(0, 0, 06755, "/system/bin/su");
@@ -146,6 +147,9 @@ set_perm(3002, 3002, 0444, "/system/etc/bluetooth/blacklist.conf");
 set_perm(1002, 1002, 0440, "/system/etc/dbus.conf");
 set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
 set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
+symlink("dropbear","/system/xbin/dropbearkey");
+symlink("dropbear","/system/xbin/dbclient");
+symlink("dropbear","/system/xbin/ssh");
 
 set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
 set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
