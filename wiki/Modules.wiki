@@ -31,13 +31,13 @@ in dc.conf make sure the following is set to 1:
 setprop dc.service.dropbear.enabled 1;
 
 adb shell into your phone and set a STRONG root password
-{{
+{{{
 passwd
-}}
+}}}
 
 reboot your phone.  Now open up a SSH client such as putty.  connect to your phones ip address which can be obtained by running 
-{{
+{{{
 ifconfig
-}}
+}}}
 
 login as root with the password you just set.  enjoy full bash with autocomplete, nano, vim, etc :)
