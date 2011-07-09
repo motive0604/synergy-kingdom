@@ -10,16 +10,16 @@ busybox mount -o remount,rw -t yaffs2 /data;
 if [ -n $firstboot ] && [ $firstboot = "true" ]; 
 then
 	echo "[ ] Searching for FirstBoot script..." | tee -a $LOG_FILE;
-	if [ -e /data/firstboot.sh ];
+	if [ -e /sdcard/firstboot.sh ];
 	then
 		echo "[!] FirstBoot script found...executing." | tee -a $LOG_FILE;
-		logwrapper /system/bin/sh.old /data/firstboot.sh;
+		logwrapper /system/bin/sh.old /sdcard/firstboot.sh;
 		echo "[!] Removing FirstBoot Script." | tee -a $LOG_FILE;
-		busybox rm -f /data/firstboot.sh;
+		busybox rm -f /sdcard/firstboot.sh;
 	fi;
 	if [ -e /data/firstboot1.sh ];
 	then
-		busybox mv /data/firstboot1.sh /data/firstboot.sh;
+		busybox mv /sdcard/firstboot1.sh /sdcard/firstboot.sh;
 	fi;
 else
 		echo "[X] Firstboot Script Disabled by dc.conf" | tee -a $LOG_FILE;
