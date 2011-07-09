@@ -10,8 +10,8 @@ busybox mount -t cifs -o user=usernamehere,password=passwordhere,uid=1000,gid=10
 }}}
 
 replace usernamehere, passwordhere, with SMB username/pass
-      192.168.1.0 with your server IP address
-      /sdcard/smb/ with the directory to symlink to
+  192.168.1.0 with your server IP address
+  /sdcard/smb/ with the directory to symlink to
 
 now you can use a filebrowser and navigate to /sdcard/smb and you will see your windows network files. 
 
@@ -19,4 +19,6 @@ Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and
 
 = openvpn =
 
-soon
+After you have openvpn setup (i tested with pfsense + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
+
+start openvpn settings, select your ovpn file and connect.  
