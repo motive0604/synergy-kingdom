@@ -9,10 +9,10 @@
 export androidversion=`getprop ro.build.version.release`;
 export rosecure=`getprop ro.secure`;
 SYNERGYROM=1;
+busybox mount -o remount,rw -t auto /data;
 export LOG_FILE=/cache/dcboot.log;
 echo "[ ] Mounting system.  Check number 1 your properly rooted..." | tee -a $LOG_FILE;
 busybox mount -o remount,rw -t auto /system;
-busybox mount -o remount,rw -t auto /data;
 if [ $? != 0 ];
 	then
 		echo "[!!] Check your NAND Unlocked.  Cannot mount system as RW!!!!!!!! Disabling Most features...." | tee -a $LOG_FILE;
