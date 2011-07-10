@@ -36,11 +36,13 @@ busybox mount -t cifs -o user=username,password=whatver,uid=1000,gid=1015,file_m
 
 now you can use a filebrowser and navigate to /sdcard/smb and you will see your windows network files. 
 
-If you want to make this setting permanent, edit /mnt/fstab and put in
+If you want to make this setting permanent, edit /etc/fstab and put in
 
 {{{
 //192.168.1.10/data	/sdcard/smb	cifs	guest,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs	0	0
 }}}
+
+now you can run mount -a from any terminal and it will mount your samba share.
 
 Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and all worked fairly well :)
 
