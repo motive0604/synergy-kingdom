@@ -6,6 +6,13 @@ SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log
 busybox mount -o remount,rw -t auto /system;
 busybox mount -o remount,rw -t auto /data;
+
+if [ ! -e /cache0/cache.img ];
+then 
+	dd if=/dev/zero of=/cache0/cache.img bs=1M count=150;
+	mke2fs –t ext2 /cache0/cache.img;
+fi;
+
 echo "[ ] Setting default variables (to make sure everythign exists)" | tee -a $LOG_FILE;
 #cheaters way of making sure variables defined
 setprop dc.devicetype generic;

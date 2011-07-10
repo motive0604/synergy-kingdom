@@ -76,6 +76,7 @@ then
 	   
 busybox umount /mnt/tmp	   
 echo "Automatic ZipAlign finished at:" `date` | tee -a $LOG_FILE;
+fi;
 else
 	echo "[X] Zipalign Check Disabled by dc.conf" | tee -a $LOG_FILE;
 fi;
