@@ -48,7 +48,7 @@ Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and
 
 OpenVPN will let you connect to your home network over 3G.  This can be used to access your CIFS shares when you are off of your home network wifi.
 
-After you have [http://openvpn.net/index.php/open-source/downloads.html openvpn server setup] (i tested with pfsense + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
+After you have [http://openvpn.net/index.php/open-source/downloads.html openvpn] server setup (i tested with [http://www.pfsense.org pfsense] + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
 
 start openvpn settings app on phone, select your ovpn file and connect.  Now you should be able to hit your CIFS shares you created above :D 
 
@@ -69,7 +69,7 @@ adb shell into your phone and set a STRONG root password
 adb shell passwd
 }}}
 
-reboot your phone.  Now open up a SSH client such as putty.  connect to your phones ip address which can be obtained by running 
+reboot your phone.  Now open up a SSH client such as [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html putty].  connect to your phones ip address which can be obtained by running 
 {{{
 adb shell ifconfig
 }}}
@@ -79,9 +79,9 @@ login as root with the password you just set.  enjoy full bash with autocomplete
 
 = DYNDNS = 
 
-now that you have dropbear, lets get access to our SSH everywhere (providing your not behind a restricted NAT, i tested over 3g fine)
+now that you have dropbear, lets get access to our SSH everywhere without remembering your phones IP address.  myphone.dyndns.org is much nicer (should work providing your not behind a restricted NAT, i tested over 3g fine)
 
-1) go to dyndns.org and register for a dynamic hostname.  
+1) go to [dyndns.org dyndns.org] and register for a dynamic hostname.  
 
 2) edit /system/etc/inadyn.conf your file should look like this, replacing exmamples out.  update period is in MS
 {{{
