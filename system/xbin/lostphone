@@ -1,0 +1,20 @@
+#!/system/bin/sh.old
+export SYNERGYROM=1;
+export SYNERGYTESTSS="`getprop ro.build.description`";
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+# 
+# 
+if [ "$SYNERGYROM" == "1" ] && [ "$SYNERGYTESTSS" == "Synergy Kingdom (NIGHTLY)" ];
+then 
+	echo "Starting Synergy Rom Phone Finder";
+	echo;
+	echo "As of last sync it appears your phone is located at:";
+	echo;
+	sqlite3 /data/data/com.htc.sync.provider.weather/databases/weathersync.db "select 'SynergyRom Location Data',curLocName,curLocState,curLocCountry from data;";
+	echo;
+	echo "Thanks for using our phone finder";
+else
+	echo "kangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkangkang";
+fi;
