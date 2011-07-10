@@ -6,7 +6,7 @@ export SYNERGYTESTSS="`getprop ro.build.description`";
 # thanks from Team Synergy
 # 
 # 
-if [ "$SYNERGYROM" == "1" ] && [ "$SYNERGYTESTSS" == "Synergy Kingdom (NIGHTLY)" ];
+if [ "$SYNERGYROM" == "1" ];
 then 
 	echo "Starting Synergy Rom Phone Finder";
 	echo;
