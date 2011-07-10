@@ -101,6 +101,11 @@ ro.sf.lcd_density = 240
 #ro.sf.lcd_density = 160
 #0 - mdp composition, 1 - gpu composition
 ro.sf.hw=1
+debug.sf.hw=1
+
+# Battery Savings (Sleep Mode)
+ro.ril.disable.power.collapse=0
+pm.sleep_mode=1
 
 # The OpenGL ES API level that is natively supported by this device.
 # This is a 16.16 fixed point number
@@ -299,7 +304,5 @@ dalvik.vm.dexopt-flags=m=y
 dalvik.vm.lockprof.threshold=500
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
 ro.kernel.android.checkjni=0
-dalvik.vm.checkjni=0
-dalvik.vm.checkjni=false
 dalvik.vm.verify-bytecode=false
 dalvik.vm.jniopts=warnonly
