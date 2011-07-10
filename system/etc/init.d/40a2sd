@@ -1,4 +1,8 @@
 #!/system/bin/sh.old
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+# 
 #
 # Apps2SD using symlinks and bind mounts
 # shade@chemlab.org (cyanogen)
