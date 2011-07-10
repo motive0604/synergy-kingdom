@@ -46,13 +46,15 @@ Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and
 
 = openvpn =
 
-After you have openvpn setup (i tested with pfsense + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
+OpenVPN will let you connect to your home network over 3G.  This can be used to access your CIFS shares when you are off of your home network wifi.
 
-start openvpn settings, select your ovpn file and connect.  
+After you have [http://openvpn.net/index.php/open-source/downloads.html openvpn server setup] (i tested with pfsense + openvpn export package) dump you ovpn and key files on /sdcard/openvpn/
+
+start openvpn settings app on phone, select your ovpn file and connect.  Now you should be able to hit your CIFS shares you created above :D 
 
 = dropbear =
 
-to use-
+dropbear is a SSH server.  This gives you all the benefits of adb shell over wifi or 3g. you also get fun stuff like tab completions, color, and other linux funness.
 
 in dc.conf make sure the following is set to 1:
 setprop dc.service.dropbear.enabled 1;
@@ -69,7 +71,7 @@ adb shell passwd
 
 reboot your phone.  Now open up a SSH client such as putty.  connect to your phones ip address which can be obtained by running 
 {{{
-ifconfig
+adb shell ifconfig
 }}}
 
 login as root with the password you just set.  enjoy full bash with autocomplete, nano, vim, etc :)
@@ -77,15 +79,18 @@ login as root with the password you just set.  enjoy full bash with autocomplete
 
 = DYNDNS = 
 
-now that you have dropbear, lets get shell everywhere (providing your not behind a restricted NAT, i tested over 3g fine)
+now that you have dropbear, lets get access to our SSH everywhere (providing your not behind a restricted NAT, i tested over 3g fine)
 
 1) go to dyndns.org and register for a dynamic hostname.  
+
 2) edit /system/etc/inadyn.conf your file should look like this, replacing exmamples out.  update period is in MS
 {{{
 --username SynergExampleUser --password SynergExamplePass --alias synergyromexample.dyndns.org --background --update_period 6000
 }}}
+
 3) now edit /system/etc/dc.conf, change 
   setprop dc.service.inadyn.enabled 0; to setprop dc.service.inadyn.enabled 1;
+
 4) reboot and enjoy your dynamic ip.  you can now SSH into your dyndns name from anywhere (make sure you set a strong password n00bs)
 
 
