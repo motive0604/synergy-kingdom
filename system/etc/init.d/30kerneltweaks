@@ -7,6 +7,8 @@
 #Tuning System Variables
 #######################
 SYNERGYROM=1;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
 export LOG_FILE=/cache/dcboot.log;
 export dirty_expire_centisecs=`getprop dc.adv.dirtyexpire`;
 export dirty_writeback_centisecs=`getprop dc.adv.dirtywriteback`;

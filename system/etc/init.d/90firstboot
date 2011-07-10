@@ -8,8 +8,9 @@
 ###############################
 export LOG_FILE=/cache/dcboot.log;
 export firstboot=`getprop dc.firstboot.active`;
-busybox mount -o remount,rw -t yaffs2 /system;
-busybox mount -o remount,rw -t yaffs2 /data;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
+busybox mount -o remount,rw -t auto /sdcard;
 
 if [ -n $firstboot ] && [ $firstboot = "true" ]; 
 then
