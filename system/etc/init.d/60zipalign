@@ -8,8 +8,18 @@ export LOG_FILE=/cache/dcboot.log;
 export zipalign=`getprop dc.zipalign.active`;
 if [ -n $zipalign ] && [ $zipalign = "true" ]; 
 then
+	busybox mount -o remount,rw /;
 	busybox mount -o remount,rw -t auto /system;
 	busybox mount -o remount,rw -t auto /data;
+	
+	if [ -e /mnt/tmp ];
+	then
+		rm -r /mnt/tmp/*;
+	fi;
+	else
+		mkdir /mnt/tmp/;
+	fi;
+	busybox mount -t tmpfs -o size=70m none /mnt/tmp; 
 	echo "Starting Synergy Automatic ZipAlign "  `date` | tee -a $LOG_FILE;
 
     for apk in /data/app/*.apk ; do
@@ -17,10 +27,10 @@ then
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
                 echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
-                zipalign -f 4 "$apk" /cache/"$basename $apk";
-                        if [ -e /cache/"$basename $apk" ]; then
-                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
-                                rm /cache/"$basename $apk";
+                zipalign -f 4 "$apk" /mnt/tmp/"$basename $apk";
+                        if [ -e /mnt/tmp/"$basename $apk" ]; then
+                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                                rm /mnt/tmp/"$basename $apk";
                         else
                                 echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
                         fi;
@@ -35,10 +45,10 @@ then
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
                 echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /cache/"$basename $apk";
-                        if [ -e /cache/"$basename $apk" ]; then
-                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
-                                rm /cache/$basename $apk;
+                zipalign -f 4 $apk /mnt/tmp/"$basename $apk";
+                        if [ -e /mnt/tmp/"$basename $apk" ]; then
+                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                                rm /mnt/tmp/$basename $apk;
                         else
                                 echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
                         fi;
@@ -52,10 +62,10 @@ then
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
                 echo ZipAligning $basename $apk  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /cache/"$basename $apk";
-                        if [ -e /cache/"$basename $apk" ]; then
-                                cp -f -p /cache/"$basename $apk" $apk  | tee -a $LOG_FILE;
-                                rm /cache/"$basename $apk";
+                zipalign -f 4 $apk /mnt/tmp/"$basename $apk";
+                        if [ -e /mnt/tmp/"$basename $apk" ]; then
+                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                                rm /mnt/tmp/"$basename $apk";
                         else
                                 echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
                         fi;
@@ -63,6 +73,8 @@ then
                 echo Synergy ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
         fi;
        done;   
+	   
+busybox umount /mnt/tmp	   
 echo "Automatic ZipAlign finished at:" `date` | tee -a $LOG_FILE;
 else
 	echo "[X] Zipalign Check Disabled by dc.conf" | tee -a $LOG_FILE;
