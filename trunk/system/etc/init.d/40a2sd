@@ -8,8 +8,8 @@
 # shade@chemlab.org (cyanogen)
 # modded by treve
 SYNERGYROM=1;
-busybox mount -o remount,rw -t yaffs2 /system;
-busybox mount -o remount,rw -t yaffs2 /data;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
 export LOG_FILE=/cache/dcboot.log;
 export atosdactive=`getprop dc.a2sd.active`;
 export movedata=`getprop dc.a2sd.data.active`;

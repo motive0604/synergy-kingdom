@@ -9,8 +9,8 @@
 SYNERGYROM=1;
 export LOG_FILE=/cache/dcboot.log;
 export DALVIK=dalvikforsynergynotfound;
-busybox mount -o remount,rw -t yaffs2 /system;
-busybox mount -o remount,rw -t yaffs2 /data;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
 echo "Starting Synergy dalvik data cleanup" | tee -a $LOG_FILE;
 echo "Checking where dalvik exists" | tee -a $LOG_FILE;
 if [ -e "/data/dalvik-cache/system@framework@services.jar@classes.dex" ];

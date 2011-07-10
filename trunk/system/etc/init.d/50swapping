@@ -4,6 +4,8 @@
 # thanks from Team Synergy
 # 
 #
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
 export LOG_FILE=/cache/dcboot.log;
 export swapping=`getprop dc.swap.active`;
 export swapto=`getprop dc.swap.swpto`;
