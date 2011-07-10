@@ -103,13 +103,8 @@ for i in `ls -1 /sys/block/mtdblock*` /sys/block/mmcblk0
 do
 	echo "noop" > $i/queue/scheduler;
 	echo "0" > $i/queue/rotational;
-	echo "1" > $i/queue/iosched/low_latency;
-	echo "1" > $i/queue/iosched/back_seek_penalty;
-	echo "1000000000" > $i/queue/iosched/back_seek_max;
-	echo "0" > $i/queue/iosched/slice_idle;
 	echo "512" > $i/queue/nr_requests;
 	echo "1" > $i/queue/iosched/fifo_batch;
-	echo "16" > $i/queue/iosched/quantum;
 done;
 
 echo 1 > /sys/block/mmcblk0/queue/rotational
