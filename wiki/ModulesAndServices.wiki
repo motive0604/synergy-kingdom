@@ -3,17 +3,44 @@ Details on how to use custom modules and services
 
 
 = CIFS =
-This module lets you access windows networking shares on your phone.  To use, 
+This module lets you access windows networking shares or linux samba on your phone.  
+
+First you need to setup a share.  In windows right click on a folder you want your phone to see and go to properties.  Click on the Sharing tab and go to Advanced Sharing.  In the share name it something without spaces for ease of use.  Now click on permissions.  Add the user "Everyone" and give it the permissions you want your phone to have (read/write/full control).
+
+Now that your share is setup, go to start -> run -> cmd.  type in 
+{{{
+ipconfig
+}}}  
+
+and note your active connections IP address.  Now go to start -> run  and type in \\IPADDRESS, if your machines IP was 192.168.1.10 you would type in
 
 {{{
-busybox mount -t cifs -o user=usernamehere,password=passwordhere,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs //192.168.1.0/sharename /sdcard/smb/
+\\192.168.1.10
 }}}
 
-replace usernamehere, passwordhere, with SMB username/pass
-  192.168.1.0 with your server IP address
-  /sdcard/smb/ with the directory to symlink to
+you should see your share you just created show up. Try to open it up and make sure you can see the contents of the folder you shared without error.
+
+now on your phone, connect to wifi, go to adb shell and run the following command, replacing //192.168.1.10/sharename with the IP and sharname you saw above, 
+
+{{{
+mkdir /sdcard/smb/
+
+busybox mount -t cifs -o guest,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs //192.168.1.10/sharename /sdcard/smb/
+}}}
+
+if you get an error you must mount with a username and password
+
+{{{
+busybox mount -t cifs -o user=username,password=whatver,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs //192.168.1.10/sharename /sdcard/smb/
+}}}
 
 now you can use a filebrowser and navigate to /sdcard/smb and you will see your windows network files. 
+
+If you want to make this setting permanent, edit /mnt/fstab and put in
+
+{{{
+//192.168.1.10/data	/sdcard/smb	cifs	guest,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs	0	0
+}}}
 
 Tested playing a 350mb divx file over an adhoc wifi network using rockplayer and all worked fairly well :)
 
@@ -70,4 +97,3 @@ just ssh into your dynamic hostname and run
 {{{
 lostphone
 }}}
-
