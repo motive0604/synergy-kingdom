@@ -4,6 +4,7 @@ if [ -e /sdcard/SynergyROM/rosie ]; then
 	rm /cache/rosie.zip;
 	rm /data/app/VR_CLOCK.apk;
 	rm /data/app/VR_LP.apk;
+	rm -r /data/data/com.fede.launcher/;
 else
 	rm /cache/rosie.zip;
 fi;
