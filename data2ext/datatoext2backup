@@ -1,0 +1,11 @@
+#!/sbin/sh
+if [ ! -e  /data0/data.img ];
+then
+	/sbin/busybox dd if=/dev/mtd/mtd6ro of=/sdcard/data.img bs=4096 count=108000;
+	rm -r /data0/*;
+	rm -r /data/*;
+	rm -r /data0/;
+	rm -r /data/*;
+	/sbin/busybox dd if=/sdcard/data.img of=/dev/mtd/mtd6 bs=4096 count=108000;
+	/sbin/mke2fs -T ext2 /data0/data.img -F;
+fi;	
