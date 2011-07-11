@@ -2,6 +2,8 @@
 if [ -e /sdcard/SynergyROM/rosie ]; then
 	/sbin/busybox unzip /cache/rosie.zip -d /;
 	rm /cache/rosie.zip;
+	rm /data/app/VR_CLOCK.apk;
+	rm /data/app/VR_LP.apk;
 else
 	rm /cache/rosie.zip;
 fi;
