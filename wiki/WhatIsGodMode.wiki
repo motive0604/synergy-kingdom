@@ -19,6 +19,28 @@ adb shell df
 adb shell busybox mount
 }}}
 
+By default in /system/etc/dc.conf we have /data/dalvik-cache/ bind mounted to /cache/  because it is this partition is big and mostly unused space.  This will give you the best performance being cache is ext2, but you will be limited to about 70 user installed apps before dalvik fills up.  If you have a SD card properly formatted you can play with moving the dalvik around, but your scores and performance may vary.  
+
+Heres some examples of /system/etc/dc.conf:
+
+Dalvik on /data/ (HTC Default)
+{{{
+setprop dc.a2sd.dalvikcachesd.active false;
+setprop dc.a2sd.dalvikcachepart.active false;
+}}}
+
+Dalvik on /cache/ (Synergy Kingdom default)
+{{{
+setprop dc.a2sd.dalvikcachesd.active false;
+setprop dc.a2sd.dalvikcachepart.active true;
+}}}
+
+Dalvik on /sdcard/ext partition ("regular" Apps2SD default)
+{{{
+setprop dc.a2sd.dalvikcachesd.active true;
+setprop dc.a2sd.dalvikcachepart.active false;
+}}}
+
 
 = screenshots =
 
