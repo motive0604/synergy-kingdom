@@ -4,12 +4,12 @@
 # thanks from Team Synergy
 #
 if [ -e /sdcard/SynergyROM/rosie ]; then
-	/sbin/busybox unzip /cache/rosie.zip -d /;
-	rm /cache/rosie.zip;
+	/sbin/busybox unzip /sdcard/SynergyROM/sense.zip -d /;
+#	rm /sdcard/SynergyROM/sense.zip;
 	rm /data/app/VR_CLOCK.apk;
 	rm /data/app/VR_LP.apk;
 	rm -r /data/data/com.fede.launcher/;
 else
-	rm /cache/rosie.zip;
+#	rm /sdcard/SynergyROM/sense.zip;
 fi;
 
