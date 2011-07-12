@@ -105,12 +105,10 @@ delete_recursive("/data0/data/com.google.android.apps.maps/cache");
 delete("/data0/data/com.google.android.apps.maps/databases/webviewCache.db");
 
 set_progress(0.400000);
-run_program("/sbin/busybox", "dd", "if=/dev/zero", "of=/system0/system.img", "bs=1M", "count=345");
-run_program("/sbin/mke2fs", "-T", "ext2", "/system0/system.img", "-F");
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/system0/system.img", "/system");
 
 set_progress(0.500000);
-package_extract_file("datatoext2backup", "/tmp/datatoext2backup");
+package_extract_file("/system/synergy/scripts/datatoext2backup", "/tmp/datatoext2backup");
 set_perm(0, 0, 0777, "/tmp/datatoext2backup");
 run_program("/tmp/datatoext2backup");
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/data0/data.img", "/data");
@@ -119,7 +117,7 @@ set_progress(0.600000);
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 
-set_progress(0.800000);
+set_progress(0.700000);	
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
@@ -133,14 +131,14 @@ symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/g
         "/system/bin/route", "/system/bin/schedtop", "/system/bin/sendevent",
         "/system/bin/setprop", "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
-
-set_progress(0.700000);		
+	
 package_extract_dir("cache", "/cache");
-package_extract_file("checkforrosieinstall.sh", "/cache/checkforrosieinstall.sh");
+package_extract_file("/system/synergy/scripts/checkforrosieinstall.sh", "/cache/checkforrosieinstall.sh");
 set_perm(0, 0, 0777, "/cache/checkforrosieinstall.sh");
 run_program("/cache/checkforrosieinstall.sh");
 delete("/cache/checkforrosieinstall.sh");
-set_progress(0.700000);
+
+set_progress(0.800000);
 run_program("/sbin/busybox", "dd", "if=/dev/zero", "of=/cache/cache.img", "bs=1M", "count=157");
 run_program("/sbin/mke2fs", "-T", "ext2", "/cache/cache.img", "-F");
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/cache/cache.img", "/cache0");
@@ -191,8 +189,8 @@ run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
 run_program("/system/xbin/busybox","--install","-s","/system/bin");
 symlink("/system/bin/bash", "/system/bin/sh");
 
-package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
-package_extract_file("fixrmk.sh", "/tmp/fixrmk.sh");
+package_extract_file("/system/synergy/scripts/synergy-setup_rom", "/tmp/synergy-setup_rom");
+package_extract_file("/system/synergy/scripts/fixrmk.sh", "/tmp/fixrmk.sh");
 set_perm(0, 0, 0777, "/tmp/synergy-setup_rom");
 set_perm(0, 0, 0777, "/tmp/fixrmk.sh");
 run_program("/tmp/fixrmk.sh");
@@ -208,8 +206,8 @@ delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
 
 
-package_extract_file("cleanup", "/tmp/cleanup");
-package_extract_file("MS", "/tmp/MS");
+package_extract_file("/system/synergy/scripts/cleanup", "/tmp/cleanup");
+package_extract_file("/system/synergy/scripts/MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/cleanup");
 set_perm(0, 0, 0777, "/tmp/MS");
 
