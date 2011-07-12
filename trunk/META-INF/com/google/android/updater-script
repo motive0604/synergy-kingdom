@@ -68,23 +68,20 @@ ui_print("");
 ui_print("");
 ui_print("");
 show_progress(0.200000, 10);
-
-delete_recursive("/cache");
 unmount("/system");
 unmount("/data");
-format("MTD", "cache");
 format("MTD", "system");
 format("MTD", "cache");
+run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mtdblock5", "/cache");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
-
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
 run_program("/sbin/busybox", "mkdir", "/data0");
 run_program("/sbin/busybox", "mkdir", "/system0");
 run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mtdblock6", "/data0");
 run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mtdblock4", "/system0");
-run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mtdblock5", "/cache");
 run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mmcblk0p2", "/sd-ext");
-delete_recursive("/cache");
+delete("/cache/cache.img");
+delete_recursive("/cache/dalvik-cache");
 delete_recursive("/sd-ext/dalvik-cache");
 delete_recursive("/system0");
 delete_recursive("/data0/dalvik-cache");
