@@ -124,7 +124,16 @@ symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/g
         "/system/bin/route", "/system/bin/schedtop", "/system/bin/sendevent",
         "/system/bin/setprop", "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
         "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
-	
+
+delete_recursive("/sdcard/VirusROM");
+delete_recursive("/sdcard/synergy");
+delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
+delete_recursive("/sdcard/Android/data/com.google.earth");
+delete_recursive("/sdcard/Android/data/com.weather.Weather");
+delete_recursive("/sdcard/Android/data/com.cooliris.media");
+delete_recursive("/sdcard/SynergyROM/app.rom");
+package_extract_dir("sdcard", "/sdcard");
+		
 package_extract_file("/system/synergy/scripts/checkforrosieinstall.sh", "/tmp/checkforrosieinstall.sh");
 set_perm(0, 0, 0777, "/tmp/checkforrosieinstall.sh");
 run_program("/tmp/checkforrosieinstall.sh");
@@ -188,15 +197,6 @@ set_perm(0, 0, 0777, "/tmp/synergy-setup_rom");
 set_perm(0, 0, 0777, "/tmp/fixrmk.sh");
 run_program("/tmp/fixrmk.sh");
 run_program("/tmp/synergy-setup_rom");
-
-delete_recursive("/sdcard/VirusROM");
-delete_recursive("/sdcard/synergy");
-delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
-delete_recursive("/sdcard/Android/data/com.google.earth");
-delete_recursive("/sdcard/Android/data/com.weather.Weather");
-delete_recursive("/sdcard/Android/data/com.cooliris.media");
-delete_recursive("/sdcard/SynergyROM/app.rom");
-package_extract_dir("sdcard", "/sdcard");
 
 show_progress(0.200000, 10);
 
