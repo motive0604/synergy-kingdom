@@ -1,4 +1,9 @@
 #!/system/bin/bash
+# LN -s script for synergy kingdom
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+#
 BUSYBOX="/system/xbin/busybox"
 cd /data/app_s
 filelist=`$BUSYBOX find * -maxdepth 1 -type f`

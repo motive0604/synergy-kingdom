@@ -103,17 +103,15 @@ delete_recursive("/data0/data/com.google.android.voicesearch/cache");
 delete_recursive("/data0/data/com.google.android.apps.maps/cache");
 delete("/data0/data/com.google.android.apps.maps/databases/webviewCache.db");
 
-
-run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/system0/system.img", "/system");
+package_extract_dir("system", "/system0");
+run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/system0/system.img", "/system");
 
 package_extract_file("/system/synergy/scripts/datatoext2backup", "/tmp/datatoext2backup");
 set_perm(0, 0, 0777, "/tmp/datatoext2backup");
 run_program("/tmp/datatoext2backup");
-run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/data0/data.img", "/data");
+run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/data0/data.img", "/data");
 
 show_progress(0.1, 0);
-
-package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 
 show_progress(0.1, 10);
@@ -139,7 +137,7 @@ delete("/cache/checkforrosieinstall.sh");
 
 run_program("/sbin/busybox", "dd", "if=/dev/zero", "of=/cache/cache.img", "bs=1M", "count=157");
 run_program("/sbin/mke2fs", "-T", "ext2", "/cache/cache.img", "-F");
-run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/cache/cache.img", "/cache0");
+run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/cache/cache.img", "/cache0");
 
 
 set_perm_recursive(0, 0, 0755, 0644, "/system");
