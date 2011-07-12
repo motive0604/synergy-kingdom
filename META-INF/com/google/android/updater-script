@@ -72,7 +72,6 @@ unmount("/system");
 unmount("/data");
 format("MTD", "system");
 format("MTD", "cache");
-run_program("/sbin/busybox", "mount", "-t", "auto", "/dev/block/mtdblock5", "/cache");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
 run_program("/sbin/busybox", "mkdir", "/data0");
