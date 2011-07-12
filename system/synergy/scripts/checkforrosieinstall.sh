@@ -5,11 +5,7 @@
 #
 if [ -e /sdcard/SynergyROM/rosie ]; then
 	/sbin/busybox unzip /sdcard/SynergyROM/sense.zip -d /;
-#	rm /sdcard/SynergyROM/sense.zip;
 	rm /data/app/VR_CLOCK.apk;
 	rm /data/app/VR_LP.apk;
 	rm -r /data/data/com.fede.launcher/;
-else
-#	rm /sdcard/SynergyROM/sense.zip;
 fi;
-
