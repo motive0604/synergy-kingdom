@@ -67,7 +67,7 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
-show_progress(1.000000, 0);
+show_progress(0.200000, 10);
 
 delete_recursive("/cache");
 unmount("/system");
@@ -77,7 +77,6 @@ format("MTD", "system");
 format("MTD", "cache");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
 
-set_progress(0.100000);
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
 run_program("/sbin/busybox", "mkdir", "/data0");
 run_program("/sbin/busybox", "mkdir", "/system0");
@@ -104,20 +103,20 @@ delete_recursive("/data0/data/com.google.android.voicesearch/cache");
 delete_recursive("/data0/data/com.google.android.apps.maps/cache");
 delete("/data0/data/com.google.android.apps.maps/databases/webviewCache.db");
 
-set_progress(0.400000);
+
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/system0/system.img", "/system");
 
-set_progress(0.500000);
 package_extract_file("/system/synergy/scripts/datatoext2backup", "/tmp/datatoext2backup");
 set_perm(0, 0, 0777, "/tmp/datatoext2backup");
 run_program("/tmp/datatoext2backup");
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/data0/data.img", "/data");
 
-set_progress(0.600000);
+show_progress(0.1, 0);
+
 package_extract_dir("system", "/system");
 package_extract_dir("data", "/data");
 
-set_progress(0.700000);	
+show_progress(0.1, 10);
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
@@ -138,7 +137,6 @@ set_perm(0, 0, 0777, "/cache/checkforrosieinstall.sh");
 run_program("/cache/checkforrosieinstall.sh");
 delete("/cache/checkforrosieinstall.sh");
 
-set_progress(0.800000);
 run_program("/sbin/busybox", "dd", "if=/dev/zero", "of=/cache/cache.img", "bs=1M", "count=157");
 run_program("/sbin/mke2fs", "-T", "ext2", "/cache/cache.img", "-F");
 run_program("/sbin/busybox", "mount", "-t", "auto", "-o", "loop", "/cache/cache.img", "/cache0");
@@ -184,6 +182,8 @@ symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm(0, 0, 04755, "/system/xbin/busybox");
 
+show_progress(0.2, 0);
+
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
 run_program("/system/xbin/busybox","--install","-s","/system/bin");
@@ -205,23 +205,24 @@ delete_recursive("/sdcard/Android/data/com.cooliris.media");
 delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
 
+show_progress(0.200000, 10);
 
 package_extract_file("/system/synergy/scripts/cleanup", "/tmp/cleanup");
 package_extract_file("/system/synergy/scripts/MS", "/tmp/MS");
 set_perm(0, 0, 0777, "/tmp/cleanup");
 set_perm(0, 0, 0777, "/tmp/MS");
 
-set_progress(0.900000);
 run_program("/tmp/MS");
 run_program("/tmp/cleanup");
 run_program("/system/bin/fix_permissions");
 
-set_progress(0.900000);
+show_progress(0.200000, 10);
+
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
 
-set_progress(1.000000);
+show_progress(0.100000, 10);
 unmount("/system0");
 unmount("/system");
 unmount("/data0");
