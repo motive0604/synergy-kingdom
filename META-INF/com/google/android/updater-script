@@ -1,3 +1,4 @@
+show_progress(0,0);
 assert(getprop("ro.product.device") == "supersonic" || getprop("ro.build.product") == "supersonic" || getprop("ro.product.board") == "ksupersonic");
 ui_print("");
 ui_print("");
@@ -67,7 +68,6 @@ ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
-show_progress(0.200000, 10);
 unmount("/system");
 unmount("/data");
 format("MTD", "system");
@@ -107,12 +107,10 @@ set_perm(0, 0, 0777, "/tmp/datatoext2backup");
 run_program("/tmp/datatoext2backup");
 run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/data0/data.img", "/data");
 
-show_progress(0.1, 0);
+
 package_extract_dir("data", "/data");
 
-show_progress(0.1, 10);
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
-set_perm_recursive(1000, 1000, 0777, 0777, "/data/data/com.fede.launcher");
 package_extract_dir("app_s", "/data/app_s");
 
 symlink("/proc/calibration","/system/etc/calibration");
@@ -127,6 +125,7 @@ symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/g
 
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
+delete_recursive("/sdcard/SynergyROM/sense.zip");
 delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
 delete_recursive("/sdcard/Android/data/com.google.earth");
 delete_recursive("/sdcard/Android/data/com.weather.Weather");
@@ -134,14 +133,12 @@ delete_recursive("/sdcard/Android/data/com.cooliris.media");
 delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
 		
-package_extract_file("checkforrosieinstall.sh", "/tmp/checkforrosieinstall.sh");
-set_perm(0, 0, 0777, "/tmp/checkforrosieinstall.sh");
-run_program("/tmp/checkforrosieinstall.sh");
-delete("/tmp/checkforrosieinstall.sh");
 
 run_program("/sbin/busybox", "dd", "if=/dev/zero", "of=/cache/cache.img", "bs=1M", "count=157");
 run_program("/sbin/mke2fs", "-T", "ext2", "/cache/cache.img", "-F");
 run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/cache/cache.img", "/cache0");
+
+show_progress(0.700000, 50);
 
 
 set_perm_recursive(0, 0, 0755, 0644, "/system");
@@ -184,8 +181,6 @@ symlink("/system/xbin/su", "/system/bin/su");
 set_perm(0, 0, 06755, "/system/xbin/su");
 set_perm(0, 0, 04755, "/system/xbin/busybox");
 
-show_progress(0.2, 0);
-
 set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
 run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
 run_program("/system/xbin/busybox","--install","-s","/system/bin");
@@ -194,8 +189,6 @@ symlink("/system/bin/bash", "/system/bin/sh");
 package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
 set_perm(0, 0, 0777, "/tmp/synergy-setup_rom");
 run_program("/tmp/synergy-setup_rom");
-
-show_progress(0.200000, 10);
 
 package_extract_file("cleanup", "/tmp/cleanup");
 package_extract_file("MS", "/tmp/MS");
@@ -206,13 +199,12 @@ run_program("/tmp/MS");
 run_program("/tmp/cleanup");
 run_program("/system/bin/fix_permissions");
 
+show_progress(0.200000, 0);
 show_progress(0.200000, 10);
-
 assert(package_extract_file("boot.img", "/tmp/boot.img"),
        write_raw_image("/tmp/boot.img", "boot"),
        delete("/tmp/boot.img"));
-
-show_progress(0.100000, 10);
+show_progress(10.000000, 1);
 unmount("/system0");
 unmount("/system");
 unmount("/data0");
