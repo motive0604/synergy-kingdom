@@ -132,9 +132,7 @@ delete_recursive("/sdcard/Android/data/com.weather.Weather");
 delete_recursive("/sdcard/Android/data/com.cooliris.media");
 delete_recursive("/sdcard/SynergyROM/app.rom");
 package_extract_dir("sdcard", "/sdcard");
-		
-package_extract_dir("cache", "/cache");
-run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/cache/cache.img", "/cache0");
+
 
 show_progress(0.700000, 50);
 
