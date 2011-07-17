@@ -104,7 +104,6 @@ do
 	echo "noop" > $i/queue/scheduler;
 	echo "0" > $i/queue/rotational;
 	echo "512" > $i/queue/nr_requests;
-	echo "1" > $i/queue/iosched/fifo_batch;
 done;
 
 echo 1 > /sys/block/mmcblk0/queue/rotational
