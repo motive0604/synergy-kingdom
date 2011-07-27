@@ -15,7 +15,6 @@ then
 	if [ -e /mnt/tmp ];
 	then
 		rm -r /mnt/tmp/*;
-	fi;
 	else
 		mkdir /mnt/tmp/;
 	fi;
@@ -26,13 +25,13 @@ then
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
-                echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
-                zipalign -f 4 "$apk" /mnt/tmp/"$basename $apk";
-                        if [ -e /mnt/tmp/"$basename $apk" ]; then
-                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
-                                rm /mnt/tmp/"$basename $apk";
+                echo ZipAligning `basename $apk`  | tee -a $LOG_FILE;
+                zipalign -f 4 "$apk" /mnt/tmp/`basename $apk`;
+                        if [ -e /mnt/tmp/`basename $apk` ]; then
+                                cp -f -p /mnt/tmp/`basename $apk` $apk  | tee -a $LOG_FILE;
+                                rm /mnt/tmp/`basename $apk`;
                         else
-                                echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
+                                echo ZipAligning `basename $apk` Failed SR | tee -a $LOG_FILE;
                         fi;
         else
                 echo Synergy ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
@@ -44,13 +43,13 @@ then
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
-                echo ZipAligning "$basename $apk"  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /mnt/tmp/"$basename $apk";
-                        if [ -e /mnt/tmp/"$basename $apk" ]; then
-                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
+                echo ZipAligning `basename $apk`  | tee -a $LOG_FILE;
+                zipalign -f 4 $apk /mnt/tmp/`basename $apk`;
+                        if [ -e /mnt/tmp/`basename $apk` ]; then
+                                cp -f -p /mnt/tmp/`basename $apk` $apk  | tee -a $LOG_FILE;
                                 rm /mnt/tmp/$basename $apk;
                         else
-                                echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
+                                echo ZipAligning `basename $apk` Failed SR | tee -a $LOG_FILE;
                         fi;
         else
                 echo Synergy ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
@@ -61,13 +60,13 @@ then
         zipalign -c 4 $apk;
         ZIPCHECK=$?;
         if [ $ZIPCHECK -eq 1 ]; then
-                echo ZipAligning $basename $apk  | tee -a $LOG_FILE;
-                zipalign -f 4 $apk /mnt/tmp/"$basename $apk";
-                        if [ -e /mnt/tmp/"$basename $apk" ]; then
-                                cp -f -p /mnt/tmp/"$basename $apk" $apk  | tee -a $LOG_FILE;
-                                rm /mnt/tmp/"$basename $apk";
+                echo ZipAligning `basename $apk`  | tee -a $LOG_FILE;
+                zipalign -f 4 $apk /mnt/tmp/`basename $apk`;
+                        if [ -e /mnt/tmp/`basename $apk` ]; then
+                                cp -f -p /mnt/tmp/`basename $apk` $apk  | tee -a $LOG_FILE;
+                                rm /mnt/tmp/`basename $apk`;
                         else
-                                echo ZipAligning "$basename $apk" Failed SR | tee -a $LOG_FILE;
+                                echo ZipAligning `basename $apk` Failed SR | tee -a $LOG_FILE;
                         fi;
         else
                 echo Synergy ZipAlign already completed on "$apk"  | tee -a $LOG_FILE;
@@ -76,7 +75,6 @@ then
 	   
 busybox umount /mnt/tmp	   
 echo "Automatic ZipAlign finished at:" `date` | tee -a $LOG_FILE;
-fi;
 else
 	echo "[X] Zipalign Check Disabled by dc.conf" | tee -a $LOG_FILE;
 fi;
