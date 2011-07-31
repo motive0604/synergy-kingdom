@@ -63,7 +63,7 @@ setprop dc.service.dropbear.enabled 1;
 
 remount your system part rw
 {{{
-adb shell remount
+adb remount
 }}}
 
 adb shell into your phone and set a STRONG root password
