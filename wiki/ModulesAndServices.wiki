@@ -68,13 +68,28 @@ adb remount
 
 adb shell into your phone and set a STRONG root password
 {{{
-adb shell passwd
+adb shell
+passwd
 }}}
 
-reboot your phone.  Now open up a SSH client such as [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html putty].  connect to your phones ip address which can be obtained by running 
+then do a adb reboot.  When the phone comes back up run the following in adb shell
+{{{
+ps aux | grep dropbear
+}}}
+you should see:
+
+`  252 root       0:00 /system/xbin/dropbear -E`
+
+
+first connect to wifi to verify drobear works, if your behind sprints proxy this may not work. get your phones ip address by doing
+
 {{{
 adb shell ifconfig
 }}}
+
+Your looking for eth0 most likely, it should be the ip 192.168.x.x if your behind 99% of default routers. 
+
+Now open up a SSH client such as [http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html putty]. set the connection type to SSH on port 22 and connect to your phones ip address
 
 login as root with the password you just set.  enjoy full bash with autocomplete, nano, vim, etc :)
 
