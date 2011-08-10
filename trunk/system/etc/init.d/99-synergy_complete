@@ -1,0 +1,33 @@
+#!/system/bin/sh.old
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+# 
+#
+export LOG_FILE=/cache/dcboot.log;
+export perfkill=`getprop dc.service.perfkill.enabled`;
+
+#kill old garbage market doesnt clean
+rm -f /cache/*.apk;
+rm -f /cache/*.tmp;
+rm -f /data/dalvik-cache/*.apk;
+rm -f /data/dalvik-cache/*.tmp;
+
+#make sure everything still has noatime
+busybox mount -o remount,ro,noatime -t auto /system;
+busybox mount -o remount,noatime -t auto /data;
+busybox mount -o remount,noatime -t auto /cache;
+SYNERGYROM=1;
+
+#disble perflock
+#if [ -n $perfkill ] && [ $perfkill = "1" ];  then
+#insmod /system/lib/modules/perflock_disable.ko perflock_notifier_call_addr=0x`grep perflock_notifier_call /proc/kallsyms|cut -c1-8`;
+#fi;
+
+#set sysctl and lets start!
+sysctl -p;
+sync;
+setprop cm.filesystem.ready 1;
+setprop dc.filesystem.ready 1;
+setprop oxygen.filesystem.ready 1;
+crond -c /data/cron;

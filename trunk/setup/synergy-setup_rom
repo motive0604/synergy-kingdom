@@ -1,0 +1,74 @@
+#!/system/bin/sh
+
+# ===========================================================================
+#  Virtuous ROM Tools (rmk, chrisch)
+#
+#  $LastChangedDate: 2011-07-16 21:14:31 -0700 (Sat, 16 Jul 2011) $
+# ===========================================================================
+
+
+. /system/synergy/scripts/synergy-functions.sh
+
+# Setup environment.
+
+DATAMOUNTED=0
+DATADATAMOUNTED=0
+
+if $TEST $( $GREP -c " /data " "/proc/mounts" ) -eq 0; then
+  $MOUNT /data
+  DATAMOUNTED=1
+fi
+
+if $TEST $( $GREP -c " /datadata " "/proc/mounts" ) -eq 0; then
+  $MOUNT /datadata
+  DATADATAMOUNTED=1
+fi
+
+$TOUCH $PACKAGESXML
+$CHOWN 1000.1000 $PACKAGESXML
+$CHMOD 664 $PACKAGESXML
+
+# Prepare data directories if the user wiped.
+
+create_state_dirs
+
+for DISABLED_APP in $($LS $SYNERGY_STATE_DIR/disabled/*.apk) ; do
+  APPNAME=$($BASENAME $DISABLED_APP)
+
+  $MV $SYSAPP_DIR/$APPNAME $SYNERGY_ROOT_DIR/app.disabled
+done
+
+# Remove T-Mobile specific options unless the carrier is in fact
+# T-Mobile.  This includes Swype (US only) and wifi calling.
+
+CARRIER=`$GETPROP ro.carrier`
+
+if [ ! "$CARRIER" = "TMUS" ] ; then
+    $RM -f $SYSAPP_DIR/com.android.kineto.apk
+    $RM -f $SYSLIB_DIR/libkineto.so
+    $RM -f $SYSLIB_DIR/librilswitch.so
+    $RM -f $SYSLIB_DIR/libganril.so
+    $LN -s $SYSLIB_DIR/libhtc_ril.so $SYSLIB_DIR/librilswitch.so
+fi
+
+# Cleanup ROM-controlled sdcard directories.
+
+$MOUNT /sdcard
+$RM -rf $SYNERGY_ROMAPP_DIR
+$RM -rf $SYNERGY_EBOOK_DIR
+$MKDIR -p $SYNERGY_USERAPP_DIR
+
+# After a fresh ROM install, remove the installed state such that the
+# init script is triggered on startup.
+
+if $TEST -f $SYNERGY_INSTALLED; then
+  $RM $SYNERGY_INSTALLED
+fi
+
+if $TEST $DATAMOUNTED -eq 1; then
+  $UMOUNT /data
+fi
+
+if $TEST $DATADATAMOUNTED -eq 1; then
+  $UMOUNT /datadata
+fi

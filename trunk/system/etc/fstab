@@ -1,7 +1,0 @@
-/dev/block/mtdblock4	/system	yaffs2	rw
-/dev/block/mtdblock5	/cache	yaffs2	rw
-/dev/block/mtdblock6	/data	yaffs2	rw
-/dev/block/vold/179:1	/mnt/sdcard	vfat	rw
-/dev/block/mmcblk0p2	/system/sd auto    rw
-#edit the following line if you want to enable CIFS. change ipaddress and sharename ex:  //192.168.5.25/data and  mountpoint (must exist) ex: /sdcard/smb
-//192.168.5.25/data	/sdcard/smb	cifs	user=username,password=whatver,uid=1000,gid=1015,file_mode=0775,dir_mode=0775,iocharset=utf8,nodfs	0	0

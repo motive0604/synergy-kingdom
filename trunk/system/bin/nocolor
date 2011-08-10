@@ -1,4 +1,0 @@
-#!/system/bin/sh
-#
-alias ls='ls --color=never';
-alias ll='ll --color=never';

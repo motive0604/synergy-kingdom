@@ -1,0 +1,175 @@
+#!/system/bin/sh.old
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+# 
+#######################
+#Tuning System Variables
+#######################
+SYNERGYROM=1;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
+export LOG_FILE=/cache/dcboot.log;
+export dirty_expire_centisecs=`getprop dc.adv.dirtyexpire`;
+export dirty_writeback_centisecs=`getprop dc.adv.dirtywriteback`;
+export dirty_background_ratio=`getprop dc.adv.dirtybg`;
+export dirty_ratio=`getprop dc.adv.dirtyratio`;
+export sampling_rate=`getprop dc.adv.samplerate`;
+export up_threshold=`getprop dc.adv.upthreshold`;
+export laptop_mode=`getprop dc.adv.laptopmode`;
+export cache_pressure=`getprop dc.adv.cachepressure`;
+export oom_kill=`getprop dc.adv.oomkill`;
+export page_cluster=3;
+export intswapping=true;
+export dalvikheap=`getprop dc.dalvik.heapsize`;
+export MMC0_READ_AHEAD_KB=`getprop dc.adv.mmc0_read_ahead_kb`;
+export MMC1_READ_AHEAD_KB=`getprop dc.adv.mmc1_read_ahead_kb`;
+export MMC0_SCHEDULER=`getprop dc.adv.mmc0_scheduler`;
+export MMC1_SCHEDULER=`getprop dc.adv.mmc1_scheduler`;
+
+if [ $dalvikheap = "16m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 16mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 16m;
+fi;
+if [ $dalvikheap = "24m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 24mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 24m;
+fi;
+if [ $dalvikheap = "32m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 32mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 32m;
+fi;
+if [ $dalvikheap = "48m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 48mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 48m;
+fi;
+if [ $dalvikheap = "60m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 48mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 60m;
+fi;
+if [ $dalvikheap = "72m" ]; 
+then
+	echo "[!] Setting Dalvik VM Heapsize to 48mb." | tee -a $LOG_FILE;
+	setprop dalvik.vm.heapsize 72m;
+fi;
+
+echo "[!] Setting Advanced System Variables." | tee -a $LOG_FILE;
+if [ -n ${page_cluster} ];
+	then echo ${page_cluster} > /proc/sys/vm/page-cluster;
+fi;
+
+if [ -n ${dirty_expire_centisecs} ];
+	then echo ${dirty_expire_centisecs} > /proc/sys/vm/dirty_expire_centisecs;
+fi; 
+
+if [ -n ${dirty_writeback_centisecs} ];
+	then echo ${dirty_writeback_centisecs} > /proc/sys/vm/dirty_writeback_centisecs;
+fi;
+
+if [ -n ${dirty_background_ratio} ];
+	then echo ${dirty_background_ratio} > /proc/sys/vm/dirty_background_ratio; 
+fi;
+
+if [ -n ${dirty_ratio} ];
+	then echo ${dirty_ratio} > /proc/sys/vm/dirty_ratio;
+fi;
+
+if [ -n ${up_threshold} ];
+	then echo ${up_threshold} > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold;
+fi;
+
+if [ -n ${sampling_rate} ];
+	then echo ${sampling_rate} > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate;
+fi;
+
+if [ -n ${cache_pressure} ];
+	then echo ${cache_pressure} > /proc/sys/vm/vfs_cache_pressure;
+fi;
+
+if [ -n $laptop_mode ] &&  [ $laptop_mode = "true" ]; 
+then
+	echo 5 > /proc/sys/vm/laptop_mode;
+else
+	echo 0 > /proc/sys/vm/laptop_mode;
+fi;
+
+if [ -n $oom_kill ] && [ $oom_kill = "true" ]; 
+then
+	echo 1 > /proc/sys/vm/oom_kill_allocating_task;
+else
+	echo 0 > /proc/sys/vm/oom_kill_allocating_task;
+fi;
+
+# Set io scheduler tweaks for mmc0
+#device is not rotational
+echo "0" > /sys/block/mmcblk0/queue/rotational;
+#increase queue (128 default)
+echo "512" > /sys/block/mmcblk0/queue/nr_requests;
+#scheduler
+echo "${MMC0_SCHEDULER}" > /sys/block/mmcblk0/queue/scheduler;
+#readahead
+echo "${MMC0_READ_AHEAD_KB}" > /sys/block/mmcblk0/queue/read_ahead_kb;
+
+# Set io scheduler tweaks for mmc1
+#device is not rotational
+echo "0" > /sys/block/mmcblk1/queue/rotational;
+#increase queue (128 default)
+echo "512" > /sys/block/mmcblk1/queue/nr_requests;
+#scheduler
+echo "${MMC1_SCHEDULER}" > /sys/block/mmcblk1/queue/scheduler;
+#readahead
+echo "${MMC1_READ_AHEAD_KB}" > /sys/block/mmcblk1/queue/read_ahead_kb;
+
+#powersave bias should always be 0 or you will cut mhz
+echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;
+
+#Disable normalized sleeper (no kernel support, disabled)
+#mount -t debugfs none /sys/kernel/debug;
+#echo NO_NORMALIZED_SLEEPER > /sys/kernel/debug/sched_features;
+
+# TWEAKS: for TCP read/write
+echo "6144 87380 524288" > /proc/sys/net/ipv4/tcp_wmem;
+echo "6144 87380 524288" > /proc/sys/net/ipv4/tcp_rmem;
+
+# Enable IPv6 Privacy Extensions (rfc4941 section randomization of IPv6 address)
+sysctl -w net.ipv6.conf.default.use_tempaddr=2;
+sysctl -w net.ipv6.conf.all.use_tempaddr=2;
+
+#after X seconds a new ipv6 address is obtained
+sysctl -w net.ipv6.conf.all.temp_prefered_lft=3600;
+sysctl -w net.ipv6.conf.default.temp_prefered_lft=3600;
+
+#Demon Voices Audio fix. Make this a dconfig option
+#setprop media.stagefright.enable-player false;
+
+#other settings
+setprop ro.telephony.call_ring.delay 0;
+setprop ring.delay 0;
+#setprop windowsmgr.max_events_per_sec 100;
+setprop windowsmgr.support_rotation_270 true;
+setprop ro.HOME_APP_ADJ 1;
+setprop ro.HOME_APP_MEM 2048;
+setprop dalvik.vm.startheapsize 10m;
+
+echo "[ ] Here are values we are using" | tee -a $LOG_FILE;
+ActivePageCluster=`cat /proc/sys/vm/page-cluster`; 
+ActiveLaptopMode=`cat /proc/sys/vm/laptop_mode`; 
+ActiveDirtyExpire=`cat /proc/sys/vm/dirty_expire_centisecs`; 
+ActiveDirtyWriteback=`cat /proc/sys/vm/dirty_writeback_centisecs`; 
+ActiveDirtyBackground=`cat /proc/sys/vm/dirty_background_ratio`; 
+ActiveDirtyRatio=`cat /proc/sys/vm/dirty_ratio`; 
+ActiveUpThreshold=`cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold`; 
+ActiveSamplingRate=`cat /sys/devices/system/cpu/cpu0/cpufreq/ondemand/sampling_rate`; 
+ActiveOOMKill=`cat /proc/sys/vm/oom_kill_allocating_task`; 
+ActiveVFSCache=`cat /proc/sys/vm/vfs_cache_pressure`;
+busybox echo -e "SynergyKingdom Kernel Settings -\nPageCluster: $ActivePageCluster \nLaptopMode: $ActiveLaptopMode \nDirtyExpire: $ActiveDirtyExpire \nDirtyWriteback: $ActiveDirtyWriteback \nDirtyBackground: $ActiveDirtyBackground \nDirtyRatio: $ActiveDirtyRatio \nUpThreshold: $ActiveUpThreshold \nSamplingRate: $ActiveSamplingRate \nOOMKill: $ActiveOOMKill \nVFSCache: $ActiveVFSCache \n" | tee -a $LOG_FILE;
+
+SystemAvailable=`busybox df -h | grep system | awk '{print $4}'`;
+DataAvailable=`busybox df -h | grep data | awk '{print $4}'`;
+CacheAvailable=`busybox df -h | grep cache | awk '{print $4}'`; 
+busybox echo -e "SynergyKingdom FreeSpace -\nSystem: $SystemAvailable \nData:   $DataAvailable \nCache:  $CacheAvailable" | tee -a $LOG_FILE;
