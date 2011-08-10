@@ -1,11 +1,38 @@
-#/system/bin/sh
 # ===========================================================================
-#  Virtuous ROM Tools (rmk)
+#  Virtuous ROM Tools (rmk, chrisch)
 #
-#  Fri Sep 10 20:53:30 PDT 2010
+#  $LastChangedDate: 2011-07-18 01:39:15 -0700 (Mon, 18 Jul 2011) $
 # ===========================================================================
 
+ROM_NAME="SynergyROM"
+
+PM="/system/bin/pm"
+GETPROP="/system/bin/getprop"
+LOG="/system/bin/log -t $ROM_NAME "
+PACKAGESXML="/data/system/packages.xml"
+
+SYSAPP_DIR="/system/app"
+SYSLIB_DIR="/system/lib"
+SYSFW_DIR="/system/framework"
+SYSBIN_DIR="/system/bin"
+SYSXBIN_DIR="/system/xbin"
+SYSETC_DIR="/system/etc"
+DATAAPP_DIR="/data/app"
+DATASYS_DIR="/data/system"
+CONTACT_PIC_DIR="/data/data/com.android.providers.contacts/files"
+
+SYNERGY_INSTALLED="/data/${ROM_NAME}/${ROM_NAME}_installed"
+SYNERGY_DATA_DIR="/data/${ROM_NAME}"
+SYNERGY_STATE_DIR="$SYNERGY_DATA_DIR/state"
+SYNERGY_ROOT_DIR="/sdcard/${ROM_NAME}"
+SYNERGY_ROMAPP_DIR="$SYNERGY_ROOT_DIR/app.rom"
+SYNERGY_USERAPP_DIR="$SYNERGY_ROOT_DIR/app.user"
+SYNERGY_EBOOK_DIR="$SYNERGY_ROOT_DIR/ebooks"
+PACKAGELIST="$SYNERGY_DATA_DIR/package_list.txt"
+BATTERY_STATE_FILE="$SYNERGY_DATA_DIR/battery-calibrated"
+
 BUSYBOX="/system/xbin/busybox"
+BB="$BUSYBOX"
 GREP="$BUSYBOX grep"
 MOUNT="$BUSYBOX mount"
 UMOUNT="$BUSYBOX umount"
@@ -25,26 +52,18 @@ ECHO="$BUSYBOX echo"
 SED="$BUSYBOX sed"
 LN="$BUSYBOX ln"
 LS="$BUSYBOX ls --color=never -1 "
-PM="/system/bin/pm"
-GETPROP="/system/bin/getprop"
+CAT="$BUSYBOX cat"
+SLEEP="$BUSYBOX sleep"
 
-PACKAGESXML="/data/system/packages.xml"
-INSTALLED="/data/synergy/synergy_installed"
 
-SYSAPP_DIR="/system/app"
-SYSLIB_DIR="/system/lib"
-USERAPP_DIR="/data/app"
-USERSYS_DIR="/data/system"
-
-SYNERGY_DATA_DIR="/data/synergy"
-SYNERGY_STATE_DIR="$SYNERGY_DATA_DIR/state"
-SYNERGY_OLD_STATE_DIR="$SYNERGY_DATA_DIR/state"
-SYNERGY_SYSTEM_DIR="/sdcard/SynergyROM"
-PACKAGELIST="$SYNERGY_DATA_DIR/package_list.txt"
-
-SYNERGY_USERAPP_DIR1="$SYNERGY_SYSTEM_DIR/app.user"
-SYNERGY_USERAPP_DIR2="$SYNERGY_SYSTEM_DIR/app.rom"
-
+is_package_installed() {
+    for PACKAGENAME in $* ; do
+        if $GREP -q "$PACKAGENAME" $PACKAGESXML ; then
+            return 0
+        fi
+    done
+    return 1
+}
 
 rm_package_entry_by_apk () {
     APPNAME=$1
@@ -75,7 +94,7 @@ rm_package_entry_by_object () {
 remount_system () {
     MOUNTOPTS=$1
 
-    mount -o remount,$MOUNTOPTS /dev/block/mtdblock4 /system
+    mount -o remount,$MOUNTOPTS /system
 
     if [ $? -gt 0 ] ; then
         return 0
@@ -86,16 +105,16 @@ remount_system () {
 
 
 create_state_dirs () {
-    $MKDIR -p $USERAPP_DIR
-    $MKDIR -p $USERSYS_DIR
+    $MKDIR -p $DATAAPP_DIR
+    $MKDIR -p $DATASYS_DIR
 
     $CHOWN 1000.1000 /data
-    $CHMOD 777 /data
-    $CHOWN 1000.1000 $USERAPP_DIR
-    $CHMOD 777 $USERAPP_DIR
+    $CHMOD 771 /data
+    $CHOWN 1000.1000 $DATAAPP_DIR
+    $CHMOD 711 $DATAAPP_DIR
 
     $MKDIR -p $SYNERGY_STATE_DIR
     $MKDIR -p $SYNERGY_STATE_DIR/enabled
     $MKDIR -p $SYNERGY_STATE_DIR/disabled
-    $MKDIR -p $SYNERGY_STATE_DIR/userapp
+    $MKDIR -p $SYNERGY_STATE_DIR/autoinstalled
 }

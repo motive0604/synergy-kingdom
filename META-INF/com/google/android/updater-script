@@ -1,5 +1,7 @@
-show_progress(0,0);
-assert(getprop("ro.product.device") == "supersonic" || getprop("ro.build.product") == "supersonic" || getprop("ro.product.board") == "ksupersonic");
+ui_print("");
+ui_print("");
+ui_print("");
+ui_print("");
 ui_print("");
 ui_print("");
 ui_print("");
@@ -51,25 +53,30 @@ ui_print("  | . \| | | | | (_| | (_| | (_) | | | | | |");
 ui_print("  |_|\_\_|_| |_|\__, |\__,_|\___/|_| |_| |_|");
 ui_print("                 __/ |                      ");
 ui_print("                |___/                       ");
+ui_print("             _   _ _       _     _   _       ");
+ui_print("            | \ | (_)     | |   | | | |      ");
+ui_print("            |  \| |_  __ _| |__ | |_| |_   _ ");
+ui_print("            | . ` | |/ _` | '_ \| __| | | | |");
+ui_print("            | |\  | | (_| | | | | |_| | |_| |");
+ui_print("            |_| \_|_|\__, |_| |_|\__|_|\__, |");
+ui_print("                      __/ |             __/ |");
+ui_print("                     |___/             |___/ ");
+ui_print("");                        
 ui_print("");
-ui_print("                     NIGHTLY");
-ui_print("                  Developed by:");
-ui_print("                      Virus");
-ui_print("                      TrevE");
-ui_print("                    Damageless");
-ui_print("                        &");
-ui_print("                     Ziggy471");
+ui_print("===============================================");
+ui_print("|         Synergy Kingdom (NIGHTLY)           |");
+ui_print("|        by Virus, TrevE & Ziggy471           |");
+ui_print("|   Be patient - 1st boot may take a while    |");
+ui_print("===============================================");
+assert(
+    getprop("ro.product.device") == "shooter"
+);
+show_progress(0,0);
 ui_print("");
 ui_print("");
-ui_print("");
-ui_print("");
-ui_print("");
-ui_print("");
-ui_print("");
-ui_print("");
-ui_print("");
-unmount("/system");
-unmount("/data");
+ui_print(">>> Formatting partitions");
+      ifelse(is_mounted("/system") == "/system", unmount("/system"));
+      ifelse(is_mounted("/data")   == "/data",   unmount("/data"));
 format("MTD", "system");
 format("MTD", "cache");
 run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
@@ -112,45 +119,56 @@ package_extract_dir("data", "/data");
 
 set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
 package_extract_dir("app_s", "/data/app_s");
-
-symlink("/proc/calibration","/system/etc/calibration");
-symlink("dumpstate", "/system/bin/bugreport");
-symlink("dumpstate", "/system/bin/dumpcrash");
-symlink("toolbox", "/system/bin/chownto", "/system/bin/nandread", "/system/bin/getevent",
-        "/system/bin/getprop", "/system/bin/iftop", "/system/bin/ioctl",
-        "/system/bin/log", "/system/bin/newfs_msdos", "/system/bin/notify",
-        "/system/bin/route", "/system/bin/schedtop", "/system/bin/sendevent",
-        "/system/bin/setprop", "/system/bin/smd", "/system/bin/start", "/system/bin/stop",
-        "/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
-
+ui_print("");
+ui_print("");
+ui_print(">>> Creating toolbox symlinks");
+	symlink("/proc/calibration","/system/etc/calibration");
+	symlink("dumpstate", "/system/bin/bugreport");
+	symlink("dumpstate", "/system/bin/dumpcrash");
+	symlink("toolbox", "/system/bin/cat", "/system/bin/chmod", "/system/bin/chown",
+    	"/system/bin/chownto", "/system/bin/ionice", "/system/bin/nandread",
+    	"/system/bin/cmp", "/system/bin/date", "/system/bin/dd",
+    	"/system/bin/df", "/system/bin/dmesg", "/system/bin/getevent",
+    	"/system/bin/getprop", "/system/bin/hd", "/system/bin/id",
+    	"/system/bin/ifconfig", "/system/bin/iftop", "/system/bin/insmod",
+    	"/system/bin/ioctl", "/system/bin/kill", "/system/bin/ln",
+    	"/system/bin/log", "/system/bin/ls", "/system/bin/lsmod",
+    	"/system/bin/mkdir", "/system/bin/mount", "/system/bin/mv",
+    	"/system/bin/netstat", "/system/bin/newfs_msdos", "/system/bin/notify",
+    	"/system/bin/printenv", "/system/bin/ps", "/system/bin/renice",
+    	"/system/bin/rm", "/system/bin/rmdir", "/system/bin/rmmod",
+    	"/system/bin/route", "/system/bin/schedtop", "/system/bin/sendevent",
+    	"/system/bin/setconsole", "/system/bin/setprop", "/system/bin/sleep",
+    	"/system/bin/smd", "/system/bin/start", "/system/bin/stop",
+    	"/system/bin/sync", "/system/bin/top", "/system/bin/umount",
+    	"/system/bin/vmstat", "/system/bin/watchprops", "/system/bin/wipe");
+ui_print("");
+ui_print("");
+ui_print(">>> Creating additional symlinks");
 delete_recursive("/sdcard/VirusROM");
 delete_recursive("/sdcard/synergy");
 delete_recursive("/sdcard/SynergyROM/sense.zip");
 delete_recursive("/sdcard/Android/data/com.google.android.apps.maps");
 delete_recursive("/sdcard/Android/data/com.google.earth");
-delete_recursive("/sdcard/Android/data/com.weather.Weather");
-delete_recursive("/sdcard/Android/data/com.cooliris.media");
-delete_recursive("/sdcard/SynergyROM/app.rom");
-package_extract_dir("sdcard", "/sdcard");
-
-
-show_progress(0.700000, 50);
-
-set_perm_recursive(0, 0, 0755, 0644, "/system");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
-
-set_perm(0, 3003, 06755, "/system/bin/ip");
-set_perm(0, 3003, 02750, "/system/bin/netcfg");
-set_perm(0, 3004, 02755, "/system/bin/ping");
-set_perm(0, 2000, 06750, "/system/bin/run-as");
-set_perm(1000, 1000, 0755, "/system/bin/bash");
-set_perm(1000, 1000, 0755, "/system/bin/sysro");
-set_perm(1000, 1000, 0755, "/system/bin/sysrw");
-set_perm(0, 0, 0755, 0555, "/system/bin/swap");
-set_perm(0, 0, 04755, "/system/xbin/dropbear");
-set_perm(0, 0, 04755, "/system/bin/sh.old");
-set_perm(0, 0, 04755, "/system/bin/sh");
-set_perm(0, 0, 06755, "/system/bin/su");
+	delete_recursive("/sdcard/Android/data/com.weather.Weather");
+	delete_recursive("/sdcard/Android/data/com.cooliris.media");
+	delete_recursive("/sdcard/SynergyROM/app.rom");
+	package_extract_dir("sdcard", "/sdcard");
+	set_perm_recursive(0, 0, 0755, 0644, "/system");
+	set_perm_recursive(0, 2000, 0755, 0755, "/system/bin");
+	set_perm(0, 3003, 06755, "/system/bin/ip");
+	set_perm(0, 3003, 02750, "/system/bin/netcfg");
+	set_perm(0, 3004, 02755, "/system/bin/ping");
+	set_perm(0, 2000, 06750, "/system/bin/run-as");
+	set_perm(1000, 1000, 0755, "/system/bin/bash");
+	set_perm(1000, 1000, 0755, "/system/bin/sysro");
+	set_perm(1000, 1000, 0755, "/system/bin/sysrw");
+	set_perm(0, 0, 0755, 0555, "/system/bin/swap");
+	set_perm(0, 0, 0777, "/system/lib/p7zip/7z");
+	set_perm(0, 0, 04755, "/system/xbin/dropbear");
+	set_perm(0, 0, 04755, "/system/bin/sh.old");
+	set_perm(0, 0, 04755, "/system/bin/sh");
+	set_perm(0, 0, 06755, "/system/bin/su");
 set_perm(1000, 1000, 0755, "/system/bin/nano");
 set_perm(0, 0, 0777, "/system/bin/zipalign");
 set_perm_recursive(1002, 1002, 0755, 0440, "/system/etc/bluetooth");
@@ -158,49 +176,74 @@ set_perm(0, 0, 0755, "/system/etc/bluetooth");
 set_perm(1000, 1000, 0640, "/system/etc/bluetooth/auto_pairing.conf");
 set_perm(3002, 3002, 0444, "/system/etc/bluetooth/blacklist.conf");
 set_perm(1002, 1002, 0440, "/system/etc/dbus.conf");
-set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
-set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
-symlink("dropbear","/system/xbin/dropbearkey");
-symlink("dropbear","/system/xbin/dbclient");
-symlink("dropbear","/system/xbin/ssh");
-symlink("dropbear","/system/xbin/scp");
-
-set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
-set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
-
-set_perm_recursive(0, 2000, 0755, 0750, "/system/etc/init.d");
-set_perm(0, 0, 0755, "/system/etc/init.d");
-
-delete("/system/bin/su");
-symlink("/system/xbin/su", "/system/bin/su");
-set_perm(0, 0, 06755, "/system/xbin/su");
-set_perm(0, 0, 04755, "/system/xbin/busybox");
-
-set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
-run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
-run_program("/system/xbin/busybox","--install","-s","/system/bin");
-symlink("/system/bin/bash", "/system/bin/sh");
-
-package_extract_file("synergy-setup_rom", "/tmp/synergy-setup_rom");
-set_perm(0, 0, 0777, "/tmp/synergy-setup_rom");
-run_program("/tmp/synergy-setup_rom");
-
-package_extract_file("cleanup", "/tmp/cleanup");
-package_extract_file("MS", "/tmp/MS");
-set_perm(0, 0, 0777, "/tmp/cleanup");
-set_perm(0, 0, 0777, "/tmp/MS");
-
-run_program("/tmp/MS");
-run_program("/tmp/cleanup");
-run_program("/system/bin/fix_permissions");
-
+	set_perm(1014, 2000, 0550, "/system/etc/dhcpcd/dhcpcd-run-hooks");
+	set_perm(0, 0, 04755, "/system/etc/ppp/ip-up-vpn");
+	set_perm(0, 2000, 0550, "/system/etc/init.goldfish.sh");
+	symlink("dropbear","/system/xbin/dropbearkey");
+	symlink("dropbear","/system/xbin/dbclient");
+	symlink("dropbear","/system/xbin/ssh");
+	symlink("dropbear","/system/xbin/scp");
+	symlink("iwmulticall","/system/xbin/iwconfig");
+	symlink("iwmulticall","/system/xbin/iwgetid");
+	symlink("iwmulticall","/system/xbin/iwlist");
+	symlink("iwmulticall","/system/xbin/iwpriv");
+	symlink("iwmulticall","/system/xbin/iwspy");
+	set_perm(0, 2000, 0755, "/system/xbin/sqlite3");
+	set_perm_recursive(0, 0, 0755, 0555, "/system/etc/ppp");
+	set_perm_recursive(0, 2000, 0755, 0755, "/system/xbin");
+	set_perm_recursive(0, 2000, 0755, 0750, "/system/etc/init.d");
+	set_perm(0, 0, 0755, "/system/etc/init.d");
+ui_print("");
+ui_print("");
+ui_print(">>> Installing busybox");
+	delete("/system/bin/su");
+	symlink("/system/xbin/su", "/system/bin/su");
+	set_perm(0, 0, 06755, "/system/xbin/su");
+	set_perm(0, 0, 04755, "/system/xbin/busybox");
+	set_perm_recursive(0, 0, 0755, 0755, "/system/synergy/scripts");
+	run_program("/system/xbin/busybox","--install","-s","/system/xbin/bb");
+	symlink("/system/bin/bash", "/system/bin/sh");
+ui_print("");
+ui_print("");
+ui_print(">>> Running ROM configuration scripts");
+	package_extract_dir("setup", "/tmp");
+	set_perm_recursive(0, 0, 0755, 0755, "/tmp");
+	run_program("/tmp/synergy-setup_rom");
+	delete("/tmp/synergy-setup_rom");
+ui_print("");
+ui_print("");
+ui_print(">>> Preparing ROM sdcard directory");
+	package_extract_dir("sdcard", "/sdcard");
+	run_program("/tmp/virtuous-setup_sdcard");
+	delete("/tmp/virtuous-setup_sdcard");
+ui_print("");
+ui_print("");
+ui_print(">>> Cleaning up THANKS TrevE");
+	run_program("/tmp/cleanup");
+	delete("/tmp/cleanup");
+ui_print("");
+ui_print("");
+ui_print(">>> Fixing Perms might take a min");
+	run_program("/system/xbin/fix_permissions");
 show_progress(0.200000, 0);
 show_progress(0.200000, 10);
-assert(package_extract_file("boot.img", "/tmp/boot.img"),
-       write_raw_image("/tmp/boot.img", "boot"),
-       delete("/tmp/boot.img"));
+ui_print("");
+ui_print("");
+ui_print(">>> Flashing boot.img");
+	assert(package_extract_file("boot.img", "/tmp/boot.img"),
+	write_raw_image("/tmp/boot.img", "boot"),
+	delete("/tmp/boot.img"));
+ui_print("");
+ui_print("");
+ui_print(">>> Unmounting partitions");
+	unmount("/system0");
+	unmount("/system");
+	unmount("/data0");
+	unmount("/data");
+ui_print("");
+ui_print("");
+ui_print(">>> Done you're now SYNERGIZED!!");
+delete_recursive("/tmp/sideload"); 
+run_program("/sbin/busybox", "cp", "/tmp/recovery.log", "/sdcard/recovery.log");
+run_program("/sbin/sleep", "6");
 show_progress(10.000000, 1);
-unmount("/system0");
-unmount("/system");
-unmount("/data0");
-unmount("/data");

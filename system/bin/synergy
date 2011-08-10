@@ -1,85 +1,84 @@
 #!/system/bin/sh
+
 # ===========================================================================
-#  Virtuous ROM Tools (rmk)
+#  Virtuous ROM Tools (rmk, chrisch)
 #
-#  Fri Sep 10 20:53:30 PDT 2010
+#  $LastChangedDate: 2011-06-16 21:44:07 -0700 (Thu, 16 Jun 2011) $
 # ===========================================================================
 
 . /system/synergy/scripts/synergy-functions.sh
 
-if $TEST $( $GREP -c " /data " "/proc/mounts" ) -eq 0; then
-  $MOUNT /data
-fi
+$LOG -p i "Executing package management script"
 
 # ===========================================================================
 #  Run this section on every boot.
 # ===========================================================================
+
+# Wait for the necessary partitions to mount.
+# Exit after 10 minutes if directory not exists.
+COUNT=0
+while $BUSYBOX true; do
+  if $TEST -d $SYNERGY_ROOT_DIR ; then
+    break
+  fi
+
+  COUNT=`expr $COUNT + 1`
+  if $TEST "$COUNT" -eq "600" ; then
+    $LOG -p e "Unable to open directory $SYNERGY_ROOT_DIR"
+    exit 1
+  else
+    sleep 1
+  fi
+done
 
 create_state_dirs
 
 $CHOWN 1000.1000 $PACKAGESXML
 $CHMOD 664 $PACKAGESXML
 
+# Check if UserApp directory exists.
+if $TEST ! -d $SYNERGY_MARKETAPP_DIR ; then
+  $LOG -p e "Unable to open directory $SYNERGY_MARKETAPP_DIR"
+  exit 1
+fi
+
 # Reduce the number of app installation failures
 $PM setInstallLocation 1
-
 $PM list packages -f | $CUT -f2 -d: > $PACKAGELIST
-
-# Wait for the necessary partitions to mount.
-while $BUSYBOX true ; do
-    if $TEST -e $SYNERGY_USERAPP_DIR1 ; then
-        break
-    else
-        sleep 1
-    fi
-done
 
 # Avoid re-installing apps which we have already installed in case
 # they have been removed by the user.
+for APP in $($LS $SYNERGY_ROMAPP_DIR/*.apk) \
+ $($LS $SYNERGY_USERAPP_DIR/*.apk) ; do
 
-for APP in $SYNERGY_USERAPP_DIR1/*.apk $SYNERGY_USERAPP_DIR2/*.apk; do
   APPNAME=$($BASENAME $APP)
   PACKAGENAME=$($ECHO $APPNAME | $SED s/\.apk$//g)
+
+  # App already installed one time, go ahead.
+  if $TEST -f $SYNERGY_STATE_DIR/autoinstalled/$APPNAME ; then
+    continue
+  fi
 
   # App is still reported as being installed, leave it alone.
   if $GREP -qi $PACKAGENAME $PACKAGELIST ; then
 
     # The only way this app goes away is if the user removes it
     # so we don't want to try to install it anymore.
-    $TOUCH $SYNERGY_STATE_DIR/userapp/$APPNAME
-    continue
-  fi
-
-  if $TEST -f $SYNERGY_STATE_DIR/userapp/$APPNAME ; then
+    $TOUCH $SYNERGY_STATE_DIR/autoinstalled/$APPNAME
     continue
   fi
 
   # We have never tried to install this app and the user does not
   # have it, so we'll give it a shot.
 
+  $LOG -p i "Auto installing application $APP"
   PM_RESULT=`$PM install -r $APP 2>&1`
 
-  if $ECHO $PM_RESULT | $GREP -qiv "Failure "; then
-
+  if $ECHO $PM_RESULT | $GREP -qi "Failure "; then
+    $LOG -p e "Error installing application $APP"
+  else
     # No failures, write the state file.
-    $TOUCH $SYNERGY_STATE_DIR/userapp/$APPNAME
+    $TOUCH $SYNERGY_STATE_DIR/autoinstalled/$APPNAME
   fi
 done
 
-# Attempt to pin home app to memory.
-$ECHO 'ro.HOME_APP_ADJ=1' > /data/local.prop
-setprop ro.HOME_APP_ADJ 1
-
-if $TEST -f $INSTALLED ; then
-  exit 0
-fi
-
-# ===========================================================================
-#  Run once, only after a fresh install.
-# ===========================================================================
-
-# Empty for now.
-
-# ===========================================================================
-
-$TOUCH $INSTALLED

@@ -1,0 +1,28 @@
+#!/system/bin/sh.old
+#
+############################
+#Edited By: TrevE @ xda for damagedrom
+# Give us props if you use any of our stuff
+# follow good open source etiquette
+# thanks from Team Synergy
+############################
+
+#Create Log File
+SYNERGYROM=1;
+busybox mount -o remount,rw -t auto /system;
+busybox mount -o remount,rw -t auto /data;
+export LOG_FILE=/cache/dcboot.log
+if [ -e $LOG_FILE ]; then
+  	rm $LOG_FILE;
+fi;
+
+echo "Starting DamageControl BootScript at:"  `date`  | tee -a $LOG_FILE;
+
+echo "Setting up dropbear" | tee -a $LOG_FILE;
+if [ ! -e /data/dropbear/rsa_host_key -o ! -e /data/dropbear/dss_host_key ];
+then 
+	mkdir -p /data/dropbear;
+	chmod 700 /data/dropbear;
+	dropbearkey -t dss -f /data/dropbear/dss_host_key;
+	dropbearkey -t rsa -f /data/dropbear/rsa_host_key;
+fi;

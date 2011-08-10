@@ -1,8 +1,12 @@
 # Enable color
+# set synergyrom variable so everything works
 CLICOLOR=0
 SYNERGYROM=1
+TERM=linux
 TZ=PST8PDT
 export TZ
+export TERM
+export SYNRGYROM
 
 # Enable history
 HISTFILE="/system/etc/bash/bash_history"
@@ -50,20 +54,25 @@ SYNERGYROM=1
 alias cat='busybox cat'
 alias ln='busybox ln'
 alias ls='busybox ls --color=nocolor'
-alias ll='busybox ls -halF'
+alias ll='busybox ls -halF --color=nocolor'
 alias mount='busybox mount'
 alias rm='busybox rm'
 alias umount='busybox umount'
+alias ifconfig='busybox ifconfig'
 alias df='busybox df'
+alias dmesg='busybox dmesg'
 alias chmod='busybox chmod'
 alias chown='busybox chown'
 alias mv='busybox mv'
 alias mkdir='busybox mkdir'
 alias rmdir='busybox rmdir'
 alias insmod='busybox insmod'
+alias renice='busybox renice'
 alias rmmod='busybox rmmod'
 alias lsmod='busybox lsmod'
 alias vi='busybox vi'
 alias more='busybox more'
 alias cp='busybox cp'
+alias hd='busybox hd'
 alias powertop='powertop -d'
+alias netstat='busybox netstat'

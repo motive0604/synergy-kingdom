@@ -1,0 +1,24 @@
+#!/system/bin/sh.old
+# ===========================================================================
+#  Virtuous ROM Tools (rmk)
+#
+#  $LastChangedDate: 2011-07-18 01:39:15 -0700 (Mon, 18 Jul 2011) $
+# ===========================================================================
+
+. /system/synergy/scripts/synergy-functions.sh
+
+if $TEST -f $SYNERGY_INSTALLED ; then
+  exit 0
+fi
+
+$LOG -p i "Executing run once script"
+
+# ===========================================================================
+#  Run once, only after a fresh install.
+# ===========================================================================
+
+# Empty for now.
+
+# ===========================================================================
+
+$TOUCH $SYNERGY_INSTALLED

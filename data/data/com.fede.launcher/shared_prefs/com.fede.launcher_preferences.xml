@@ -21,9 +21,9 @@
 <string name="key_dock_number">3</string>
 <boolean name="key_cache_as_needed" value="true" />
 <boolean name="key_enable_scrolling_cache" value="true" />
-<string name="key_highlight_color_focused">241CFF</string>
+<string name="key_highlight_color_focused">2803FF</string>
 <string name="key_bookmark_sort">0</string>
 <boolean name="key_elastic_scrolling" value="true" />
-<string name="key_highlight_color_pressed">0318FF</string>
+<string name="key_highlight_color_pressed">0110FF</string>
 <string name="key_friends_update_interval">15</string>
 </map>
