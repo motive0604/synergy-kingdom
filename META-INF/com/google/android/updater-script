@@ -69,7 +69,7 @@ ui_print("|        by Virus, TrevE & Ziggy471           |");
 ui_print("|   Be patient - 1st boot may take a while    |");
 ui_print("===============================================");
 assert(
-    getprop("ro.product.device") == "shooter"
+    getprop("ro.product.device") == "supersonic"
 );
 show_progress(0,0);
 ui_print("");
@@ -77,9 +77,12 @@ ui_print("");
 ui_print(">>> Formatting partitions");
       ifelse(is_mounted("/system") == "/system", unmount("/system"));
       ifelse(is_mounted("/data")   == "/data",   unmount("/data"));
-format("MTD", "system");
-format("MTD", "cache");
-run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
+	format("MTD", "system");
+	format("MTD", "cache");
+	run_program("/sbin/tune2fs", "-m", "0", "/dev/block/mtdblock4 ");
+ui_print("");
+ui_print("");
+ui_print(">>> Setting up Godmode");
 run_program("/sbin/busybox", "mkdir", "/sd-ext");
 run_program("/sbin/busybox", "mkdir", "/data0");
 run_program("/sbin/busybox", "mkdir", "/system0");
@@ -105,20 +108,18 @@ delete_recursive("/data0/data/com.google.android.gm/cache");
 delete_recursive("/data0/data/com.google.android.voicesearch/cache");
 delete_recursive("/data0/data/com.google.android.apps.maps/cache");
 delete("/data0/data/com.google.android.apps.maps/databases/webviewCache.db");
-
-package_extract_dir("system", "/system0");
-run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/system0/system.img", "/system");
-
-package_extract_file("datatoext2backup", "/tmp/datatoext2backup");
-set_perm(0, 0, 0777, "/tmp/datatoext2backup");
-run_program("/tmp/datatoext2backup");
-run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/data0/data.img", "/data");
-
-
-package_extract_dir("data", "/data");
-
-set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
-package_extract_dir("app_s", "/data/app_s");
+ui_print("");
+ui_print("");
+ui_print(">>> Writing ext2 and data);
+	package_extract_dir("system", "/system0");
+	run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/system0/system.img", "/system");
+	package_extract_file("datatoext2backup", "/tmp/datatoext2backup");
+	set_perm(0, 0, 0777, "/tmp/datatoext2backup");
+	run_program("/tmp/datatoext2backup");
+	run_program("/sbin/busybox", "mount", "-t", "ext2", "-o", "loop", "/data0/data.img", "/data");
+	package_extract_dir("data", "/data");
+	set_perm_recursive(1000, 1000, 0771, 0644, "/data/app");
+	package_extract_dir("app_s", "/data/app_s");
 ui_print("");
 ui_print("");
 ui_print(">>> Creating toolbox symlinks");
