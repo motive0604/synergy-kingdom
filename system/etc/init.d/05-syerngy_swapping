@@ -19,7 +19,7 @@ then
 	if [ $swapto = "swppart" ];
 	then
 		echo "[ ] Searching for Swap Partition" | tee -a $LOG_FILE;
-		if [ -e /dev/block/mmcblk1p3 ] 
+		if [ -e /dev/block/mmcblk0p3 ] 
 		then
 		    swappy=`getprop dc.swap.swappiness`;
 			echo "[!] Swap Partition Found...Turning on swap." | tee -a $LOG_FILE;

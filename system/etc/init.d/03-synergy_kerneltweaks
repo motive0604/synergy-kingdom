@@ -24,8 +24,8 @@ export intswapping=true;
 export dalvikheap=`getprop dc.dalvik.heapsize`;
 export MMC0_READ_AHEAD_KB=`getprop dc.adv.mmc0_read_ahead_kb`;
 export MMC1_READ_AHEAD_KB=`getprop dc.adv.mmc1_read_ahead_kb`;
-export MMC0_SCHEDULER=`getprop dc.adv.mmc0_scheduler`;
-export MMC1_SCHEDULER=`getprop dc.adv.mmc1_scheduler`;
+#export MMC0_SCHEDULER=`getprop dc.adv.mmc0_scheduler`;
+#export MMC1_SCHEDULER=`getprop dc.adv.mmc1_scheduler`;
 
 if [ $dalvikheap = "16m" ]; 
 then
@@ -117,13 +117,13 @@ echo "${MMC0_READ_AHEAD_KB}" > /sys/block/mmcblk0/queue/read_ahead_kb;
 
 # Set io scheduler tweaks for mmc1
 #device is not rotational
-echo "0" > /sys/block/mmcblk1/queue/rotational;
+#echo "0" > /sys/block/mmcblk1/queue/rotational;
 #increase queue (128 default)
-echo "512" > /sys/block/mmcblk1/queue/nr_requests;
+#echo "512" > /sys/block/mmcblk1/queue/nr_requests;
 #scheduler
-echo "${MMC1_SCHEDULER}" > /sys/block/mmcblk1/queue/scheduler;
+#echo "${MMC1_SCHEDULER}" > /sys/block/mmcblk1/queue/scheduler;
 #readahead
-echo "${MMC1_READ_AHEAD_KB}" > /sys/block/mmcblk1/queue/read_ahead_kb;
+#echo "${MMC1_READ_AHEAD_KB}" > /sys/block/mmcblk1/queue/read_ahead_kb;
 
 #powersave bias should always be 0 or you will cut mhz
 echo 0 > /sys/devices/system/cpu/cpu0/cpufreq/ondemand/powersave_bias;

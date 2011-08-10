@@ -16,7 +16,7 @@ if [ -e $LOG_FILE ]; then
   	rm $LOG_FILE;
 fi;
 
-echo "Starting DamageControl BootScript at:"  `date`  | tee -a $LOG_FILE;
+echo "Starting SynergyRom BootScript at:"  `date`  | tee -a $LOG_FILE;
 
 echo "Setting up dropbear" | tee -a $LOG_FILE;
 if [ ! -e /data/dropbear/rsa_host_key -o ! -e /data/dropbear/dss_host_key ];

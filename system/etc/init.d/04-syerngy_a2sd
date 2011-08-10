@@ -23,7 +23,7 @@ then
 
 	# execute any postinstall script then kill it
 	echo "[ ] Checking for ext partition" | tee -a $LOG_FILE;
-	if [ -e /dev/block/mmcblk1p2 ];
+	if [ -e /dev/block/mmcblk0p2 ];
 	then
 
 		# mount and set perms
@@ -31,7 +31,7 @@ then
 		echo "[ ] Checking Ext partition for errors, count echoed below is returned from e2fsck" | tee -a $LOG_FILE;
 		setprop dc.e2fsck.errors $?;
 		getprop dc.e2fsck.errors | tee -a $LOG_FILE;
-		busybox mount -o noatime,nodiratime,rw -t auto /dev/block/mmcblk1p2 /system/sd;
+		busybox mount -o noatime,nodiratime,rw -t auto /dev/block/mmcblk0p2 /system/sd;
 		if [ $? != 0 ];
 		then
 			echo "[X] EXT Exists but mounting failed. Can't continue script...aborting." | tee -a $LOG_FILE;
